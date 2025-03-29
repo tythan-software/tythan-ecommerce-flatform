@@ -1,4 +1,6 @@
-*** react app structure ***
+## React App Structure
+
+```
 src/
 ├── assets/                # Static assets (images, fonts)
 │   ├── fonts/
@@ -15,17 +17,19 @@ src/
 │   ├── helpers/           # Utility functions
 │   ├── hooks/             # Custom reusable hooks
 │   ├── store/             # State management (Redux/Zustand)
-│   ├── types/types.ts   # Shared TypeScript types and interfaces
+│   ├── types/             # Shared TypeScript types and interfaces
+│       ├── types.ts
 │
 ├── pages/                 # Page components (LoginPage, DashboardPage)
-│        ├── App.tsx       # Main app entry point
+│   ├── App.tsx           # Main app entry point
+│
 ├── routes/                # Centralized app routing
 │   ├── routes.tsx
 │
 ├── services/              # API services (fetching data)
 │   ├── products/          # Product API services
-│   │   ├── queries.ts # React Query fetching
-|   |   ├── keys.ts # Query keys
+│   │   ├── queries.ts     # React Query fetching
+│   │   ├── keys.ts        # Query keys
 │   │   ├── mutations.ts   # React Query mutations
 │   │   ├── api.ts         # API functions
 │
