@@ -1,4 +1,4 @@
-### React App Structure
+## Structure
 
 ```
 src/
@@ -42,6 +42,7 @@ src/
 ├── package.json
 ```
 
+## Design Pattern
 ### Atom Design
 
 - **Atom:** It's the smallest components, such as buttons, titles, inputs, fonts, or animations. They can be used globally or within other components and templates, handling multiple states like disabled, hover, or different sizes.
@@ -53,3 +54,38 @@ src/
 - **Template:** At this stage, we do not focus on building components but rather on setting up their context. Templates establish relationships between organisms and other components by defining positions, layouts, and page structures, but without applying styles, colors, or rendering actual components.
 
 - **Page:** It's a functional part of the app where components are used based on a specific template. These components receive real content and are connected to the entire application. At this stage, we can evaluate the effectiveness of the design system and analyze whether the components are sufficiently independent or need further decomposition.
+
+## Document
+### Storybook
+
+Storybook is an open-source tool for writing component stories that act as documentation for usage and props. It allows developers to build and showcase individual React components without running the entire app, making UI development more efficient and organized.
+
+**How to run**
+
+Start Storybook with
+
+```
+npm run storybook
+```
+
+This will launch Storybook at http://localhost:6006/
+
+## Testing
+### Cypress
+
+Cypress is a JavaScript-based end-to-end testing framework used to test modern web applications. It runs directly in the browser, providing a fast, reliable, and developer-friendly testing experience.
+
+**How to run**
+
+Open Cypress using
+
+```
+npx cypress open
+```
+
+This will generate a cypress/ folder in your project and open the Cypress Test Runner
+
+Inside the cypress/ folder, you’ll find:
+- fixtures/ – Sample test data (e.g., JSON files).
+- e2e/ – Store your test scripts.
+- support/ – Utility functions and global configurations.
