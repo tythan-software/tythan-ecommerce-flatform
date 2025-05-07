@@ -6,6 +6,7 @@ import bannerImgThree from "./banner/bannerImgThree.webp";
 import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
+
 // ============== Products Start here ====================
 // New Arrivals
 import newArrOne from "./products/newArrival/newArrOne.webp";
@@ -28,6 +29,7 @@ import spfFour from "./products/specialOffer/spfFour.webp";
 // Year Product
 import productOfTheYear from "./products/productOfTheYear.webp";
 // ============== Products End here ======================
+
 import paymentCard from "./payment.png";
 import emptyCart from "../images/emptyCart.png";
 
@@ -40,6 +42,7 @@ export {
   saleImgOne,
   saleImgTwo,
   saleImgThree,
+
   // ===================== Products start here ============
   // New Arrivals
   newArrOne,
@@ -62,6 +65,7 @@ export {
   // Year Product
   productOfTheYear,
   // ===================== Products End here ==============
+  
   paymentCard,
   emptyCart,
 };

@@ -11,32 +11,32 @@ import {
   newArrTwo,
   newArrThree,
   newArrFour,
-} from "../../../assets/images/index.ts";
+} from "./images/index";
 
 // =================== NavBarList Start here ====================
-export const navBarList = [
+export const NavBarList = [
   {
-    _id: 1001,
+    id: 1001,
     title: "Home",
     link: "/",
   },
   {
-    _id: 1002,
+    id: 1002,
     title: "Shop",
     link: "/shop",
   },
   {
-    _id: 1003,
+    id: 1003,
     title: "About",
     link: "/about",
   },
   {
-    _id: 1004,
+    id: 1004,
     title: "Contact",
     link: "contact",
   },
   {
-    _id: 1005,
+    id: 1005,
     title: "Journal",
     link: "/journal",
   },
@@ -45,7 +45,7 @@ export const navBarList = [
 // =================== Special Offer data Start here ============
 export const SplOfferData = [
   {
-    _id: "201",
+    id: 201,
     img: spfOne,
     productName: "Cap for Boys",
     price: "35.00",
@@ -54,7 +54,7 @@ export const SplOfferData = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: "202",
+    id: 202,
     img: newArrFour,
     productName: "Tea Table",
     price: "180.00",
@@ -63,7 +63,7 @@ export const SplOfferData = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: "203",
+    id: 203,
     img: spfThree,
     productName: "Headphones",
     price: "25.00",
@@ -72,7 +72,7 @@ export const SplOfferData = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: "204",
+    id: 204,
     img: spfFour,
     productName: "Sun glasses",
     price: "220.00",
@@ -85,9 +85,9 @@ export const SplOfferData = [
 
 // =================== PaginationItems Start here ===============
 
-export const paginationItems = [
+export const PaginationItems = [
   {
-    _id: 1001,
+    id: 1001,
     img: spfOne,
     productName: "Cap for Boys",
     price: "35.00",
@@ -96,7 +96,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1002,
+    id: 1002,
     img: spfTwo,
     productName: "Tea Table",
     price: "180.00",
@@ -105,7 +105,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1003,
+    id: 1003,
     img: spfThree,
     productName: "Headphones",
     price: "25.00",
@@ -114,7 +114,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1004,
+    id: 1004,
     img: spfFour,
     productName: "Sun glasses",
     price: "220.00",
@@ -123,7 +123,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1005,
+    id: 1005,
     img: bestSellerOne,
     productName: "Flower Base",
     price: "35.00",
@@ -132,7 +132,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1006,
+    id: 1006,
     img: bestSellerTwo,
     productName: "New Backpack",
     price: "180.00",
@@ -141,7 +141,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1007,
+    id: 1007,
     img: bestSellerThree,
     productName: "Household materials",
     price: "25.00",
@@ -150,7 +150,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1008,
+    id: 1008,
     img: bestSellerFour,
     productName: "Travel Bag",
     price: "220.00",
@@ -159,7 +159,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1009,
+    id: 1009,
     img: newArrOne,
     productName: "Round Table Clock",
     price: "44.00",
@@ -168,7 +168,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1010,
+    id: 1010,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -177,7 +177,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1011,
+    id: 1011,
     img: newArrThree,
     productName: "cloth Basket",
     price: "80.00",
@@ -186,7 +186,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1012,
+    id: 1012,
     img: newArrFour,
     productName: "Funny toys for babies",
     price: "60.00",
@@ -195,7 +195,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1013,
+    id: 1013,
     img: newArrTwo,
     productName: "Funny toys for babies",
     price: "60.00",
@@ -205,7 +205,7 @@ export const paginationItems = [
   },
 
   {
-    _id: 1014,
+    id: 1014,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -214,7 +214,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1015,
+    id: 1015,
     img: newArrFour,
     productName: "Funny toys for babies",
     price: "60.00",
@@ -223,7 +223,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1016,
+    id: 1016,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -232,7 +232,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1017,
+    id: 1017,
     img: bestSellerFour,
     productName: "Travel Bag",
     price: "220.00",
@@ -241,7 +241,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1018,
+    id: 1018,
     img: newArrOne,
     productName: "Round Table Clock",
     price: "44.00",
@@ -250,7 +250,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1019,
+    id: 1019,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -259,7 +259,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1020,
+    id: 1020,
     img: newArrThree,
     productName: "cloth Basket",
     price: "80.00",
@@ -268,7 +268,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1021,
+    id: 1021,
     img: spfThree,
     productName: "Headphones",
     price: "25.00",
@@ -277,7 +277,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1022,
+    id: 1022,
     img: spfFour,
     productName: "Sun glasses",
     price: "220.00",
@@ -286,7 +286,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1023,
+    id: 1023,
     img: bestSellerOne,
     productName: "Flower Base",
     price: "35.00",
@@ -295,7 +295,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1024,
+    id: 1024,
     img: spfOne,
     productName: "Cap for Boys",
     price: "35.00",
@@ -304,7 +304,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1025,
+    id: 1025,
     img: spfTwo,
     productName: "Tea Table",
     price: "180.00",
@@ -313,7 +313,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1026,
+    id: 1026,
     img: spfThree,
     productName: "Headphones",
     price: "25.00",
@@ -322,7 +322,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1027,
+    id: 1027,
     img: spfFour,
     productName: "Sun glasses",
     price: "220.00",
@@ -331,7 +331,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1028,
+    id: 1028,
     img: bestSellerOne,
     productName: "Flower Base",
     price: "35.00",
@@ -340,7 +340,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1029,
+    id: 1029,
     img: bestSellerTwo,
     productName: "New Backpack",
     price: "180.00",
@@ -349,7 +349,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1030,
+    id: 1030,
     img: bestSellerThree,
     productName: "Household materials",
     price: "25.00",
@@ -358,7 +358,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1031,
+    id: 1031,
     img: bestSellerFour,
     productName: "Travel Bag",
     price: "220.00",
@@ -367,7 +367,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1032,
+    id: 1032,
     img: newArrOne,
     productName: "Round Table Clock",
     price: "44.00",
@@ -376,7 +376,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1033,
+    id: 1033,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -385,7 +385,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1034,
+    id: 1034,
     img: newArrThree,
     productName: "cloth Basket",
     price: "80.00",
@@ -394,7 +394,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1035,
+    id: 1035,
     img: newArrFour,
     productName: "Funny toys for babies",
     price: "60.00",
@@ -403,7 +403,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1036,
+    id: 1036,
     img: newArrTwo,
     productName: "Funny toys for babies",
     price: "60.00",
@@ -412,7 +412,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1037,
+    id: 1037,
     img: newArrFour,
     productName: "Funny toys for babies",
     price: "60.00",
@@ -421,7 +421,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1038,
+    id: 1038,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -430,7 +430,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1039,
+    id: 1039,
     img: bestSellerFour,
     productName: "Travel Bag",
     price: "220.00",
@@ -439,7 +439,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1040,
+    id: 1040,
     img: newArrOne,
     productName: "Round Table Clock",
     price: "44.00",
@@ -448,7 +448,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1041,
+    id: 1041,
     img: newArrTwo,
     productName: "Smart Watch",
     price: "250.00",
@@ -457,7 +457,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1042,
+    id: 1042,
     img: newArrThree,
     productName: "cloth Basket",
     price: "80.00",
@@ -466,7 +466,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1043,
+    id: 1043,
     img: spfThree,
     productName: "Headphones",
     price: "25.00",
@@ -475,7 +475,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1044,
+    id: 1044,
     img: spfFour,
     productName: "Sun glasses",
     price: "220.00",
@@ -484,7 +484,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1045,
+    id: 1045,
     img: bestSellerOne,
     productName: "Flower Base",
     price: "35.00",
@@ -493,7 +493,7 @@ export const paginationItems = [
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
   },
   {
-    _id: 1046,
+    id: 1046,
     img: spfOne,
     productName: "Cap for Boys",
     price: "35.00",
