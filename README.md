@@ -1,74 +1,58 @@
 ## Structure
 
 ```
-src/
-├── assets/                # Static assets (images, fonts)
-│   ├── fonts/
-│   ├── images/
-│
-├── components/            # UI Components (Atomic Design)
-│   ├── atoms/             # Smallest reusable components (Button, Input, Label)
-│   ├── molecules/         # Grouped atoms forming functional components
-│   ├── organisms/         # Complex UI structures combining molecules
-│   ├── templates/         # Page layouts (AuthLayout, DashboardLayout)
-│
-├── lib/                   # Business logic and utilities
-│   ├── constants/         # Global constants
-│   ├── helpers/           # Utility functions
-│   ├── hooks/             # Custom reusable hooks
-│   ├── store/             # State management (Redux/Zustand)
-│   ├── types/             # Shared TypeScript types and interfaces
-│       ├── types.ts
-│
-├── pages/                 # Page components (LoginPage, DashboardPage)
-│   ├── App.tsx           # Main app entry point
-│
-├── routes/                # Centralized app routing
-│   ├── routes.tsx
-│
-├── services/              # API services (fetching data)
-│   ├── products/          # Product API services
-│   │   ├── queries.ts     # React Query fetching
-│   │   ├── keys.ts        # Query keys
-│   │   ├── mutations.ts   # React Query mutations
-│   │   ├── api.ts         # API functions
-│
-├── styles/                # Global styles (CSS Modules, Tailwind, etc.)
-│   ├── globals.css
-│
-├── index.tsx              # React root file
-├── .env.local             # Environment variables
-├── .gitignore
+project
+├── public/                     # Static files (favicon, index.html, manifest.json)
+│   ├── favicon.io
+│   ├── index.html
+│   ├── manifest.json
+│   
+├── src/
+│   ├── assets/                 # Static assets (images, fonts)
+│   │   ├── fonts/
+│   │   ├── images/
+│   │
+│   ├── components/             # UI Components 
+│   │   ├── ui/                 # Smallest reusable components (Button, Input, Label)
+│   │   ├── layout/             # Smallest reusable layouts (Navbar, Sidebar, Footer)
+│   │   ├── hooks/              # Custom reusable hooks (useAuth, useTheme)
+│   │   ├── utils/              # Utility functions (formatDate, debounce)
+│   │
+│   ├── pages/                  # Page components
+│   │   ├── Home/
+│   │   ├── About/
+│   │   ├── Dashboard/
+│   │
+│   ├── store/                  # Manage state (Redux, Zustand)
+│   │   ├── slices/             # Redux slices (authSlice, userSlice)
+│   │   ├── index.ts            # Combine reducers
+│   │
+│   ├── routes/                 # Centralized app routing
+│   │   ├── privateRoutes.ts    # Require to login
+│   │   ├── publicRoutes.ts     # No require to login
+│   │   ├── index.tsx           # Main app router
+│   │
+│   ├── services/              `# API services (fetching data)
+│   │   ├── authService.ts
+│   │   ├── userService.ts
+│   │
+│   ├── config/
+│   │   ├── axios.ts
+│   │   ├── env.ts              # Load .env
+│   │   ├── theme.ts            # Dark/light theme config
+│   │
+│   ├── types/                  # Typescript types
+│   │   ├── user.ts
+│   │   ├── auth.ts
+│   ├── App.tsx                 # App compoment
+│   ├── main.tsx                # Entry point
+├── .env
+├── tsconfig.json
+├── tailwind.config.js
+├── vite.config.ts
 ├── package.json
+├── README.md
 ```
-
-## Design Pattern
-### Atom Design
-
-- **Atom:** It's the smallest components, such as buttons, titles, inputs, fonts, or animations. They can be used globally or within other components and templates, handling multiple states like disabled, hover, or different sizes.
-
-- **Molecule:** It's a combination of one or more atom components. Here, we start assembling more complex and reusable components. Molecules can have their own properties and functions, which are used by atoms, whereas atoms do not have any functions or actions.
-
-- **Organism:** It's composed of multiple molecules working together and may even include atoms to create more detailed interfaces. At this level, components start to take on a more defined structure, but they must remain independent, easily movable, and reusable with any content.
-
-- **Template:** At this stage, we do not focus on building components but rather on setting up their context. Templates establish relationships between organisms and other components by defining positions, layouts, and page structures, but without applying styles, colors, or rendering actual components.
-
-- **Page:** It's a functional part of the app where components are used based on a specific template. These components receive real content and are connected to the entire application. At this stage, we can evaluate the effectiveness of the design system and analyze whether the components are sufficiently independent or need further decomposition.
-
-## Document
-### Storybook
-
-Storybook is an open-source tool for writing component stories that act as documentation for usage and props. It allows developers to build and showcase individual React components without running the entire app, making UI development more efficient and organized.
-
-**How to run**
-
-Start Storybook with
-
-```
-npm run storybook
-```
-
-This will launch Storybook at http://localhost:6006/
 
 ## Testing
 ### Cypress
