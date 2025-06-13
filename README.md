@@ -3,7 +3,7 @@
 ```
 project
 ├── public/                     # Static files (favicon, index.html, manifest.json)
-│   ├── favicon.io
+│   ├── favicon.ico
 │   ├── index.html
 │   ├── manifest.json
 │   
