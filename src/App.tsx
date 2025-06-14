@@ -1,15 +1,32 @@
-import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { Route, Outlet, ScrollRestoration, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { Header } from './components/_shared';
+
+const Layout = () => {
+  return (
+    <div>
+      <Header />
+      <ScrollRestoration />
+      <Outlet />
+    </div>
+  );
+};
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/" element={<Layout />}>
+        {/* ==================== Header Navlink Start here =================== */}
+        
+        {/* ==================== Header Navlink End here ===================== */}
+      </Route>
+    </Route>
+  )
+);
 
 function App() {
-  const location = useLocation();
-
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-      </Routes>
-    </AnimatePresence>
+    <div className="font-bodyFont">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
