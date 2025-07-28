@@ -1,5 +1,6 @@
 import { Route, Outlet, ScrollRestoration, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
-import { Header } from './components/_shared';
+import { Header, Footer } from '@/components/_shared';
+import { HomePage } from '@/pages';
 
 const Layout = () => {
   return (
@@ -7,6 +8,7 @@ const Layout = () => {
       <Header />
       <ScrollRestoration />
       <Outlet />
+      <Footer />
     </div>
   );
 };
@@ -15,7 +17,7 @@ const router = createBrowserRouter(
     <Route>
       <Route path="/" element={<Layout />}>
         {/* ==================== Header Navlink Start here =================== */}
-        
+        <Route index element={<HomePage />}></Route>
         {/* ==================== Header Navlink End here ===================== */}
       </Route>
     </Route>

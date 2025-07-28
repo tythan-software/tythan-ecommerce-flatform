@@ -3,7 +3,7 @@ interface ListItemProps {
   className: string,
 }
 
-const ListItem = (
+export const ListItem = (
   { 
     itemName, 
     className 
@@ -11,5 +11,3 @@ const ListItem = (
   : ListItemProps) => {
   return <li className={className}>{itemName}</li>;
 };
-
-export default ListItem;

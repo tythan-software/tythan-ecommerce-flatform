@@ -2,3 +2,8 @@ export * from "./Header";
 export * from "./Image";
 export * from "./SideBar";
 export * from "./FlexBox";
+export * from "./List";
+export * from "./ListItem";
+export * from "./ListTitle";
+export * from "./Footer";
+export * from "./ShopNow";

@@ -3,9 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { logo } from "@/assets/images";
-import Image from "./Image";
-import FlexBox from "./FlexBox";
-import SideBar from "./SideBar";
+import { Image, FlexBox, SideBar } from "@/components/_shared";
 import { NavBarList } from "@/types";
 
 const navBarList: NavBarList[] = [

@@ -10,7 +10,7 @@ interface SiderBarProps {
   setSidenav: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SideBar = (
+export const SideBar = (
   {
     navBarList,
     setSidenav
@@ -107,5 +107,3 @@ const SideBar = (
     </div>
   );
 };
-
-export default SideBar;

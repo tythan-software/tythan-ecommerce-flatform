@@ -5,7 +5,7 @@ interface ListProps {
   className: string,
 }
 
-const List = (
+export const List = (
   { 
     children, 
     className 
@@ -13,5 +13,3 @@ const List = (
     : ListProps) => {
   return <ul className={className}>{children}</ul>;
 };
-
-export default List;

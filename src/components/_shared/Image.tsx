@@ -4,7 +4,7 @@ interface ImageProps {
   className: string,
 }
 
-const Image = (
+export const Image = (
   { 
     imgSrc, 
     className 
@@ -12,5 +12,3 @@ const Image = (
   : ImageProps) => {
   return <img className={className} src={imgSrc} alt={imgSrc} />;
 };
-
-export default Image;

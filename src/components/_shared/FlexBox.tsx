@@ -5,7 +5,7 @@ interface FlexBoxProps {
   className: string,
 }
 
-const FlexBox = (
+export const FlexBox = (
   { 
     children, 
     className 
@@ -13,5 +13,3 @@ const FlexBox = (
   : FlexBoxProps) => {
   return <div className={className}>{children}</div>;
 };
-
-export default FlexBox;
