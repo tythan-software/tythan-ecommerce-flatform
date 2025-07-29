@@ -1,0 +1,29 @@
+
+// To define reusable code snippets (e.g. styles, logic, vendor prefixes, etc.) that can be used throughout your SCSS files.
+
+// 🛠️ Common Use Cases:
+// - Flexbox or Grid layout helpers
+// - Media queries
+// - Buttons, spacing, box shadows
+// - Cross-browser vendor prefixes
+
+// ✅ Example:
+// @mixin flex-center {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// @mixin responsive($breakpoint) {
+//   @if $breakpoint == 'tablet' {
+//     @media (max-width: 768px) { @content; }
+//   }
+// }
+
+// 🔄 Usage:
+// .container {
+//   @include flex-center;
+//   @include responsive('tablet') {
+//     flex-direction: column;
+//   }
+// }

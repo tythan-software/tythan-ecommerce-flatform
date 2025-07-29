@@ -1,0 +1,63 @@
+// To define universal rules that apply across your whole app.
+
+// 🛠️ Common Use Cases:
+// - CSS reset or normalize
+// - Body, html base styles
+// - Typography (fonts, headings)
+// - Default margins, paddings
+// - Theme styles (light/dark mode)
+
+// ✅ Example:
+// body {
+//   font-family: $font-stack;
+//   background-color: #fafafa;
+//   color: #333;
+//   margin: 0;
+//   padding: 0;
+// }
+//
+// a {
+//   color: $primary-color;
+//   text-decoration: none;
+// }
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./variables.scss";
+
+.hoverEffect {
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.headerSedenavLi {
+  cursor: pointer;
+  color: $color-gray-300;
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: $color-white;
+  }
+}
+
+nav .active li {
+  color: $color-active-black;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: $color-active-black;
+}
+
+@media screen and (max-width: 665px) {
+  nav .active li {
+    color: $color-active-white;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: $color-active-white;
+  }
+}
+
+// Hide scrollbar utility
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
