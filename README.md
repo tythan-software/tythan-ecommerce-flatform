@@ -8,44 +8,61 @@ project
 │   ├── manifest.json
 │   
 ├── src/
-│   ├── assets/                 # Static assets (images, fonts)
-│   │   ├── fonts/
-│   │   ├── images/
+│   ├── assets/
+│   │   ├── images/             # Project images (banners, products, etc.)
+│   │   ├── pdf/                # PDF files
 │   │
-│   ├── components/             # UI Components 
-│   │   ├── ui/                 # Smallest reusable components (Button, Input, Label)
-│   │   ├── layout/             # Smallest reusable layouts (Navbar, Sidebar, Footer)
-│   │   ├── hooks/              # Custom reusable hooks (useAuth, useTheme)
-│   │   ├── utils/              # Utility functions (formatDate, debounce)
+│   ├── components/
+│   │   ├── _shared/            # Shared UI components (Header, Footer, FlexBox, etc.)
+│   │   │   ├── _partial/       # Smallest atomic UI parts with dynamic style (icons, badges, etc.)
+│   │   ├── layout/             # Layout-related components (home, ...)
 │   │
-│   ├── pages/                  # Page components
-│   │   ├── Home/
-│   │   ├── About/
-│   │   ├── Dashboard/
-│   │
-│   ├── store/                  # Manage state (Redux, Zustand)
-│   │   ├── slices/             # Redux slices (authSlice, userSlice)
-│   │   ├── index.ts            # Combine reducers
-│   │
-│   ├── routes/                 # Centralized app routing
-│   │   ├── privateRoutes.ts    # Require to login
-│   │   ├── publicRoutes.ts     # No require to login
-│   │   ├── index.tsx           # Main app router
-│   │
-│   ├── services/              `# API services (fetching data)
-│   │   ├── authService.ts
-│   │   ├── userService.ts
-│   │
-│   ├── config/
+│   ├── config/                 # App configuration (axios, env, theme)
 │   │   ├── axios.ts
-│   │   ├── env.ts              # Load .env
-│   │   ├── theme.ts            # Dark/light theme config
+│   │   ├── env.ts
+│   │   ├── theme.ts
 │   │
-│   ├── types/                  # Typescript types
-│   │   ├── user.ts
-│   │   ├── auth.ts
-│   ├── App.tsx                 # App compoment
+│   ├── data/                   # Static/fake data
+│   │   ├── fake.data.ts
+│   │   ├── index.ts
+│   │
+│   ├── hooks/                  # Custom React hooks
+│   │   ├── useAsyncEffect.ts
+│   │   ├── useCategories.ts
+│   │   ├── ...
+│   │
+│   ├── pages/                  # Page components (HomePage, ...)
+│   │   ├── HomePage.tsx
+│   │   ├── index.ts
+│   │
+│   ├── services/               # API services
+│   │   ├── auth.service.ts
+│   │   ├── user.service.ts
+│   │   ├── index.ts
+│   │
+│   ├── store/                  # Redux store and slices
+│   │   ├── slices/
+│   │   │   ├── productSlice.ts
+│   │   ├── index.ts
+│   │
+│   ├── styles/                 # Global and modular styles (SCSS)
+│   │   ├── global.scss         # Universal/global rules for the whole app (fonts, base, typography)
+│   │   ├── index.scss          # Main SCSS entry, imports all partials
+│   │   ├── _mixins.scss        # Reusable SCSS mixins (flex, media queries, etc.)
+│   │   ├── _reset.scss         # CSS reset for cross-browser consistency
+│   │   ├── _variables.scss     # SCSS variables (colors, spacing, etc.)
+│   │
+│   ├── types/                  # TypeScript types
+│   │   ├── index.ts
+│   │   ├── NavBarList.ts
+│   │
+│   ├── utils/                  # Utility functions
+│   │   ├── index.ts
+│   │   ├── validation.util.ts
+│   │
+│   ├── App.tsx                 # App component
 │   ├── main.tsx                # Entry point
+│   ├── vite-env.d.ts           # Vite environment types
 ├── .env
 ├── tsconfig.json
 ├── tailwind.config.js
@@ -53,23 +70,3 @@ project
 ├── package.json
 ├── README.md
 ```
-
-## Testing
-### Cypress
-
-Cypress is a JavaScript-based end-to-end testing framework used to test modern web applications. It runs directly in the browser, providing a fast, reliable, and developer-friendly testing experience.
-
-**How to run**
-
-Open Cypress using
-
-```
-npx cypress open
-```
-
-This will generate a cypress/ folder in your project and open the Cypress Test Runner
-
-Inside the cypress/ folder, you’ll find:
-- fixtures/ – Sample test data (e.g., JSON files).
-- e2e/ – Store your test scripts.
-- support/ – Utility functions and global configurations.
