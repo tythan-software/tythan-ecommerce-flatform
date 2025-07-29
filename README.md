@@ -2,11 +2,11 @@
 
 ```
 project
-├── public/                     # Static files (favicon, index.html, manifest.json)
+├── public/                     # Static files (favicon, manifest.json)
 │   ├── favicon.ico
-│   ├── index.html
 │   ├── manifest.json
 │   
+├── index.html                  # Main HTML entry (root)
 ├── src/
 │   ├── assets/
 │   │   ├── images/             # Project images (banners, products, etc.)
