@@ -1,35 +1,58 @@
 // To define universal rules that apply across your whole app.
 
-// 🛠️ Common Use Cases:
-// - CSS reset or normalize
-// - Body, html base styles
-// - Typography (fonts, headings)
-// - Default margins, paddings
-// - Theme styles (light/dark mode)
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1.25rem;
+  background: #222;
+  color: #fff;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #000;
+  color: #f3f4f6;
+}
 
-// ✅ Example:
-// body {
-//   font-family: $font-stack;
-//   background-color: #fafafa;
-//   color: #333;
-//   margin: 0;
-//   padding: 0;
-// }
-//
-// a {
-//   color: $primary-color;
-//   text-decoration: none;
-// }
+.card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+}
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import "./variables.scss";
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus {
+  border-color: #222;
+}
 
-.hoverEffect {
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  font-size: 0.875em;
+  font-weight: 600;
+  color: #fff;
+  background: #6366f1;
+  border-radius: 9999px;
+}
+
+.hover-effect {
   transition-duration: 0.3s;
   cursor: pointer;
 }
 
-.headerSedenavLi {
+.header-sedenav-li {
   cursor: pointer;
   color: $color-gray-300;
   &:hover {
@@ -37,27 +60,4 @@
     text-underline-offset: 2px;
     color: $color-white;
   }
-}
-
-nav .active li {
-  color: $color-active-black;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-decoration-color: $color-active-black;
-}
-
-@media screen and (max-width: 665px) {
-  nav .active li {
-    color: $color-active-white;
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: $color-active-white;
-  }
-}
-
-// Hide scrollbar utility
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }

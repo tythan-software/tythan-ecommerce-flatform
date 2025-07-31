@@ -27,3 +27,8 @@
 //     flex-direction: column;
 //   }
 // }
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}

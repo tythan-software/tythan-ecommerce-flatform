@@ -23,23 +23,23 @@ export const SideBar = (
   const [brand, setBrand] = useState(false);
 
   return (
-    <div className="sideBarOverlay">
+    <div className="side-bar-overlay">
       <motion.div
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="sideBarMotion"
+        className="side-bar-motion"
       >
-        <div className="sideBarContent">
+        <div className="side-bar-content">
           <img
-            className="sideBarLogo"
+            className="side-bar-logo"
             src={logo}
             alt="logoLight"
           />
-          <ul className="sideBarNavList">
+          <ul className="side-bar-nav-list">
             {navBarList.map((item) => (
               <li
-                className="sideBarNavItem"
+                className="side-bar-nav-item"
                 key={item._id}
               >
                 <NavLink
@@ -52,10 +52,10 @@ export const SideBar = (
               </li>
             ))}
           </ul>
-          <div className="sideBarSection">
+          <div className="side-bar-section">
             <h1
               onClick={() => setCategory(!category)}
-              className="sideBarSectionTitle"
+            className="side-bar-section-title"
             >
               Shop by Category{" "}
               <span className="text-lg">{category ? "-" : "+"}</span>
@@ -65,20 +65,20 @@ export const SideBar = (
                 initial={{ y: 15, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4 }}
-                className="sideBarSectionList"
+                className="side-bar-section-list"
               >
-                <li className="headerSedenavLi">New Arrivals</li>
-                <li className="headerSedenavLi">Gudgets</li>
-                <li className="headerSedenavLi">Accessories</li>
-                <li className="headerSedenavLi">Electronics</li>
-                <li className="headerSedenavLi">Others</li>
+                <li className="header-sedenav-li">New Arrivals</li>
+                <li className="header-sedenav-li">Gudgets</li>
+                <li className="header-sedenav-li">Accessories</li>
+                <li className="header-sedenav-li">Electronics</li>
+                <li className="header-sedenav-li">Others</li>
               </motion.ul>
             )}
           </div>
-          <div className="sideBarSection">
+          <div className="side-bar-section">
             <h1
               onClick={() => setBrand(!brand)}
-              className="sideBarSectionTitle"
+            className="side-bar-section-title"
             >
               Shop by Brand
               <span className="text-lg">{brand ? "-" : "+"}</span>
@@ -88,20 +88,20 @@ export const SideBar = (
                 initial={{ y: 15, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4 }}
-                className="sideBarSectionList"
+                className="side-bar-section-list"
               >
-                <li className="headerSedenavLi">New Arrivals</li>
-                <li className="headerSedenavLi">Gudgets</li>
-                <li className="headerSedenavLi">Accessories</li>
-                <li className="headerSedenavLi">Electronics</li>
-                <li className="headerSedenavLi">Others</li>
+                <li className="header-sedenav-li">New Arrivals</li>
+                <li className="header-sedenav-li">Gudgets</li>
+                <li className="header-sedenav-li">Accessories</li>
+                <li className="header-sedenav-li">Electronics</li>
+                <li className="header-sedenav-li">Others</li>
               </motion.ul>
             )}
           </div>
         </div>
         <span
           onClick={() => setSidenav(false)}
-          className="sideBarClose"
+          className="side-bar-close"
         >
           <MdClose />
         </span>

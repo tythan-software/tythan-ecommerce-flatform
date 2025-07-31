@@ -1,4 +1,4 @@
-.sideBarOverlay {
+.side-bar-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,32 +9,44 @@
   z-index: 50;
 }
 
-.sideBarMotion {
+
+.side-bar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  color: #e5e7eb;
+  z-index: 50;
+}
+
+.side-bar-motion {
   width: 80vw;
   height: 100vh;
   position: relative;
 }
 
-.sideBarContent {
+.side-bar-content {
   width: 100%;
   height: 100%;
   background: var(--primeColor, #222);
   padding: 1.5rem;
 }
 
-.sideBarLogo {
+.side-bar-logo {
   width: 4rem;
   margin-bottom: 1.5rem;
 }
 
-.sideBarNavList {
+.side-bar-nav-list {
   color: #e5e7eb;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.sideBarNavItem {
+.side-bar-nav-item {
   font-weight: 400;
   align-items: center;
   font-size: 1.125rem;
@@ -55,28 +67,28 @@
   }
 }
 
-.sideBarSection {
+.side-bar-section {
   margin-top: 1rem;
 }
 
-.sideBarSectionTitle {
-  display: flex;
+.side-bar-section-title {
+  @include flex-center;
   justify-content: space-between;
   font-size: 1rem;
   cursor: pointer;
-  align-items: center;
   font-family: inherit;
   margin-bottom: 0.5rem;
 }
 
-.sideBarSectionList {
+.side-bar-section-list {
   font-size: 0.875rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.sideBarClose {
+.side-bar-close {
+  @include flex-center;
   width: 2rem;
   height: 2rem;
   border: 1px solid #d1d5db;
@@ -85,9 +97,7 @@
   right: -2.5rem;
   color: #d1d5db;
   font-size: 2rem;
-  display: flex;
   justify-content: center;
-  align-items: center;
   cursor: pointer;
   transition: border-color 0.3s, color 0.3s;
   &:hover {

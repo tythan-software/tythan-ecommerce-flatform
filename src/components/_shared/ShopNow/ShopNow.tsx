@@ -1,6 +1,6 @@
 export const ShopNow = () => {
   return (
-    <button className="shopNowButton">
+    <button className="shop-now-button">
       Shop Now
     </button>
   );

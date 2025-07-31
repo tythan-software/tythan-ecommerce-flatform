@@ -50,12 +50,12 @@ export const Header = () => {{
   }, []);
 
   return (
-    <div className="headerWrapper">
-      <nav className="headerContent">
+    <div className="header-wrapper">
+      <nav className="header-content">
         <FlexBox className="headerFlexBox">
           <Link to="/">
             <div>
-              <Image className="headerLogo" imgSrc={logo} />
+              <Image className="header-logo" imgSrc={logo} />
             </div>
           </Link>
           <div>
@@ -64,13 +64,13 @@ export const Header = () => {{
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="headerNav"
+                className="header-nav"
               >
                 <>
                   {navBarList.map(({ _id, title, link }) => (
                     <NavLink
                       key={_id}
-                      className="headerNavItem"
+                      className="header-nav-item"
                       to={link}
                       state={{ data: location.pathname.split("/")[1] }}
                     >

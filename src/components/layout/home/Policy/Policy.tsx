@@ -4,19 +4,19 @@ import "./Policy.scss";
 
 export const Policy = () => {
   return (
-    <div className="policyWrapper">
-      <div className="policyContainer">
-        <div className="policyItem">
-          <span className="policyNumber">2</span>
-          <p className="policyText">Two years warranty</p>
+    <div className="policy-wrapper">
+      <div className="policy-container">
+        <div className="policy-item">
+          <span className="policy-number">2</span>
+          <p className="policy-text">Two years warranty</p>
         </div>
-        <div className="policyItem">
-          <span className="policyIcon"><MdLocalShipping /></span>
-          <p className="policyText">Free shipping</p>
+        <div className="policy-item">
+          <span className="policy-icon"><MdLocalShipping /></span>
+          <p className="policy-text">Free shipping</p>
         </div>
-        <div className="policyItem">
-          <span className="policyIcon"><CgRedo /></span>
-          <p className="policyText">Return policy in 30 days</p>
+        <div className="policy-item">
+          <span className="policy-icon"><CgRedo /></span>
+          <p className="policy-text">Return policy in 30 days</p>
         </div>
       </div>
     </div>

@@ -2,10 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
 import { AiOutlineCopyright } from "react-icons/ai";
+import '@/components/_shared/Footer/Footer.scss';
 import { ListTitle, Image }  from "@/components/_shared";
 import { paymentCard } from "@/assets/images";
 import { emailValidation } from "@/utils";
-import './Footer.scss';
 
 export const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
@@ -24,54 +24,54 @@ export const Footer = () => {
     }
   };
   return (
-    <div className="footerWrapper">
-      <div className="footerContainer">
-        <div className="footerColSpan2">
-          <ListTitle className="footerListTitle" title=" More about Orebi Shop" />
+    <div className="footer-wrapper">
+      <div className="footer-container">
+        <div className="footer-col-span2">
+          <ListTitle className="footer-list-title" title=" More about Orebi Shop" />
           <div className="flex flex-col gap-6">
-            <p className="footerText">
+            <p className="footer-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in.
             </p>
-            <ul className="footerSocialList">
+            <ul className="footer-social-list">
               <a href="https://www.youtube.com" target="_blank" rel="noreferrer">
-                <li className="footerSocialItem"><FaYoutube /></li>
+                <li className="footer-social-item"><FaYoutube /></li>
               </a>
               <a href="https://github.com" target="_blank" rel="noreferrer">
-                <li className="footerSocialItem"><FaGithub /></li>
+                <li className="footer-social-item"><FaGithub /></li>
               </a>
               <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-                <li className="footerSocialItem"><FaFacebook /></li>
+                <li className="footer-social-item"><FaFacebook /></li>
               </a>
               <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-                <li className="footerSocialItem"><FaLinkedin /></li>
+                <li className="footer-social-item"><FaLinkedin /></li>
               </a>
             </ul>
           </div>
         </div>
         <div>
-          <ListTitle className="footerListTitle" title="Shop" />
-          <ul className="footerList">
-            <li className="footerListItem">Accesories</li>
-            <li className="footerListItem">Clothes</li>
-            <li className="footerListItem">Electronics</li>
-            <li className="footerListItem">Home appliances</li>
-            <li className="footerListItem">New Arrivals</li>
+          <ListTitle className="footer-list-title" title="Shop" />
+          <ul className="footer-list">
+            <li className="footer-list-item">Accesories</li>
+            <li className="footer-list-item">Clothes</li>
+            <li className="footer-list-item">Electronics</li>
+            <li className="footer-list-item">Home appliances</li>
+            <li className="footer-list-item">New Arrivals</li>
           </ul>
         </div>
         <div>
-          <ListTitle className="footerListTitle" title="Your account" />
-          <ul className="footerList">
-            <li className="footerListItem">Profile</li>
-            <li className="footerListItem">Orders</li>
-            <li className="footerListItem">Addresses</li>
-            <li className="footerListItem">Account Details</li>
-            <li className="footerListItem">Payment Options</li>
+          <ListTitle className="footer-list-title" title="Your account" />
+          <ul className="footer-list">
+            <li className="footer-list-item">Profile</li>
+            <li className="footer-list-item">Orders</li>
+            <li className="footer-list-item">Addresses</li>
+            <li className="footer-list-item">Account Details</li>
+            <li className="footer-list-item">Payment Options</li>
           </ul>
         </div>
-        <div className="footerSubscribeCol">
-          <ListTitle className="footerSubscribeTitle" title="Subscribe to our newsletter." />
+        <div className="footer-subscribe-col">
+          <ListTitle className="footer-subscribe-title" title="Subscribe to our newsletter." />
           <div className="w-full">
-            <p className="footerSubscribeText">A at pellentesque et mattis porta enim elementum.</p>
+            <p className="footer-subscribe-text">A at pellentesque et mattis porta enim elementum.</p>
             {subscription ? (
               <motion.p
                 initial={{ x: 20, opacity: 0 }}
@@ -82,42 +82,42 @@ export const Footer = () => {
                 Subscribed Successfully !
               </motion.p>
             ) : (
-              <div className="footerSubscribeForm">
-                <div className="footerInputWrapper">
+              <div className="footer-subscribe-form">
+                <div className="footer-input-wrapper">
                   <input
                     onChange={(e) => setEmailInfo(e.target.value)}
                     value={emailInfo}
-                    className="footerInput"
+                    className="footer-input"
                     type="text"
                     placeholder="Insert your email ...*"
                   />
                   {errMsg && (
-                    <p className="footerError">{errMsg}</p>
+                    <p className="footer-error">{errMsg}</p>
                   )}
                 </div>
                 <button
                   onClick={handleSubscription}
-                  className="footerSubscribeBtn"
+                  className="footer-subscribe-btn"
                 >
                   Subscribe
                 </button>
               </div>
             )}
             <Image
-              className={`footerPaymentImg${subscription ? ' subscribed' : ''}`}
+              className={`footer-payment-img${subscription ? ' subscribed' : ''}`}
               imgSrc={paymentCard}
             />
           </div>
         </div>
       </div>
-      <div className="footerCopyright">
+      <div className="footer-copyright">
         <p>
-          <span className="footerCopyrightIcon">
+          <span className="footer-copyright-icon">
             <AiOutlineCopyright />
           </span>
           Copyright 2022 | Orebi shopping | All Rights Reserved |
           <a href="https://reactbd.com/" target="_blank" rel="noreferrer">
-            <span className="footerCopyrightLink">Powered by ReactBD.com</span>
+            <span className="footer-copyright-link">Powered by ReactBD.com</span>
           </a>
         </p>
       </div>
