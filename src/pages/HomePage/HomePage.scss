@@ -1,13 +1,12 @@
 .home-page-wrapper {
+  @include margin-auto;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  background: $color-white;
 }
 
 .home-page-container {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  @include margin-auto;
+  @include container-max-width(1200px);
   padding-left: 1rem;
   padding-right: 1rem;
 }

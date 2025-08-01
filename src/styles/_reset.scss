@@ -6,7 +6,7 @@
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: #e5e7eb;
+  border-color: $color-gray-300;
 }
 
 html {
@@ -22,8 +22,8 @@ body {
   line-height: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fff;
-  color: #111827;
+  background-color: $color-white;
+  color: $color-gray-900;
 }
 
 h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
@@ -52,15 +52,15 @@ nav .active li {
   font-weight: 600;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-decoration-color: $color-active-black;
+  text-decoration-color: $color-black;
 }
 
 @media screen and (max-width: 665px) {
   nav .active li {
-    color: $color-active-white;
+    color: $color-white;
     font-weight: 600;
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-decoration-color: $color-active-white;
+    text-decoration-color: $color-white;
   }
 }

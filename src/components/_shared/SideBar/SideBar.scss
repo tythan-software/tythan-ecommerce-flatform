@@ -1,11 +1,12 @@
+
 .side-bar-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.8);
-  color: #e5e7eb;
+  background: rgba($color-black, 0.8);
+  color: $color-gray-300;
   z-index: 50;
 }
 
@@ -30,7 +31,7 @@
 .side-bar-content {
   width: 100%;
   height: 100%;
-  background: var(--primeColor, #222);
+  background: var(--primeColor, $color-prime);
   padding: 1.5rem;
 }
 
@@ -40,7 +41,7 @@
 }
 
 .side-bar-nav-list {
-  color: #e5e7eb;
+  color: $color-gray-300;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -50,17 +51,17 @@
   font-weight: 400;
   align-items: center;
   font-size: 1.125rem;
-  color: #e5e7eb;
+  color: $color-gray-300;
   cursor: pointer;
-  border-right: 2px solid #d1d5db;
+  border-right: 2px solid $color-gray-300;
   transition: color 0.3s, border-color 0.3s, font-weight 0.3s;
   &:hover {
     font-weight: 700;
-    color: #fff;
+    color: $color-white;
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-thickness: 1px;
-    border-right: 2px solid #000;
+    border-right: 2px solid $color-black;
   }
   &:last-child {
     border-right: none;
@@ -91,17 +92,17 @@
   @include flex-center;
   width: 2rem;
   height: 2rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid $color-gray-300;
   position: absolute;
   top: 0.5rem;
   right: -2.5rem;
-  color: #d1d5db;
+  color: $color-gray-300;
   font-size: 2rem;
   justify-content: center;
   cursor: pointer;
   transition: border-color 0.3s, color 0.3s;
   &:hover {
-    border-color: #dc2626;
-    color: #dc2626;
+    border-color: $color-red-600;
+    color: $color-red-600;
   }
 }

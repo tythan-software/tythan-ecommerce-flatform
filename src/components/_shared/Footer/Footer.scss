@@ -1,6 +1,6 @@
 .footer-wrapper {
   width: 100%;
-  background: #F5F5F3;
+  background: $color-gray-100;
   padding: 5rem 0;
 }
 
@@ -50,16 +50,16 @@
   justify-content: center;
   width: 1.75rem;
   height: 1.75rem;
-  background: var(--primeColor, #222);
-  color: #f3f4f6;
+  background: var(--primeColor, $color-prime);
+  color: $color-gray-50;
   cursor: pointer;
   font-size: 1.125rem;
   border-radius: 9999px;
   transition: background 0.3s, color 0.3s;
 }
 .footer-social-item:hover {
-  background: #000;
-  color: #fff;
+  background: $color-black;
+  color: $color-white;
 }
 
 .footer-list {
@@ -71,14 +71,14 @@
 .footer-list-item {
   font-family: inherit;
   font-size: 1rem;
-  color: #6b7280;
+  color: $color-gray-500;
   cursor: pointer;
   transition: color 0.3s, text-decoration 0.3s;
   &:hover {
-    color: #000;
+    color: $color-black;
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-decoration-color: #6b7280;
+    text-decoration-color: $color-gray-500;
     text-underline-offset: 2px;
   }
 }
@@ -125,10 +125,10 @@
 .footer-input {
   width: 100%;
   height: 3rem;
-  border-bottom: 1px solid #9ca3af;
+  border-bottom: 1px solid $color-gray-400;
   background: transparent;
   padding: 0 1rem;
-  color: var(--primeColor, #222);
+  color: var(--primeColor, $color-prime);
   font-size: 1.125rem;
   outline: none;
 }
@@ -138,7 +138,7 @@
 }
 
 .footer-error {
-  color: #dc2626;
+  color: $color-red-600;
   font-size: 0.875rem;
   font-weight: 600;
   font-family: inherit;
@@ -154,16 +154,16 @@
 }
 
 .footer-subscribe-btn {
-  background: #fff;
-  color: #6b7280;
+  background: $color-white;
+  color: $color-gray-500;
   width: 30%;
   height: 2.5rem;
   transition: background 0.3s, color 0.3s;
   font-size: 1rem;
   letter-spacing: 0.05em;
   &:hover {
-    background: #000;
-    color: #fff;
+    background: $color-black;
+    color: $color-white;
   }
 }
 
@@ -182,13 +182,13 @@
 .footer-copyright {
   max-width: 1200px;
   margin: 5rem auto 0 auto;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid $color-gray-300;
   padding: 2.5rem 0 5rem 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #6b7280;
+  color: $color-gray-500;
   font-size: 0.875rem;
   font-family: inherit;
   font-weight: 400;
@@ -211,6 +211,6 @@
   margin-left: 0.25rem;
   font-weight: 500;
   &:hover {
-    color: var(--primeColor, #222);
+    color: var(--primeColor, $color-prime);
   }
 }
