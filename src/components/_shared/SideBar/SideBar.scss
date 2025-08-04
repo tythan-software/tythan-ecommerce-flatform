@@ -1,4 +1,3 @@
-
 .side-bar-overlay {
   position: fixed;
   top: 0;
@@ -10,27 +9,13 @@
   z-index: 50;
 }
 
-
-.side-bar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.8);
-  color: #e5e7eb;
-  z-index: 50;
-}
-
 .side-bar-motion {
-  width: 80vw;
-  height: 100vh;
+  @include width-height(80vw, 100vh);
   position: relative;
 }
 
 .side-bar-content {
-  width: 100%;
-  height: 100%;
+  @include width-height(100%, 100%);
   background: var(--primeColor, $color-prime);
   padding: 1.5rem;
 }
@@ -42,25 +27,20 @@
 
 .side-bar-nav-list {
   color: $color-gray-300;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  @include flex-center(column, none, 0.5rem);
 }
 
 .side-bar-nav-item {
-  font-weight: 400;
+  @include font(none, 1.125rem, 400);
   align-items: center;
-  font-size: 1.125rem;
   color: $color-gray-300;
   cursor: pointer;
   border-right: 2px solid $color-gray-300;
   transition: color 0.3s, border-color 0.3s, font-weight 0.3s;
   &:hover {
-    font-weight: 700;
+    @include font(none, none, 700);
+    @include text-decoration(underline, 1px, none, 4px);
     color: $color-white;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
     border-right: 2px solid $color-black;
   }
   &:last-child {
@@ -73,32 +53,26 @@
 }
 
 .side-bar-section-title {
-  @include flex-center;
-  justify-content: space-between;
-  font-size: 1rem;
+  @include flex-center(space-between);
+  @include font(inherit, 1rem, none);
   cursor: pointer;
-  font-family: inherit;
   margin-bottom: 0.5rem;
 }
 
 .side-bar-section-list {
-  font-size: 0.875rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  @include font(none, 0.875rem);
+  @include flex-center(column, none, 0.25rem);
 }
 
 .side-bar-close {
-  @include flex-center;
-  width: 2rem;
-  height: 2rem;
+  @include flex-center(center);
+  @include width-height(2rem, 2rem);
+  @include font(none, 2rem);
   border: 1px solid $color-gray-300;
   position: absolute;
   top: 0.5rem;
   right: -2.5rem;
   color: $color-gray-300;
-  font-size: 2rem;
-  justify-content: center;
   cursor: pointer;
   transition: border-color 0.3s, color 0.3s;
   &:hover {

@@ -6,15 +6,13 @@
 }
 
 .policy-container {
-  @include flex-center;
-  @include container-max-width(1200px);
+  @include flex-center(column, space-between);
+  @include container-max-width;
   margin: 0 auto;
   height: 5rem;
-  flex-direction: column;
-  justify-content: space-between;
 
   @media (min-width: 768px) {
-    flex-direction: row;
+    @include flex-center(row);
   }
 }
 
@@ -30,19 +28,18 @@
 }
 
 .policy-number {
-  font-weight: bold;
-  font-family: inherit;
+  @include font(inherit, none, bold);
   width: 1.5rem;
   text-align: center;
 }
 
 .policy-text {
+  @include font(none, 1rem);
   color: $color-gray-500;
-  font-size: 1rem;
 }
 
 .policy-icon {
-  font-size: 1.5rem;
+  @include font(none, 1.5rem);
   text-align: center;
   width: 1.5rem;
   margin-left: 0.25rem;

@@ -28,9 +28,18 @@
 //   }
 // }
 
-@mixin flex-center {
+@mixin flex-center($flex-direction: none, $justify-content: none, $gap: none) {
   display: flex;
   align-items: center;
+  @if $flex-direction != none {
+    flex-direction: $flex-direction;
+  }
+  @if $justify-content != none {
+    justify-content: $justify-content;
+  }
+  @if $gap != none {
+    gap: $gap;
+  }
 }
 
 @mixin margin-auto {
@@ -38,6 +47,36 @@
   margin-right: auto;
 }
 
-@mixin container-max-width($max-width: 1200px) {
-  max-width: $max-width;
+@mixin container-max-width {
+  max-width: 1200px;
+}
+
+@mixin width-height($width: 100%, $height: auto) {
+  width: $width;
+  height: $height;
+}
+
+@mixin font($font-family: none, $font-size: none, $font-weight: none) {
+  @if $font-family != none {
+    $font-family: $font-family;
+  }
+  @if $font-size != none {
+    $font-size: $font-size;
+  }
+  @if $font-weight != none {
+    $font-weight: $font-weight;
+  }
+}
+
+@mixin text-decoration($text-decoration: underline, $text-decoration-thickness: none, $text-decoration-color: none, $text-underline-offset: none) {
+  text-decoration: $text-decoration;
+  @if $text-decoration-thickness != none {
+    text-decoration-thickness: $text-decoration-thickness;
+  }
+  @if $text-underline-offset != none {
+    text-underline-offset: $text-underline-offset;
+  }
+  @if ($text-decoration-color != none) {
+    text-underline-offset: $text-underline-offset;
+  }
 }

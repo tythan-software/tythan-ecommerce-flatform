@@ -9,9 +9,8 @@
 }
 
 .header-content {
-  @include flex-center;
-  justify-content: space-between;
-  max-width: 1200px;
+  @include flex-center(none, space-between, none);
+  @include container-max-width;
   margin: 0 auto;
   padding: 1rem 2rem;
 }
@@ -21,19 +20,16 @@
 }
 
 .header-nav {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  @include flex-center(none, none, 1.5rem);
 }
 
 .header-nav-item {
-  font-size: 1rem;
+  @include font(none, 1rem);
   color: $color-prime;
   cursor: pointer;
   transition: color 0.3s;
   &:hover {
     color: $color-black;
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    @include text-decoration(underline, none, none, 2px);
   }
 }
