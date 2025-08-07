@@ -1,11 +1,12 @@
 import { Route, Outlet, ScrollRestoration, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
-import { Header, Footer } from '@/components/_shared';
+import { Header, Footer, SpecialCase } from '@/components/layout';
 import { HomePage } from '@/pages';
 
 const Layout = () => {
   return (
     <div>
       <Header />
+      <SpecialCase />
       <ScrollRestoration />
       <Outlet />
       <Footer />

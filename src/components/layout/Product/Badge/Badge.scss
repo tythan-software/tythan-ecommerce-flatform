@@ -1,0 +1,16 @@
+.badge {
+  background: $color-prime;
+  width: 92px;
+  height: 35px;
+  color: $color-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  &:hover {
+    background: $color-black;
+  }
+}

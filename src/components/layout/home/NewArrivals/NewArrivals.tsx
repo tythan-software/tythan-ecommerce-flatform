@@ -1,0 +1,109 @@
+import Slider from "react-slick";
+import { Heading, Product } from "@/components/layout/Product";
+import {
+  newArrOne,
+  newArrTwo,
+  newArrThree,
+  newArrFour,
+} from "@/assets/images/index";
+import { NextArrow, PrevArrow } from "@/components/layout";
+import "./NewArrivals.scss";
+
+export const NewArrivals = () => {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1025,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+    ],
+  };
+  return (
+    <div className="new-arrivals-section">
+      <Heading heading="New Arrivals" />
+      <Slider {...settings} className="new-arrivals-slider">
+        <div className="new-arrivals-slide">
+          <Product
+            _id="100001"
+            img={newArrOne}
+            productName="Round Table Clock"
+            price="44.00"
+            color="Black"
+            badge={true}
+            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+          />
+        </div>
+        <div className="new-arrivals-slide">
+          <Product
+            _id="100002"
+            img={newArrTwo}
+            productName="Smart Watch"
+            price="250.00"
+            color="Black"
+            badge={true}
+            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+          />
+        </div>
+        <div className="new-arrivals-slide">
+          <Product
+            _id="100003"
+            img={newArrThree}
+            productName="cloth Basket"
+            price="80.00"
+            color="Mixed"
+            badge={true}
+            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+          />
+        </div>
+        <div className="new-arrivals-slide">
+          <Product
+            _id="100004"
+            img={newArrFour}
+            productName="Funny toys for babies"
+            price="60.00"
+            color="Mixed"
+            badge={false}
+            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+          />
+        </div>
+        <div className="new-arrivals-slide">
+          <Product
+            _id="100005"
+            img={newArrTwo}
+            productName="Funny toys for babies"
+            price="60.00"
+            color="Mixed"
+            badge={false}
+            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+          />
+        </div>
+      </Slider>
+    </div>
+  );
+};

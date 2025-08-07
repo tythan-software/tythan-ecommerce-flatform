@@ -1,0 +1,75 @@
+.special-case {
+  position: fixed;
+  top: 13rem;
+  right: 0.5rem;
+  z-index: 20;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  @media (min-width: 768px) {
+    display: flex;
+  }
+  .special-case-link {
+    background: $color-white;
+    width: 4rem;
+    height: 4.375rem;
+    border-radius: 0.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: #33475b;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    overflow-x: hidden;
+    cursor: pointer;
+    position: relative;
+    &.profile {
+      // For profile link
+    }
+    &.cart {
+      // For cart link
+    }
+    .special-case-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .special-case-icon {
+        font-size: 1.25rem;
+        transition: transform 0.2s;
+        &.left {
+          transform: translateX(-3rem);
+        }
+        &.right {
+          transform: translateX(-0.75rem);
+        }
+        &.left-hover {
+          transform: translateX(-0.75rem);
+        }
+        &.right-hover {
+          transform: translateX(-3rem);
+        }
+      }
+    }
+    .special-case-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: s$font-title;
+    }
+    .special-case-badge {
+      position: absolute;
+      top: 0.25rem;
+      right: 0.5rem;
+      background: $color-prime;
+      color: $color-white;
+      font-size: 0.75rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+  }
+}
