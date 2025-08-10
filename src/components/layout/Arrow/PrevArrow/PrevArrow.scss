@@ -1,22 +1,24 @@
 .prev-arrow {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 9999px;
-  color: $color-white;
-  background: rgba(0, 0, 0, 0.4);
-  transition: background 0.3s;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  position: absolute;
-  top: 35%;
-  left: 0.5rem;
-  &:hover {
-    background: rgba(0, 0, 0, 1);
+  &-container {
+    @include flex-center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    color: $color-white;
+    justify-content: center;
+    z-index: 10;
+    position: absolute;
+    top: 35%;
+    left: 0.5rem;
+    cursor: pointer;
+    background: $color-black;
+    transition: background 0.3s;
+    &:hover {
+      background: darken($color-black, 10%);
+    }
   }
-  .prev-arrow-icon {
+
+  &-icon {
     font-size: 1.25rem;
   }
 }

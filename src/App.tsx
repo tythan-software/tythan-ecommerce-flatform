@@ -17,9 +17,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
-        {/* ==================== Header Navlink Start here =================== */}
         <Route index element={<HomePage />}></Route>
-        {/* ==================== Header Navlink End here ===================== */}
       </Route>
     </Route>
   )

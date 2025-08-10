@@ -9,9 +9,9 @@ import {
 
 export const SpecialOffers = () => {
   return (
-    <div className="special-offers-wrapper">
+    <div className="special-offers-container">
       <Heading heading="Special Offers" />
-      <div className="special-offers-grid">
+      <div className="special-offers-items">
         <Product
           _id="1101"
           img={spfOne}

@@ -5,7 +5,7 @@ export const PrevArrow = (props: any) => {
   const { onClick } = props;
   return (
     <div
-      className="prev-arrow"
+      className="prev-arrow-container"
       onClick={onClick}
     >
       <span className="prev-arrow-icon">

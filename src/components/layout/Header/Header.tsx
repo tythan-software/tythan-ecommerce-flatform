@@ -33,7 +33,6 @@ const navBarList: NavBarList[] = [
 ];
 
 export const Header = () => {{
-
   const [showMenu, setShowMenu] = useState(true);
   const [sidenav, setSidenav] = useState(false);
   const location = useLocation();
@@ -51,15 +50,16 @@ export const Header = () => {{
   }, []);
 
   return (
-    <div className="header-wrapper">
+    <div className="header-container">
       <nav className="header-content">
-        <FlexBox className="headerFlexBox">
+        <FlexBox className="header-flex">
           <Link to="/">
             <div>
               <Image className="header-logo" imgSrc={logo} />
             </div>
           </Link>
           <div>
+            {/* ==================== Desktop Menu Icon Start here =================== */}
             {showMenu && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
@@ -81,13 +81,19 @@ export const Header = () => {{
                 </>
               </motion.ul>
             )}
-            <HiMenuAlt2
-              onClick={() => setSidenav(!sidenav)}
-              className="headerMenuIcon"
-            />
+            {/* ==================== Desktop Menu Icon End here =================== */}
+
+            {/* ==================== Mobile Menu Icon Start here =================== */}
+            {!showMenu && (
+              <HiMenuAlt2
+                onClick={() => setSidenav(!sidenav)}
+                className="header-menu-icon"
+              />
+            )}
             {sidenav && (
               <SideBar setSidenav={setSidenav} navBarList={navBarList}></SideBar>
             )}
+            {/* ==================== Mobile Menu Icon End here =================== */}
           </div>
         </FlexBox>
       </nav>

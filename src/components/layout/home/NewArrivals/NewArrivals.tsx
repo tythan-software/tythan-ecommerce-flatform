@@ -11,6 +11,8 @@ import "./NewArrivals.scss";
 
 export const NewArrivals = () => {
   const settings = {
+    className: "new-arrivals-items",
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -23,7 +25,6 @@ export const NewArrivals = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
         },
       },
       {
@@ -31,7 +32,6 @@ export const NewArrivals = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
         },
       },
       {
@@ -39,15 +39,14 @@ export const NewArrivals = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
         },
       },
     ],
   };
   return (
-    <div className="new-arrivals-section">
+    <div className="new-arrivals-container">
       <Heading heading="New Arrivals" />
-      <Slider {...settings} className="new-arrivals-slider">
+      <Slider {...settings}>
         <div className="new-arrivals-slide">
           <Product
             _id="100001"
@@ -58,6 +57,7 @@ export const NewArrivals = () => {
             badge={true}
             des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
           />
+          <h1>1</h1>
         </div>
         <div className="new-arrivals-slide">
           <Product
@@ -69,6 +69,7 @@ export const NewArrivals = () => {
             badge={true}
             des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
           />
+          <h1>2</h1>
         </div>
         <div className="new-arrivals-slide">
           <Product
@@ -80,6 +81,7 @@ export const NewArrivals = () => {
             badge={true}
             des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
           />
+          <h1>3</h1>
         </div>
         <div className="new-arrivals-slide">
           <Product
@@ -91,6 +93,7 @@ export const NewArrivals = () => {
             badge={false}
             des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
           />
+          <h1>4</h1>
         </div>
         <div className="new-arrivals-slide">
           <Product
@@ -102,6 +105,7 @@ export const NewArrivals = () => {
             badge={false}
             des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
           />
+          <h1>5</h1>
         </div>
       </Slider>
     </div>

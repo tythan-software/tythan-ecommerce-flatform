@@ -4,7 +4,7 @@ import "./Policy.scss";
 
 export const Policy = () => {
   return (
-    <div className="policy-wrapper">
+    <div className="policy">
       <div className="policy-container">
         <div className="policy-item">
           <span className="policy-number">2</span>

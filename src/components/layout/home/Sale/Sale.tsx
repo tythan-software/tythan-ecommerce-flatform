@@ -9,19 +9,19 @@ import Image from "@/components/common/Image";
 
 export const Sale = () => {
   return (
-    <div className="sale-wrapper">
-      <div className="sale-col">
+    <div className="sale-container">
+      <div className="sale-col-left">
         <Link to="/shop">
           <Image className="sale-img" imgSrc={saleImgOne} />
         </Link>
       </div>
-      <div className="sale-col-inner">
-        <div className="sale-col">
+      <div className="sale-col-right">
+        <div className="sale-col-right-inner">
           <Link to="/shop">
             <Image className="sale-img" imgSrc={saleImgTwo} />
           </Link>
         </div>
-        <div className="sale-col">
+        <div className="sale-col-right-inner">
           <Link to="/shop">
             <Image className="sale-img" imgSrc={saleImgThree} />
           </Link>

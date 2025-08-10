@@ -11,12 +11,12 @@ import '@/pages/HomePage/HomePage.scss';
 
 export const HomePage = () => {
   return (
-    <div className="home-page-wrapper">
-      <Banner />
+    <div className="home-page-container">
+      {/* <Banner /> */}
       <Policy />
-      <div className="home-page-container">
+      <div className="home-page-section">
         <Sale />
-        <NewArrivals />
+        {/* <NewArrivals /> */}
         <BestSellers />
         <YearProduct />
         <SpecialOffers />

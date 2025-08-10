@@ -6,7 +6,6 @@ import {
   bannerImgTwo,
   bannerImgThree,
 } from "@/assets/images";
-
 import "./Banner.scss";
 import Image from "@/components/common/Image";
 

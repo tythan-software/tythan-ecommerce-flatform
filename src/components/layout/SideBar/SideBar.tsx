@@ -23,7 +23,7 @@ export const SideBar = (
   const [brand, setBrand] = useState(false);
 
   return (
-    <div className="side-bar-overlay">
+    <div className="side-bar-container">
       <motion.div
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -58,7 +58,7 @@ export const SideBar = (
             className="side-bar-section-title"
             >
               Shop by Category{" "}
-              <span className="text-lg">{category ? "-" : "+"}</span>
+              <span className="side-bar-expand-symbol">{category ? "-" : "+"}</span>
             </h1>
             {category && (
               <motion.ul
@@ -67,11 +67,11 @@ export const SideBar = (
                 transition={{ duration: 0.4 }}
                 className="side-bar-section-list"
               >
-                <li className="header-sedenav-li">New Arrivals</li>
-                <li className="header-sedenav-li">Gudgets</li>
-                <li className="header-sedenav-li">Accessories</li>
-                <li className="header-sedenav-li">Electronics</li>
-                <li className="header-sedenav-li">Others</li>
+                <li className="side-bar-header-sidenav-li">New Arrivals</li>
+                <li className="side-bar-header-sidenav-li">Gudgets</li>
+                <li className="side-bar-header-sidenav-li">Accessories</li>
+                <li className="side-bar-header-sidenav-li">Electronics</li>
+                <li className="side-bar-header-sidenav-li">Others</li>
               </motion.ul>
             )}
           </div>
@@ -81,7 +81,7 @@ export const SideBar = (
             className="side-bar-section-title"
             >
               Shop by Brand
-              <span className="text-lg">{brand ? "-" : "+"}</span>
+              <span className="side-bar-expand-symbol">{brand ? "-" : "+"}</span>
             </h1>
             {brand && (
               <motion.ul
@@ -90,11 +90,11 @@ export const SideBar = (
                 transition={{ duration: 0.4 }}
                 className="side-bar-section-list"
               >
-                <li className="header-sedenav-li">New Arrivals</li>
-                <li className="header-sedenav-li">Gudgets</li>
-                <li className="header-sedenav-li">Accessories</li>
-                <li className="header-sedenav-li">Electronics</li>
-                <li className="header-sedenav-li">Others</li>
+                <li className="side-bar-header-sidenav-li">New Arrivals</li>
+                <li className="side-bar-header-sidenav-li">Gudgets</li>
+                <li className="side-bar-header-sidenav-li">Accessories</li>
+                <li className="side-bar-header-sidenav-li">Electronics</li>
+                <li className="side-bar-header-sidenav-li">Others</li>
               </motion.ul>
             )}
           </div>

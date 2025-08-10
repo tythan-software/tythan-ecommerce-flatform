@@ -24,53 +24,53 @@ export const Footer = () => {
     }
   };
   return (
-    <div className="footer-wrapper">
-      <div className="footer-container">
-        <div className="footer-col-span2">
-          <ListTitle className="footer-list-title" text=" More about Orebi Shop" />
-          <div className="flex flex-col gap-6">
-            <p className="footer-text">
+    <div className="footer-container">
+      <div className="footer-columns">
+        <div className="footer-col-social">
+          <ListTitle className="footer-title" text=" More about Orebi Shop" />
+          <div className="footer-col-social-list">
+            <p className="footer-col-social-list-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in.
             </p>
-            <ul className="footer-social-list">
+            <ul className="footer-col-social-list-icon">
               <a href="https://www.youtube.com" target="_blank" rel="noreferrer">
-                <li className="footer-social-item"><FaYoutube /></li>
+                <li className="footer-col-social-item"><FaYoutube /></li>
               </a>
               <a href="https://github.com" target="_blank" rel="noreferrer">
-                <li className="footer-social-item"><FaGithub /></li>
+                <li className="footer-col-social-item"><FaGithub /></li>
               </a>
               <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-                <li className="footer-social-item"><FaFacebook /></li>
+                <li className="footer-col-social-item"><FaFacebook /></li>
               </a>
               <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-                <li className="footer-social-item"><FaLinkedin /></li>
+                <li className="footer-col-social-item"><FaLinkedin /></li>
               </a>
             </ul>
           </div>
         </div>
         <div>
-          <ListTitle className="footer-list-title" text="Shop" />
-          <ul className="footer-list">
-            <li className="footer-list-item">Accesories</li>
-            <li className="footer-list-item">Clothes</li>
-            <li className="footer-list-item">Electronics</li>
-            <li className="footer-list-item">Home appliances</li>
-            <li className="footer-list-item">New Arrivals</li>
+          <ListTitle className="footer-title" text="Shop" />
+          <ul className="footer-col-info-list">
+            <li className="footer-col-info-list-item">Accesories</li>
+            <li className="footer-col-info-list-item">Clothes</li>
+            <li className="footer-col-info-list-item">Electronics</li>
+            <li className="footer-col-info-list-item">Home appliances</li>
+            <li className="footer-col-info-list-item">New Arrivals</li>
           </ul>
         </div>
         <div>
-          <ListTitle className="footer-list-title" text="Your account" />
-          <ul className="footer-list">
-            <li className="footer-list-item">Profile</li>
-            <li className="footer-list-item">Orders</li>
-            <li className="footer-list-item">Addresses</li>
-            <li className="footer-list-item">Account Details</li>
-            <li className="footer-list-item">Payment Options</li>
+          <ListTitle className="footer-title" text="Your account" />
+          <ul className="footer-col-info-list">
+            <li className="footer-col-info-list-item">Profile</li>
+            <li className="footer-col-info-list-item">Orders</li>
+            <li className="footer-col-info-list-item">Addresses</li>
+            <li className="footer-col-info-list-item">Account Details</li>
+            <li className="footer-col-info-list-item">Payment Options</li>
           </ul>
         </div>
-        <div className="footer-subscribe-col">
-          <ListTitle className="footer-subscribe-title" text="Subscribe to our newsletter." />
-          <div className="w-full">
+        <div className="footer-subscribe">
+          <ListTitle className="footer-title" text="Subscribe to our newsletter" />
+          <div className="footer-subscribe-section">
             <p className="footer-subscribe-text">A at pellentesque et mattis porta enim elementum.</p>
             {subscription ? (
               <motion.p
@@ -104,7 +104,7 @@ export const Footer = () => {
               </div>
             )}
             <Image
-              className={`footer-payment-img${subscription ? ' subscribed' : ''}`}
+              className={`footer-subscribe-payment-img${subscription ? ' subscribed' : ''}`}
               imgSrc={paymentCard}
             />
           </div>
@@ -115,9 +115,9 @@ export const Footer = () => {
           <span className="footer-copyright-icon">
             <AiOutlineCopyright />
           </span>
-          Copyright 2022 | Orebi shopping | All Rights Reserved |
-          <a href="https://reactbd.com/" target="_blank" rel="noreferrer">
-            <span className="footer-copyright-link">Powered by ReactBD.com</span>
+          Copyright 2025 | FullStack Developer |
+          <a href="https://github.com/TrungDN1996/reactjs-tythan-dev" target="_blank" rel="noreferrer">
+            <span className="footer-copyright-link">Powered by Tythan</span>
           </a>
         </p>
       </div>

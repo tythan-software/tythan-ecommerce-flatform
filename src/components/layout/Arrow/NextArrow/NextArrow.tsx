@@ -5,7 +5,7 @@ export const NextArrow = (props: any) => {
   const { onClick } = props;
   return (
     <div
-      className="next-arrow"
+      className="next-arrow-container"
       onClick={onClick}
     >
       <span className="next-arrow-icon">

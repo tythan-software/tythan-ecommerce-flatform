@@ -1,21 +1,23 @@
+
 import { Link } from "react-router-dom";
 import { productOfTheYear } from "@/assets/images";
 import { Image } from "@/components/common";
 import { ShopNow } from "@/components/layout";
+import "./YearProduct.scss";
 
 export const YearProduct = () => {
   return (
     <Link to="/shop">
-      <div className="w-full h-80 mb-20 bg-[#f3f3f3] md:bg-transparent relative font-titleFont">
+      <div className="year-product-container">
         <Image
-          className="w-full h-full object-cover hidden md:inline-block"
+          className="year-product-img"
           imgSrc={productOfTheYear}
         />
-        <div className="w-full md:w-2/3 xl:w-1/2 h-80 absolute px-4 md:px-0 top-0 right-0 flex flex-col items-start gap-6 justify-center">
-              <h1 className="year-product-title">
-                Product of the Year
-              </h1>
-          <p className="text-base font-normal text-primeColor max-w-[600px] mr-4">
+        <div className="year-product-content">
+          <h1 className="year-product-title">
+            Product of the Year
+          </h1>
+          <p className="year-product-description">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
             cupiditate modi amet! Facilis, aperiam quaerat.
           </p>

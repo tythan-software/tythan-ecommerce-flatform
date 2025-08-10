@@ -66,7 +66,7 @@ export const Product = (props: any) => {
               onClick={handleProductDetails}
             >
               View Details
-              <span className="important">
+              <span className="product-action-icon">
                 <MdOutlineLabelImportant />
               </span>
             </li>
@@ -82,10 +82,10 @@ export const Product = (props: any) => {
       <div className="product-info">
         <div className="product-title-row">
           <h2>{props.productName}</h2>
-          <p>${props.price}</p>
+          <p className="product-info-detail">${props.price}</p>
         </div>
         <div>
-          <p className="product-color">{props.color}</p>
+          <p className="product-info-detail">{props.color}</p>
         </div>
       </div>
     </div>

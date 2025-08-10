@@ -1,12 +1,7 @@
-.new-arrivals-section {
-  width: 100%;
-  padding-bottom: 4rem;
-
-  .new-arrivals-slider {
-    // Custom slick slider overrides if needed
-    .slick-slide {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    }
-  }
+.new-arrivals {
+  @include product-items-grid;
+  // &-container {
+  //   @include width-full;
+  //   padding-bottom: 4rem;
+  // }
 }

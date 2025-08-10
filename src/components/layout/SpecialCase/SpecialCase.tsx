@@ -9,7 +9,7 @@ export const SpecialCase = () => {
   const products = [];
   return (
     <div className="special-case">
-      <Link to="/signin">
+      <Link to="/">
         <div className="special-case-link profile">
           <div className="special-case-icons">
             <MdSwitchAccount className="special-case-icon left" />
@@ -18,8 +18,8 @@ export const SpecialCase = () => {
           <p className="special-case-label">Profile</p>
         </div>
       </Link>
-      <Link to="/cart">
-        <div className="special-case-link cart">
+      <Link to="/">
+        <div className="special-case-link">
           <div className="special-case-icons">
             <RiShoppingCart2Fill className="special-case-icon left" />
             <RiShoppingCart2Fill className="special-case-icon right" />

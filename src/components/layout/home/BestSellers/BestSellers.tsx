@@ -5,12 +5,13 @@ import {
   bestSellerThree,
   bestSellerFour,
 } from "@/assets/images/index";
+import "./BestSellers.scss";
 
 export const BestSellers = () => {
   return (
-    <div className="best-sellers-section">
+    <div className="best-sellers-container">
       <Heading heading="Our Bestsellers" />
-      <div className="best-sellers-list">
+      <div className="best-sellers-items">
         <Product
           _id="1011"
           img={bestSellerOne}

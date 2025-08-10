@@ -1,45 +1,9 @@
 
 // To define reusable code snippets (e.g. styles, logic, vendor prefixes, etc.) that can be used throughout your SCSS files.
 
-// 🛠️ Common Use Cases:
-// - Flexbox or Grid layout helpers
-// - Media queries
-// - Buttons, spacing, box shadows
-// - Cross-browser vendor prefixes
-
-// ✅ Example:
-// @mixin flex-center {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
-// @mixin responsive($breakpoint) {
-//   @if $breakpoint == 'tablet' {
-//     @media (max-width: 768px) { @content; }
-//   }
-// }
-
-// 🔄 Usage:
-// .container {
-//   @include flex-center;
-//   @include responsive('tablet') {
-//     flex-direction: column;
-//   }
-// }
-
-@mixin flex-center($flex-direction: none, $justify-content: none, $gap: none) {
+@mixin flex-center {
   display: flex;
   align-items: center;
-  @if $flex-direction != none {
-    flex-direction: $flex-direction;
-  }
-  @if $justify-content != none {
-    justify-content: $justify-content;
-  }
-  @if $gap != none {
-    gap: $gap;
-  }
 }
 
 @mixin margin-auto {
@@ -48,14 +12,70 @@
 }
 
 @mixin container-max-width {
-  max-width: 1200px;
+  max-width: 1440px;
 }
 
-@mixin width-height($width: 100%, $height: auto) {
-  width: $width;
-  height: $height;
+@mixin width-full {
+  width: 100%;
 }
 
+@mixin height-full {
+  height: 100%;
+}
+
+@mixin width-auto {
+  width: auto;
+} 
+
+@mixin height-auto {
+  height: auto;
+}
+
+@mixin hover-effect {
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+@mixin body-font {
+  font-family: "DM Sans", "sans-serif";
+}
+
+@mixin title-font {
+  font-family: "Poppins", "sans-serif";
+}
+
+@mixin font-semibold {
+  font-weight: 600;
+}
+
+@mixin product-items-grid {
+  &-container {
+    @include width-full;
+    padding-bottom: 5rem;
+  }
+
+  &-items {
+    @include width-full;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+
+
+
+// Remove later
 @mixin font($font-family: none, $font-size: none, $font-weight: none) {
   @if $font-family != none {
     $font-family: $font-family;
