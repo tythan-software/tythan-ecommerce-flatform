@@ -1,6 +1,6 @@
 import { Route, Outlet, ScrollRestoration, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import { Header, Footer, SpecialCase } from '@/components/layout';
-import { HomePage } from '@/pages';
+import { HomePage,ShopPage, AboutPage, ContactPage } from '@/pages';
 
 const Layout = () => {
   return (
@@ -19,6 +19,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />}></Route>
       </Route>
+      <Route path="/shop" element={<ShopPage />}></Route>
+      <Route path="/about" element={<AboutPage />}></Route>
+      <Route path="/contact" element={<ContactPage />}></Route>
     </Route>
   )
 );

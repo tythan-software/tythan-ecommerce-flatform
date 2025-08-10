@@ -11,7 +11,6 @@ import "./NewArrivals.scss";
 
 export const NewArrivals = () => {
   const settings = {
-    className: "new-arrivals-items",
     dots: true,
     infinite: true,
     speed: 500,

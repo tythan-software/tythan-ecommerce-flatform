@@ -6,4 +6,5 @@ export * from "./Header/Header";
 export * from "./Arrow/NextArrow/NextArrow";
 export * from "./Arrow/PrevArrow/PrevArrow";
 export * from "./SpecialCase/SpecialCase";
+export * from "./Contributing/Contributing";
 
