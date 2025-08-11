@@ -55,7 +55,7 @@ export const SplOfferData = [
 // =================== Special Offer data End here ==============
 
 // =================== PaginationItems Start here ===============
-export const paginationItems = [
+export const Products = [
   {
     _id: 1001,
     img: spfOne,

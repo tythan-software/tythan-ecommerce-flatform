@@ -1,17 +1,10 @@
-import Slider from "react-slick";
 import { Heading, Product } from "@/components/layout/Product";
-import {
-  newArrOne,
-  newArrTwo,
-  newArrThree,
-  newArrFour,
-} from "@/assets/images/index";
-import { NextArrow, PrevArrow } from "@/components/layout";
 import "./NewArrivals.scss";
+import { Products } from "@/data";
+import { Sliders, NextArrow, PrevArrow } from "@/components/layout";
 
 export const NewArrivals = () => {
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -42,71 +35,28 @@ export const NewArrivals = () => {
       },
     ],
   };
+
   return (
-    <div className="new-arrivals-container">
+    <div className="new-arrivals">
       <Heading heading="New Arrivals" />
-      <Slider {...settings}>
-        <div className="new-arrivals-slide">
-          <Product
-            _id="100001"
-            img={newArrOne}
-            productName="Round Table Clock"
-            price="44.00"
-            color="Black"
-            badge={true}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-          <h1>1</h1>
-        </div>
-        <div className="new-arrivals-slide">
-          <Product
-            _id="100002"
-            img={newArrTwo}
-            productName="Smart Watch"
-            price="250.00"
-            color="Black"
-            badge={true}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-          <h1>2</h1>
-        </div>
-        <div className="new-arrivals-slide">
-          <Product
-            _id="100003"
-            img={newArrThree}
-            productName="cloth Basket"
-            price="80.00"
-            color="Mixed"
-            badge={true}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-          <h1>3</h1>
-        </div>
-        <div className="new-arrivals-slide">
-          <Product
-            _id="100004"
-            img={newArrFour}
-            productName="Funny toys for babies"
-            price="60.00"
-            color="Mixed"
-            badge={false}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-          <h1>4</h1>
-        </div>
-        <div className="new-arrivals-slide">
-          <Product
-            _id="100005"
-            img={newArrTwo}
-            productName="Funny toys for babies"
-            price="60.00"
-            color="Mixed"
-            badge={false}
-            des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
-          />
-          <h1>5</h1>
-        </div>
-      </Slider>
+      <Sliders settings={settings} slideElements={
+        Products
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 5)
+          .map((product) => (
+            <div className="new-arrivals-slide">
+              <Product
+                _id={product._id}
+                img={product.img}
+                productName={product.productName}
+                price={product.price}
+                color={product.color}
+                badge={product.badge}
+                des={product.des}
+              />
+            </div>
+        ))}
+      />
     </div>
   );
 };

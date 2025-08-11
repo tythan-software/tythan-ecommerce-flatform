@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 import {
   bannerImgOne,
   bannerImgTwo,
@@ -8,6 +7,7 @@ import {
 } from "@/assets/images";
 import "./Banner.scss";
 import Image from "@/components/common/Image";
+import { Sliders } from "@/components/layout";
 
 export const Banner = () => {
   const [dotActive, setDocActive] = useState(0);
@@ -101,24 +101,16 @@ export const Banner = () => {
     ],
   };
   return (
-    <div className="banner-wrapper">
-      <Slider {...settings} className="banner-slider">
-        <Link to="/offer">
-          <div className="banner-slide">
-            <Image imgSrc={bannerImgOne} />
-          </div>
-        </Link>
-        <Link to="/offer">
-          <div className="banner-slide">
-            <Image imgSrc={bannerImgTwo} />
-          </div>
-        </Link>
-        <Link to="/offer">
-          <div className="banner-slide">
-            <Image imgSrc={bannerImgThree} />
-          </div>
-        </Link>
-      </Slider>
+    <div className="banner">
+      <Sliders settings={settings} slideElements={
+        [bannerImgOne, bannerImgTwo, bannerImgThree].map(img => (
+          <Link to="/offer">
+            <div>
+              <Image imgSrc={img} />
+            </div>
+          </Link>
+        ))
+      } />
     </div>
   );
 };
