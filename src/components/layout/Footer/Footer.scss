@@ -139,14 +139,16 @@
         }
       }
 
-      .footer-error {
-        @include font-semibold;
-        @include title-font;
-        @keyframes bounce {
+      @keyframes bounce {
           to {
             transform: translateY(-5px);
           }
-        }
+      }
+
+      .footer-error {
+        @include font-semibold;
+        @include title-font;
+        
         font-size: 0.875rem;
         line-height: 1.25rem;	
         color: $color-red-600;
