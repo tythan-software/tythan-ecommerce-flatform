@@ -1,0 +1,8 @@
+.new-arrivals {
+  @include width-full;
+  padding-bottom: 4rem;
+
+  &-slide {
+    padding: 0 0.5rem;
+  }
+}
