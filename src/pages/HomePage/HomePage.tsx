@@ -7,7 +7,7 @@ import {
   SpecialOffers, 
   YearProduct 
 } from '@/components/layout/Home';
-import '@/pages/HomePage/HomePage.scss';
+import './HomePage.scss';
 
 export const HomePage = () => {
   return (
