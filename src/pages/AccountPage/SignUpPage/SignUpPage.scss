@@ -1,0 +1,250 @@
+.sign-up {
+  @include width-full;
+  @include flex-center;
+  height: 100vh;
+  justify-content: flex-start;
+
+  &-left {
+    @include height-full;
+    width: 50%;
+    display: none;
+    color: $color-white;
+    @media (min-width: 1024px) {
+      display: inline-flex;
+    }
+  }
+
+  &-left-content {
+    @include height-full;
+    width: 450px;
+    background: $color-prime;
+    padding: 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  &-left-logo {
+    width: 6rem;
+  }
+
+  &-left-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: -0.25rem;
+  }
+
+  &-left-title {
+    @include title-font;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  &-left-desc {
+    @include text-base;
+  }
+
+  &-left-feature {
+    width: 300px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  &-left-feature-icon {
+    color: $color-green-600;
+    margin-top: 0.25rem;
+  }
+
+  &-left-feature-section {
+    @include text-base;
+    color: $color-gray-300;
+  }
+
+  &-left-feature-text {
+    @include font-semibold;
+    @include title-font;
+    color: $color-white;
+  }
+
+  &-left-footer {
+    @include flex-center;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+  }
+
+  &-left-footer-link {
+    @include font-semibold;
+    @include title-font;
+    @include text-sm;
+    color: $color-gray-300;
+    cursor: pointer;
+    transition: color 0.3s;
+    &:hover {
+    color: $color-white;
+    }
+  }
+
+  &-right {
+    @include width-full;
+    @include height-full;
+    @media (min-width: 1024px) {
+      width: 500px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .sign-up-right-success {
+      width: 500px;
+      .sign-up-right-success-msg {
+        width: 100%;
+        padding: 2.5rem 1rem;
+        color: $color-green-600;
+        font-weight: 500;
+        font-family: $font-title;
+      }
+      .sign-up-right-success-btn {
+        width: 100%;
+        height: 2.5rem;
+        background: $color-prime;
+        border-radius: 0.375rem;
+        color: $color-gray-200;
+        font-size: 1rem;
+        font-family: $font-title;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        transition: background 0.3s, color 0.3s;
+        &:hover {
+          background: $color-black;
+          color: $color-white;
+        }
+      }
+    }
+    .sign-up-right-form {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .sign-up-right-form-inner {
+        padding: 1.5rem 0.5rem;
+        width: 100%;
+        height: 96%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: auto;
+        .sign-up-right-form-title {
+          font-family: $font-title;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          text-decoration-thickness: 1px;
+          font-weight: 600;
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          @media (min-width: 768px) {
+            font-size: 2.25rem;
+          }
+        }
+        .sign-up-right-form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.375rem;
+          .sign-up-form-label {
+            font-family: $font-title;
+            font-size: 1rem;
+            font-weight: 600;
+            color: $color-gray-600;
+          }
+          .sign-up-right-form-input {
+            width: 100%;
+            height: 2rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            border: 1px solid $color-gray-400;
+            outline: none;
+            &::placeholder {
+              font-size: 0.875rem;
+              font-weight: 400;
+              letter-spacing: 0.05em;
+              color: $color-gray-400;
+            }
+          }
+          .sign-up-right-form-error {
+            font-size: 0.875rem;
+            color: $color-red-600;
+            font-family: $font-title;
+            font-weight: 600;
+            padding-left: 1rem;
+            span {
+              font-weight: 700;
+              font-style: italic;
+              margin-right: 0.25rem;
+            }
+          }
+        }
+        .sign-up-right-form-checkbox-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.5rem;
+          .sign-up-right-form-checkbox {
+            width: 1rem;
+            height: 1rem;
+            margin-top: 0.25rem;
+            cursor: pointer;
+          }
+          .sign-up-right-form-checkbox-label {
+            font-size: 0.875rem;
+            color: $color-prime;
+            span {
+              color: $color-blue-600;
+            }
+          }
+        }
+        .sign-up-right-form-btn {
+          width: 100%;
+          height: 2.5rem;
+          border-radius: 0.375rem;
+          font-size: 1rem;
+          font-weight: 500;
+          color: $color-gray-200;
+          background: $color-prime;
+          transition: background 0.3s, color 0.3s;
+          &.active {
+            cursor: pointer;
+            &:hover {
+              background: $color-black;
+              color: $color-white;
+            }
+          }
+          &.inactive {
+            background: $color-gray-500;
+            color: $color-gray-200;
+            cursor: not-allowed;
+            &:hover {
+              background: $color-gray-500;
+              color: $color-gray-200;
+            }
+          }
+        }
+        .sign-up-right-form-footer {
+          font-size: 0.875rem;
+          text-align: center;
+          font-family: $font-title;
+          font-weight: 500;
+          .sign-up-right-form-footer-link {
+            color: $color-blue-600;
+            transition: color 0.3s;
+            &:hover {
+              color: $color-blue-600;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -48,6 +48,15 @@
   font-weight: 600;
 }
 
+@mixin text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@mixin text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 @mixin product-items-grid {
   &-container {
     @include width-full;
