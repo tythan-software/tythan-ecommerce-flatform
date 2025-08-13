@@ -27,7 +27,7 @@ export const Footer = () => {
     <div className="footer-container">
       <div className="footer-columns">
         <div className="footer-col-social">
-          <ListTitle className="footer-title" text=" More about Orebi Shop" />
+          <ListTitle className="footer-title" text=" More about Shop" />
           <div className="footer-col-social-list">
             <p className="footer-col-social-list-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in.
