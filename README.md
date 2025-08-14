@@ -36,23 +36,23 @@ This is a flatform with four main components:
 📁 Project Structure
 ├── 📁 client/          # React.js Frontend (Customer)
 ├── 📁 admin/           # React.js Admin Panel
-├── 📁 mobile/          # ...
+├── 📁 mobile/          # Planning production
 ├── 📁 server/          # Node.js Backend API
 └── 📄 README.md        # This file
 ```
 
 ## 📖 API Documentation
 
-Once the server is running, visit: http://localhost:8000/swagger
+Once the server is running, visit: http://localhost:8000/api-docs
 
 ## 🎯 Key Technologies Used
 
-- **Frontend**: React.js, Vite, Tailwind CSS, Redux Toolkit
+- **Frontend**: React.js, Vite, SCSS style, Tailwind CSS, Redux Toolkit
 - **Backend**: Node.js, Express.js, MongoDB, Mongoose
 - **Authentication**: JWT tokens
 - **File Upload**: Cloudinary
 - **Payments**: Stripe, PayPal
-- **Email**: Nodemailer
+- **Email**: Sendgird
 - **State Management**: Redux Toolkit
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS, SCSS style
 - **Icons**: React Icons
