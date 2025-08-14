@@ -1,21 +1,36 @@
 import express from "express";
-const app = express();
 import "dotenv/config";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import path from "path";
-import { readdirSync } from "fs";
+import { readdirSync, readFileSync } from "fs";
 import dbConnect from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
+import swaggerUi from 'swagger-ui-express';
 
-const port = process.env.PORT;
+const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve swagger.json
+app.get('/swagger.json', (req, res) => {
+  const swaggerPath = path.resolve(__dirname, 'swagger.json');
+  const swaggerDoc = JSON.parse(readFileSync(swaggerPath, 'utf8'));
+  res.json(swaggerDoc);
+});
+
+// Serve Swagger UI
+const swaggerPath = path.resolve(__dirname, 'swagger.json');
+const swaggerDoc = JSON.parse(readFileSync(swaggerPath, 'utf8'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
+// CORS configuration using config system
 const allowedOrigins = [
   process.env.ADMIN_URL,
   process.env.CLIENT_URL,
-].filter(Boolean); // Remove any undefined values
+].filter(Boolean);
 
-// CORS configuration using config system
 console.log("Allowed CORS Origins:", allowedOrigins);
 
 app.use(
@@ -47,23 +62,23 @@ app.use(
 );
 app.use(express.json());
 
+// Healthcheck
 dbConnect();
 connectCloudinary();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+// Load all route files
 const routesPath = path.resolve(__dirname, "./routes");
 const routeFiles = readdirSync(routesPath);
 routeFiles.map(async (file) => {
   const routeModule = await import(`./routes/${file}`);
   app.use("/", routeModule.default);
 });
-
 app.get("/", (req, res) => {
-  res.send("You should not be here");
+  res.send("Welcome to Tythan Ecommerce API. See /api-docs for documentation.");
 });
 
+// Start the server
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
 });

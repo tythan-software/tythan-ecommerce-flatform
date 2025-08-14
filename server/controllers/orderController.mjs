@@ -1,6 +1,5 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
-import productModel from "../models/productModel.js";
 
 // Create a new order
 const createOrder = async (req, res) => {
