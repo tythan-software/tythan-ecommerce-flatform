@@ -78,7 +78,12 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
-const port = process.env.PORT;
-app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
-});
+if (process.env.NODE_ENV === "development") {
+  console.log("Running in development mode");
+  
+  const port = process.env.PORT;
+  app.listen(port, () => {
+    console.log(`Server is running on ${port}`);
+  });
+}
+
