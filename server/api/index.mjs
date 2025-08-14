@@ -4,8 +4,8 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 import path from "path";
 import { readdirSync, readFileSync } from "fs";
-import dbConnect from "./config/mongodb.js";
-import connectCloudinary from "./config/cloudinary.js";
+import dbConnect from "../config/mongodb.js";
+import connectCloudinary from "../config/cloudinary.js";
 import swaggerUi from 'swagger-ui-express';
 
 const app = express();
@@ -67,10 +67,10 @@ dbConnect();
 connectCloudinary();
 
 // Load all route files
-const routesPath = path.resolve(__dirname, "./routes");
+const routesPath = path.resolve(__dirname, "../routes");
 const routeFiles = readdirSync(routesPath);
 routeFiles.map(async (file) => {
-  const routeModule = await import(`./routes/${file}`);
+  const routeModule = await import(`../routes/${file}`);
   app.use("/", routeModule.default);
 });
 app.get("/", (req, res) => {
