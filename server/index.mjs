@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 // Serve Swagger UI static files
 app.use('/swagger-static', express.static(
-  path.join(__dirname, '../node_modules/swagger-ui-dist')
+  path.join(__dirname, 'node_modules/swagger-ui-dist')
 ));
 
 // Serve swagger.json
