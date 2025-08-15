@@ -2,7 +2,7 @@
 
 E-commerce solution built with modern technologies including React.js, Node.js, Express, MongoDB, Redux Toolkit, Tailwind CSS, and Stripe payment integration.
 
-![Shopping Platform](./public/thumbnail.png)
+![Shopping Platform](./public/web.png)
 
 ## 🌟 Features
 
@@ -43,7 +43,7 @@ This is a flatform with four main components:
 
 ## 📖 API Documentation
 
-Once the server is running, visit: http://localhost:8000/api-docs
+Once the server is running, visit: https://tythan-ecommerce-api.vercel.app/api-docs/
 
 ## 🎯 Key Technologies Used
 

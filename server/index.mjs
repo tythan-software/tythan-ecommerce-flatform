@@ -84,7 +84,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to Tythan Ecommerce API. See /api-docs for documentation.");
 });
 
-// Start the server
+// Start the server if in development mode
 if (process.env.NODE_ENV === "development") {
   console.log("Running in development mode");
 
