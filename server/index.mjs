@@ -13,6 +13,11 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Serve Swagger UI static files
+app.use('/swagger-static', express.static(
+  path.join(__dirname, '../node_modules/swagger-ui-dist')
+));
+
 // Serve swagger.json
 app.get('/swagger.json', (req, res) => {
   const swaggerPath = path.resolve(__dirname, 'swagger.json');
@@ -23,7 +28,9 @@ app.get('/swagger.json', (req, res) => {
 // Serve Swagger UI
 const swaggerPath = path.resolve(__dirname, 'swagger.json');
 const swaggerDoc = JSON.parse(readFileSync(swaggerPath, 'utf8'));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc, {
+  customCssUrl: '/swagger-static/swagger-ui.css'
+}));
 
 // CORS configuration using config system
 const allowedOrigins = [
@@ -80,7 +87,7 @@ app.get("/", (req, res) => {
 // Start the server
 if (process.env.NODE_ENV === "development") {
   console.log("Running in development mode");
-  
+
   const port = process.env.PORT;
   app.listen(port, () => {
     console.log(`Server is running on ${port}`);
