@@ -5,8 +5,8 @@ export default {
     url: `${process.env.MONGO_URI}`,
     databaseName: `${process.env.MONGO_DB_NAME}`,
     options: {
-      //   connectTimeoutMS: 3600000, // increase connection timeout to 1 hour
-      //   socketTimeoutMS: 3600000, // increase socket timeout to 1 hour
+        connectTimeoutMS: 3600000, // increase connection timeout to 1 hour
+        socketTimeoutMS: 3600000, // increase socket timeout to 1 hour
     }
   },
 
