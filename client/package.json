@@ -1,5 +1,5 @@
 {
-  "name": "reactjs-utilize",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,8 +18,10 @@
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
+    "dev": "vite --mode development",
+    "dev:prod": "vite --mode production",
+    "build": "vite build --mode production",
+    "build:dev": "vite build --mode development",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
   },
