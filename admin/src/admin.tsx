@@ -8,20 +8,18 @@ import { store } from "./redux/store.ts";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <StrictMode>
-      <Provider store={store}>
-        <App />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: {
-              background: "#000000",
-              color: "#ffffff",
-            },
-          }}
-        />
-      </Provider>
-    </StrictMode>
-  </BrowserRouter>
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: "#000000",
+            color: "#ffffff",
+          },
+        }}
+      />
+    </Provider>
+  </StrictMode>
 );

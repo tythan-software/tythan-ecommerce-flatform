@@ -14,16 +14,5 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components'),
       '@pages': path.resolve(__dirname, './src/pages'),
     },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        // This allows you to use variables and mixins globally without needing to import them in every file.
-        additionalData: `
-          @use "@/styles/variables" as *;
-          @use "@/styles/mixins" as *;
-        `,
-      }
-    }
   }
 });

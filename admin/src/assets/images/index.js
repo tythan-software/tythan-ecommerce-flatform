@@ -1,4 +1,3 @@
-import logo from "./orebiLogo.png";
-import logoLight from "./logoLight.png";
+import logo from "./logo.png";
 
-export { logo, logoLight };
+export { logo };

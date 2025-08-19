@@ -1,1 +1,1 @@
-export const serverUrl = process.env.API_URL;
+export const serverUrl = import.meta.env.VITE_API_URL;
