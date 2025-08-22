@@ -5,8 +5,8 @@ import Dashboard from "./pages/Dashboard";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route path="/" element={<Dashboard />} /> */}
     </Route>
   )
 );
