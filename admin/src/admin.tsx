@@ -6,7 +6,10 @@ import App from "./App.tsx";
 import { store } from "./redux/store.ts";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
+const root = createRoot(document.getElementById("root")!);
+console.log("Rendering App");
+
+root.render(
   <StrictMode>
     <Provider store={store}>
       <App />
