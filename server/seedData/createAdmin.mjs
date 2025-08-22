@@ -47,4 +47,4 @@ const createInitialAdmin = async () => {
   }
 };
 
-export default createInitialAdmin;
+createInitialAdmin();

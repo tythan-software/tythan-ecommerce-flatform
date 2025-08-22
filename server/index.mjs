@@ -7,7 +7,6 @@ import { readdirSync, readFileSync } from "fs";
 import dbConnect from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
 import swaggerUi from 'swagger-ui-express';
-import createInitialAdmin from "./seedData/createAdmin.mjs";
 
 const app = express();
 
@@ -73,9 +72,6 @@ app.use(express.json());
 // Healthcheck
 dbConnect();
 connectCloudinary();
-
-// Create initial admin user
-createInitialAdmin()
 
 // Load all route files
 const routesPath = path.resolve(__dirname, "./routes");
