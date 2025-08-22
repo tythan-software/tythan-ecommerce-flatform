@@ -85,14 +85,10 @@ app.get("/", (req, res) => {
 });
 
 // Listen port if in development mode
-if (process.env.NODE_ENV === "development") {
-  console.log("Running in development mode");
-
-  const port = process.env.PORT;
-  app.listen(port, () => {
-    console.log(`Server is running on ${port}`);
-  });
-}
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`Server is running on ${port}`);
+});
 
 export default app;
 
