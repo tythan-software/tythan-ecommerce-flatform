@@ -1,10 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Dashboard />} />
     </Route>
   )
 );

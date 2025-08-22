@@ -9,6 +9,9 @@ import {
    setError, 
    loginSuccess} from "@/redux/authSlice";
 import authService from "@/services/authService";
+import Input, { Label } from "@/components/partials/Input";
+import Image from "@/components/partials/Image";
+import Button from "@/components/partials/Button";
 
 const LoginPage = () => {
   // Store
@@ -76,7 +79,7 @@ const LoginPage = () => {
         {/* Logo Section */}
         <div className="text-center mb-6">
           <div className="bg-white p-3 rounded-md shadow-lg inline-block mb-4 transform hover:scale-105 transition-transform duration-300">
-            <img src={logo} alt="logo" className="w-20" />
+            <Image src={logo} className="w-20" />
           </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Welcome Back
@@ -94,16 +97,17 @@ const LoginPage = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-700 block">
+              <Label htmlFor="email" className="text-sm font-semibold text-gray-700 block">
                 Email Address
-              </label>
+              </Label>
               <div className="relative">
-                <input
+                <Input
                   type="email"
+                  id="email"
                   name="email"
                   placeholder="Enter your email"
                   className="w-full py-3 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm hover:bg-white/70"
-                  required
+                  required={true}
                   value={formData.email}
                   onChange={handleInputChange}
                   disabled={loading}
@@ -127,21 +131,22 @@ const LoginPage = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-700 block">
+              <Label htmlFor="password" className="text-sm font-semibold text-gray-700 block">
                 Password
-              </label>
+              </Label>
               <div className="relative">
-                <input
+                <Input
                   type={showPassword ? "text" : "password"}
+                  id="password"
                   name="password"
                   placeholder="Enter your password"
                   className="w-full py-3 px-4 pr-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm hover:bg-white/70"
-                  required
+                  required={true}
                   value={formData.password}
                   onChange={handleInputChange}
                   disabled={loading}
                 />
-                <button
+                <Button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-100 rounded-r-xl transition-colors duration-200"
@@ -182,11 +187,11 @@ const LoginPage = () => {
                       />
                     </svg>
                   )}
-                </button>
+                </Button>
               </div>
             </div>
 
-            <button
+            <Button
               type="submit"
               disabled={loading}
               className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 focus:ring-4 focus:ring-blue-300 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
@@ -218,7 +223,7 @@ const LoginPage = () => {
               ) : (
                 "Sign In"
               )}
-            </button>
+            </Button>
           </form>
 
           {/* Register Link */}
