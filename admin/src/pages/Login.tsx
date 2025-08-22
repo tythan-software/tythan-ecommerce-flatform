@@ -17,18 +17,18 @@ const LoginPage = () => {
   // Store
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state: any) => state.auth);
-  
-  // Navigate
+
+  /** Navigate */
   const navigate = useNavigate();
   
-  // States
+  /** States */
   const [formData, setFormData] = React.useState({
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = React.useState(false);
 
-  // Event Handlers
+  /** Event Handlers */
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -37,9 +37,9 @@ const LoginPage = () => {
     }));
 
     // Clear error when user starts typing
-    // if (error) {
-    //   dispatch(clearError());
-    // }
+    if (error) {
+      dispatch(clearError());
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
