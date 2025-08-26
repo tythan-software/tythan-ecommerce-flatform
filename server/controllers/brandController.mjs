@@ -100,7 +100,7 @@ const getBrands = async (req, res) => {
 // Get single brand
 const getBrand = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const brand = await brandModel.findById(id);
 
     if (!brand) {
@@ -126,7 +126,7 @@ const getBrand = async (req, res) => {
 // Update brand
 const updateBrand = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const { name, description, website, isActive } = req.body;
 
     const brand = await brandModel.findById(id);
@@ -226,7 +226,7 @@ const updateBrand = async (req, res) => {
 // Delete brand (soft delete)
 const deleteBrand = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params.id;
 
     const brand = await brandModel.findById(id);
     if (!brand) {

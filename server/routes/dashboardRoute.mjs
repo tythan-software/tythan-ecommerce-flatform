@@ -8,11 +8,14 @@ import adminAuth from "../middleware/adminAuth.js";
 
 const router = Router();
 
-const routeValue = "/api/dashboard/";
+const routeValue = "/api/dashboards";
 
-// Admin dashboard routes
-router.get(`${routeValue}stats`, adminAuth, getDashboardStats);
-router.get(`${routeValue}analytics`, adminAuth, getAnalytics);
-router.get(`${routeValue}quick-stats`, adminAuth, getQuickStats);
+/** Admin-protected routes - Start */
+
+router.get(`${routeValue}/stats`, adminAuth, getDashboardStats);
+router.get(`${routeValue}/analytics`, adminAuth, getAnalytics);
+router.get(`${routeValue}/quick-stats`, adminAuth, getQuickStats);
+
+/** Admin-protected routes - End */
 
 export default router;

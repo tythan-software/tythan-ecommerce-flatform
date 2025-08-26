@@ -1,9 +1,9 @@
 import { Router } from "express";
 import {
   createOrder,
-  getAllOrders,
+  getOrders,
   getUserOrders,
-  getUserOrderById,
+  getUserOrder,
   updateOrderStatus,
   getOrderStats,
   deleteOrder,
@@ -13,18 +13,24 @@ import userAuth from "../middleware/userAuth.js";
 
 const router = Router();
 
-const routeValue = "/api/order/";
+const routeValue = "/api/orders";
 
-// User routes (require authentication)
-router.post(`${routeValue}create`, userAuth, createOrder);
-router.get(`${routeValue}my-orders`, userAuth, getUserOrders);
-router.get(`${routeValue}user/:orderId`, userAuth, getUserOrderById);
+/** User-protected routes - Start */
 
-// Admin routes
-router.get(`${routeValue}admin/user/:userId`, adminAuth, getUserOrders);
-router.get(`${routeValue}list`, adminAuth, getAllOrders);
-router.get(`${routeValue}stats`, adminAuth, getOrderStats);
-router.post(`${routeValue}update-status`, adminAuth, updateOrderStatus);
-router.post(`${routeValue}delete`, adminAuth, deleteOrder);
+router.post(`${routeValue}`, userAuth, createOrder);
+router.get(`${routeValue}/my-orders`, userAuth, getUserOrders);
+router.get(`${routeValue}/my-orders/:orderId`, userAuth, getUserOrder);
+
+/** User-protected routes - End */
+
+/** Admin-protected routes - Start */
+
+router.get(`${routeValue}/user/:userId`, adminAuth, getUserOrders);
+router.get(`${routeValue}`, adminAuth, getOrders);
+router.get(`${routeValue}/stats`, adminAuth, getOrderStats);
+router.put(`${routeValue}/:id/update-status`, adminAuth, updateOrderStatus);
+router.delete(`${routeValue}/:id`, adminAuth, deleteOrder);
+
+/** Admin-protected routes - End */
 
 export default router;

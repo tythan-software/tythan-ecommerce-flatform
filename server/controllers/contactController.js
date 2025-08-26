@@ -80,7 +80,7 @@ const createContact = async (req, res) => {
 };
 
 // Get all contact messages (for admin)
-const getAllContacts = async (req, res) => {
+const getContacts = async (req, res) => {
   try {
     const { page = 1, limit = 10, status, search } = req.query;
 
@@ -150,10 +150,9 @@ const getAllContacts = async (req, res) => {
 };
 
 // Get single contact message (for admin)
-const getContactById = async (req, res) => {
+const getContact = async (req, res) => {
   try {
-    const { id } = req.params;
-
+    const id = req.params.id;
     const contact = await Contact.findById(id).populate("userId", "name email");
 
     if (!contact) {
@@ -179,7 +178,7 @@ const getContactById = async (req, res) => {
 // Update contact status (for admin)
 const updateContactStatus = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const { status, adminNotes } = req.body;
 
     if (!["unread", "read", "replied"].includes(status)) {
@@ -222,8 +221,7 @@ const updateContactStatus = async (req, res) => {
 // Delete contact message (for admin)
 const deleteContact = async (req, res) => {
   try {
-    const { id } = req.params;
-
+    const id = req.params.id;
     const contact = await Contact.findByIdAndDelete(id);
 
     if (!contact) {
@@ -280,8 +278,8 @@ const getUserContacts = async (req, res) => {
 
 export {
   createContact,
-  getAllContacts,
-  getContactById,
+  getContacts,
+  getContact,
   updateContactStatus,
   deleteContact,
   getUserContacts

@@ -11,13 +11,17 @@ import adminAuth from "../middleware/adminAuth.js";
 
 const brandRouter = express.Router();
 
-const routeValue = "/api/brand";
+const routeValue = "/api/brands";
 
-// Public routes
+/** Public routes - Start */
+
 brandRouter.get(`${routeValue}`, getBrands);
 brandRouter.get(`${routeValue}/:id`, getBrand);
 
-// Admin only routes
+/** Public routes - End */
+
+/** Admin-protected routes - Start */
+
 brandRouter.post(
   `${routeValue}`,
   adminAuth,
@@ -31,5 +35,7 @@ brandRouter.put(
   updateBrand
 );
 brandRouter.delete(`${routeValue}/:id`, adminAuth, deleteBrand);
+
+/** Admin-protected routes - End */
 
 export default brandRouter;

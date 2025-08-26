@@ -11,13 +11,17 @@ import adminAuth from "../middleware/adminAuth.js";
 
 const categoryRouter = express.Router();
 
-const routeValue = "/api/category";
+const routeValue = "/api/categories";
 
-// Public routes
+/** Public routes - Start */
+
 categoryRouter.get(`${routeValue}`, getCategories);
 categoryRouter.get(`${routeValue}/:id`, getCategory);
 
-// Admin only routes
+/** Public routes - End */
+
+/** Admin-protected routes - Start */
+
 categoryRouter.post(
   `${routeValue}`,
   adminAuth,
@@ -31,5 +35,7 @@ categoryRouter.put(
   updateCategory
 );
 categoryRouter.delete(`${routeValue}/:id`, adminAuth, deleteCategory);
+
+/** Admin-protected routes - End */
 
 export default categoryRouter;

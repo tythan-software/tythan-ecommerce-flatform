@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
     ],
     addresses: [
       {
+        _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
         label: { type: String, required: true }, // e.g., 'Home', 'Work', 'Billing'
         street: { type: String, required: true },
         city: { type: String, required: true },
@@ -30,7 +31,6 @@ const userSchema = new mongoose.Schema(
         country: { type: String, required: true },
         phone: { type: String, default: "" },
         isDefault: { type: Boolean, default: false },
-        _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
       },
     ],
     isActive: { type: Boolean, default: true },

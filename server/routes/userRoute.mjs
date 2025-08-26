@@ -1,88 +1,87 @@
 import { Router } from "express";
 import {
-  adminLogin,
   getUsers,
-  removeUser,
   updateUser,
-  userLogin,
-  userRegister,
   getUserProfile,
   updateUserProfile,
-  addToCart,
-  updateCart,
+  createUserCart,
+  updateUserCart,
   getUserCart,
-  clearCart,
+  deleteUserCart,
   createAdmin,
   addAddress,
   updateAddress,
   deleteAddress,
   setDefaultAddress,
   getUserAddresses,
-  uploadUserAvatar,
+  deleteUser,
+  createUser,
+  createUserAddress,
 } from "../controllers/userController.mjs";
 import adminAuth from "../middleware/adminAuth.js";
 import userAuth from "../middleware/userAuth.js";
-import { avatarUpload } from "../middleware/avatarUpload.mjs";
 
 const router = Router();
 
-const routeValue = "/api/user/";
+const routeValue = "/api/users";
 
-// Public routes
-router.post(`${routeValue}register`, userRegister);
-router.post(`${routeValue}login`, userLogin);
-router.post(`${routeValue}admin`, adminLogin);
+/** Public routes - Start */
 
-// User-protected routes
-router.get(`${routeValue}profile`, userAuth, getUserProfile);
-router.put(`${routeValue}profile`, userAuth, updateUserProfile);
-router.post(`${routeValue}cart/add`, userAuth, addToCart);
-router.put(`${routeValue}cart/update`, userAuth, updateCart);
-router.get(`${routeValue}cart`, userAuth, getUserCart);
-router.delete(`${routeValue}cart/clear`, userAuth, clearCart);
+router.post(`${routeValue}`, createUser);
 
-// User address management routes
-router.get(`${routeValue}addresses`, userAuth, getUserAddresses);
-router.post(`${routeValue}addresses`, userAuth, addAddress);
-router.put(`${routeValue}addresses/:addressId`, userAuth, updateAddress);
-router.delete(`${routeValue}addresses/:addressId`, userAuth, deleteAddress);
+/** Public routes - End */
+
+/** User-protected routes - Start */
+
+// Profile
+router.get(`${routeValue}/profile`, userAuth, getUserProfile);
+router.put(`${routeValue}/profile`, userAuth, updateUserProfile);
+
+// Cart
+router.post(`${routeValue}/cart`, userAuth, createUserCart);
+router.put(`${routeValue}/cart`, userAuth, updateUserCart);
+router.get(`${routeValue}/cart`, userAuth, getUserCart);
+router.delete(`${routeValue}/cart`, userAuth, deleteUserCart);
+
+// Address
+router.get(`${routeValue}/addresses`, userAuth, getUserAddresses);
+router.post(`${routeValue}/addresses`, userAuth, createUserAddress);
+router.put(`${routeValue}/addresses/:addressId`, userAuth, updateUserAddress);
+router.delete(`${routeValue}/addresses/:addressId`, userAuth, deleteUserAddress);
 router.put(
-  `${routeValue}addresses/:addressId/default`,
+  `${routeValue}/addresses/:addressId/default`,
   userAuth,
   setDefaultAddress
 );
 
-// Avatar upload route (admin only)
-router.post(
-  `${routeValue}upload-avatar`,
-  adminAuth,
-  avatarUpload.single("avatar"),
-  uploadUserAvatar
-);
+/** User-protected routes - End */
 
-// Address management routes (admin only)
-router.get(`${routeValue}:userId/addresses`, adminAuth, getUserAddresses);
-router.post(`${routeValue}:userId/addresses`, adminAuth, addAddress);
+/** Admin-protected routes - Start */
+
+router.get(`${routeValue}`, adminAuth, getUsers);
+router.delete(`${routeValue}/:id`, adminAuth, deleteUser);
+router.put(`${routeValue}/:id`, adminAuth, updateUser);
+router.post(`${routeValue}/admin`, adminAuth, createAdmin);
+
+// Address
+router.get(`${routeValue}/:id/addresses`, adminAuth, getUserAddresses);
+router.post(`${routeValue}/:id/addresses`, adminAuth, addAddress);
 router.put(
-  `${routeValue}:userId/addresses/:addressId`,
+  `${routeValue}/:id/addresses/:addressId`,
   adminAuth,
   updateAddress
 );
 router.delete(
-  `${routeValue}:userId/addresses/:addressId`,
+  `${routeValue}/:id/addresses/:addressId`,
   adminAuth,
   deleteAddress
 );
 router.put(
-  `${routeValue}:userId/addresses/:addressId/default`,
+  `${routeValue}/:id/addresses/:addressId/default`,
   adminAuth,
   setDefaultAddress
 );
 
-// Admin-protected routes
-router.get(`${routeValue}users`, adminAuth, getUsers);
-router.post(`${routeValue}remove`, adminAuth, removeUser);
-router.put(`${routeValue}update/:id`, adminAuth, updateUser);
-router.post(`${routeValue}create-admin`, adminAuth, createAdmin);
+/** Admin-protected routes - End */
 
 export default router;

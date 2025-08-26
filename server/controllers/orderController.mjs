@@ -172,7 +172,7 @@ const createOrder = async (req, res) => {
 };
 
 // Get all orders (Admin)
-const getAllOrders = async (req, res) => {
+const getOrders = async (req, res) => {
   try {
     const orders = await orderModel
       .find({})
@@ -198,11 +198,9 @@ const getAllOrders = async (req, res) => {
 // Get orders by user ID
 const getUserOrders = async (req, res) => {
   try {
-    // Check if it's an admin request with userId param
-    const { userId } = req.params;
-    const requestUserId = userId || req.user?.id; // Use param for admin, auth user for regular users
+    const userId = req.params?.userId || req.user?.id;
 
-    if (!requestUserId) {
+    if (!userId) {
       return res.json({
         success: false,
         message: "User ID not provided",
@@ -230,9 +228,9 @@ const getUserOrders = async (req, res) => {
 };
 
 // Get single order by user ID and order ID
-const getUserOrderById = async (req, res) => {
+const getUserOrder = async (req, res) => {
   try {
-    const { orderId } = req.params;
+    const orderId = req.params.orderId;
     const userId = req.user.id; // From auth middleware
 
     const order = await orderModel
@@ -263,9 +261,10 @@ const getUserOrderById = async (req, res) => {
 // Update order status (Admin)
 const updateOrderStatus = async (req, res) => {
   try {
-    const { orderId, status, paymentStatus } = req.body;
+    const id = req.params.id;
+    const { status, paymentStatus } = req.body;
 
-    if (!orderId || !status) {
+    if (!id || !status) {
       return res.json({
         success: false,
         message: "Order ID and status are required",
@@ -294,7 +293,7 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
-    const order = await orderModel.findById(orderId);
+    const order = await orderModel.findById(id);
     if (!order) {
       return res.json({
         success: false,
@@ -393,16 +392,16 @@ const getOrderStats = async (req, res) => {
 // Delete order (Admin)
 const deleteOrder = async (req, res) => {
   try {
-    const { orderId } = req.body;
+    const id = req.params.id;
 
-    if (!orderId) {
+    if (!id) {
       return res.json({
         success: false,
         message: "Order ID is required",
       });
     }
 
-    const order = await orderModel.findById(orderId);
+    const order = await orderModel.findById(id);
     if (!order) {
       return res.json({
         success: false,
@@ -410,7 +409,7 @@ const deleteOrder = async (req, res) => {
       });
     }
 
-    await orderModel.findByIdAndDelete(orderId);
+    await orderModel.findByIdAndDelete(id);
 
     res.json({
       success: true,
@@ -427,9 +426,9 @@ const deleteOrder = async (req, res) => {
 
 export {
   createOrder,
-  getAllOrders,
+  getOrders,
   getUserOrders,
-  getUserOrderById,
+  getUserOrder,
   updateOrderStatus,
   getOrderStats,
   deleteOrder,

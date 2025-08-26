@@ -99,7 +99,7 @@ const getCategories = async (req, res) => {
 // Get single category
 const getCategory = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const category = await categoryModel.findById(id);
 
     if (!category) {
@@ -125,7 +125,7 @@ const getCategory = async (req, res) => {
 // Update category
 const updateCategory = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const { name, description, isActive } = req.body;
 
     const category = await categoryModel.findById(id);
@@ -226,9 +226,9 @@ const updateCategory = async (req, res) => {
 // Delete category (soft delete)
 const deleteCategory = async (req, res) => {
   try {
-    const { id } = req.params;
-
+    const id = req.params.id;
     const category = await categoryModel.findById(id);
+    
     if (!category) {
       return res.status(404).json({
         success: false,

@@ -1,13 +1,12 @@
 import { v2 as cloudinary } from "cloudinary";
 import { deleteCloudinaryImage } from "../config/cloudinary.js";
 import productModel from "../models/productModel.js";
-import fs from "fs";
 
-// Add product
-const addProduct = async (req, res) => {
+// Create product
+const createProduct = async (req, res) => {
   try {
     const {
-      _type,
+      type,
       name,
       price,
       discountedPercentage,
@@ -72,7 +71,7 @@ const addProduct = async (req, res) => {
     }
 
     const productData = {
-      _type: _type ? _type : "",
+      type: type ? type : "",
       name,
       price: Number(price),
       discountedPercentage: discountedPercentage
@@ -104,40 +103,19 @@ const addProduct = async (req, res) => {
 };
 
 // List products with filtering
-const listProducts = async (req, res) => {
+const getProducts = async (req, res) => {
   try {
     const {
-      _type,
-      _id,
-      _search,
+      type,
       brand,
       category,
       offer,
       onSale,
       isAvailable,
+      _search,
       _page = 1,
       _perPage = 25,
     } = req.query;
-
-    // Filter by specific ID
-    if (_id) {
-      const dbProduct = await productModel.findById(_id);
-      if (dbProduct) {
-        // Format product for frontend compatibility
-        const formattedProduct = {
-          ...dbProduct.toObject(),
-          image:
-            dbProduct.images && dbProduct.images.length > 0
-              ? dbProduct.images[0]
-              : "",
-        };
-        return res.json({ success: true, product: formattedProduct });
-      } else {
-        return res
-          .status(404)
-          .json({ success: false, message: "Product not found" });
-      }
-    }
 
     // Build filter object for database query
     let filter = {};
@@ -148,8 +126,8 @@ const listProducts = async (req, res) => {
     }
 
     // Filter by type
-    if (_type) {
-      filter._type = _type;
+    if (type) {
+      filter.type = type;
     }
 
     // Filter by brand
@@ -223,10 +201,12 @@ const listProducts = async (req, res) => {
 };
 
 // Remove product
-const removeProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
+    const id = req.params.id;
+
     // First, find the product to get its images
-    const product = await productModel.findById(req.body._id);
+    const product = await productModel.findById(id);
 
     if (!product) {
       return res.json({ success: false, message: "Product not found" });
@@ -262,18 +242,18 @@ const removeProduct = async (req, res) => {
 };
 
 // Single product
-const singleProducts = async (req, res) => {
+const getProduct = async (req, res) => {
   try {
-    const productId = req.body._id || req.query._id || req.params.id;
+    const id = req.params.id;
 
-    if (!productId) {
+    if (!id) {
       return res.status(400).json({
         success: false,
         message: "Product ID is required",
       });
     }
 
-    const product = await productModel.findById(productId);
+    const product = await productModel.findById(id);
 
     if (!product) {
       return res.status(404).json({
@@ -300,16 +280,17 @@ const singleProducts = async (req, res) => {
 // Update stock after purchase
 const updateStock = async (req, res) => {
   try {
-    const { productId, quantity } = req.body;
+    const id = req.params.id;
+    const { quantity } = req.body;
 
-    if (!productId || !quantity || quantity <= 0) {
+    if (!id || !quantity || quantity <= 0) {
       return res.status(400).json({
         success: false,
         message: "Product ID and valid quantity are required",
       });
     }
 
-    const product = await productModel.findById(productId);
+    const product = await productModel.findById(id);
 
     if (!product) {
       return res.status(404).json({
@@ -355,9 +336,9 @@ const updateStock = async (req, res) => {
 // Update product
 const updateProduct = async (req, res) => {
   try {
-    const productId = req.params.id;
+    const id = req.params.id;
     const {
-      _type,
+      type,
       name,
       price,
       discountedPercentage,
@@ -377,7 +358,7 @@ const updateProduct = async (req, res) => {
     const image4 = req.files?.image4 && req.files.image4[0];
 
     // Find the existing product
-    const existingProduct = await productModel.findById(productId);
+    const existingProduct = await productModel.findById(id);
     if (!existingProduct) {
       return res.status(404).json({
         success: false,
@@ -449,7 +430,7 @@ const updateProduct = async (req, res) => {
     }
 
     const updateData = {
-      _type: _type || "",
+      type: type || "",
       name,
       price: Number(price),
       discountedPercentage: discountedPercentage
@@ -467,7 +448,7 @@ const updateProduct = async (req, res) => {
     };
 
     const updatedProduct = await productModel.findByIdAndUpdate(
-      productId,
+      id,
       updateData,
       { new: true }
     );
@@ -483,11 +464,110 @@ const updateProduct = async (req, res) => {
   }
 };
 
+// Process checkout and update stock
+const processCheckout = async (req, res) => {
+  try {
+    const { items } = req.body; // Array of {productId, quantity}
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Cart items are required",
+      });
+    }
+
+    const updatePromises = [];
+    const stockCheckErrors = [];
+
+    // First, check stock availability for all items
+    for (const item of items) {
+      const { productId, quantity } = item;
+
+      if (!productId || !quantity || quantity <= 0) {
+        stockCheckErrors.push("Invalid product or quantity");
+        continue;
+      }
+
+      const product = await productModel.findById(productId);
+
+      if (!product) {
+        stockCheckErrors.push(`Product not found: ${productId}`);
+        continue;
+      }
+
+      if (product.stock < quantity) {
+        stockCheckErrors.push(
+          `Insufficient stock for ${product.name}. Available: ${product.stock}, Requested: ${quantity}`
+        );
+        continue;
+      }
+    }
+
+    if (stockCheckErrors.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Stock validation failed",
+        errors: stockCheckErrors,
+      });
+    }
+
+    // If all checks pass, update stock for all items
+    for (const item of items) {
+      const { productId, quantity } = item;
+
+      const updatePromise = productModel
+        .findByIdAndUpdate(
+          productId,
+          {
+            $inc: {
+              stock: -quantity,
+              soldQuantity: quantity,
+            },
+          },
+          { new: true }
+        )
+        .then(async (product) => {
+          // If stock becomes 0, mark as unavailable
+          if (product.stock === 0) {
+            await productModel.findByIdAndUpdate(productId, {
+              isAvailable: false,
+            });
+          }
+          return product;
+        });
+
+      updatePromises.push(updatePromise);
+    }
+
+    const updatedProducts = await Promise.all(updatePromises);
+
+    res.json({
+      success: true,
+      message: "Checkout processed successfully",
+      updatedProducts: updatedProducts.map((product) => ({
+        _id: product._id,
+        name: product.name,
+        stock: product.stock,
+        soldQuantity: product.soldQuantity,
+        isAvailable: product.isAvailable,
+      })),
+    });
+  } catch (error) {
+    console.log("Checkout processing error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error processing checkout",
+      error: error.message,
+    });
+  }
+};
+
 export {
-  addProduct,
-  listProducts,
-  removeProduct,
-  singleProducts,
+  createProduct,
+  getProducts,
+  deleteProduct,
+  getProduct,
   updateStock,
   updateProduct,
+  processCheckout,
 };

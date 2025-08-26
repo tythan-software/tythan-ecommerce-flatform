@@ -1,66 +1,10 @@
 import validator from "validator";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import userModel from "../models/userModel.js";
-import { cloudinary, deleteCloudinaryImage } from "../config/cloudinary.js";
-import { cleanupTempFile } from "../helpers/file.js";
-
-// Create token for user login
-const createToken = (user) => {
-  return jwt.sign(
-    {
-      id: user._id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
-};
-
-// Route for user login
-const userLogin = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await userModel.findOne({ email });
-    if (!user) {
-      return res.json({ success: false, message: "User doesn't exist" });
-    }
-
-    if (!user.isActive) {
-      return res.json({ success: false, message: "Account is deactivated" });
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-      // Update last login
-      user.lastLogin = new Date();
-      await user.save();
-
-      const token = createToken(user);
-      res.json({
-        success: true,
-        token,
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-        },
-        message: "User logged in successfully",
-      });
-    } else {
-      res.json({ success: false, message: "Invalid credentials, try again" });
-    }
-  } catch (error) {
-    console.log("User Login Error", error);
-    res.json({ success: false, message: error.message });
-  }
-};
+import { deleteCloudinaryImage } from "../config/cloudinary.js";
 
 // Route for user registration
-const userRegister = async (req, res) => {
+const createUser = async (req, res) => {
   try {
     const {
       name,
@@ -139,55 +83,69 @@ const userRegister = async (req, res) => {
   }
 };
 
-// Route for admin login (now uses role-based authentication)
-const adminLogin = async (req, res) => {
+// Create admin user (only accessible by existing admins)
+const createAdmin = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await userModel.findOne({ email });
+    const { name, email, password } = req.body;
 
-    if (!user) {
-      return res.json({ success: false, message: "User doesn't exist" });
-    }
-
-    if (user.role !== "admin") {
+    // Check if requesting user is admin
+    if (req.user.role !== "admin") {
       return res.json({ success: false, message: "Admin access required" });
     }
 
-    if (!user.isActive) {
-      return res.json({ success: false, message: "Account is deactivated" });
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.json({ success: false, message: "User already exists" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-      // Update last login
-      user.lastLogin = new Date();
-      await user.save();
-
-      const token = createToken(user);
-      res.json({
-        success: true,
-        token,
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-        },
-        message: "Welcome admin",
+    if (!validator.isEmail(email)) {
+      return res.json({
+        success: false,
+        message: "Please enter a valid email address",
       });
-    } else {
-      res.json({ success: false, message: "Invalid credentials" });
     }
+
+    if (password.length < 8) {
+      return res.json({
+        success: false,
+        message: "Password length should be equal or greater than 8",
+      });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newAdmin = new userModel({
+      name,
+      email,
+      password: hashedPassword,
+      role: "admin",
+    });
+
+    const admin = await newAdmin.save();
+
+    res.json({
+      success: true,
+      message: "Admin created successfully!",
+      admin: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        role: admin.role,
+      },
+    });
   } catch (error) {
-    console.log("Admin Login Error", error);
+    console.log("Create Admin Error", error);
     res.json({ success: false, message: error.message });
   }
 };
 
-const removeUser = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
+    const id = req.params.id;
+
     // First, find the user to get their avatar URL
-    const user = await userModel.findById(req.body._id);
+    const user = await userModel.findById(id);
 
     if (!user) {
       return res.json({ success: false, message: "User not found" });
@@ -222,10 +180,11 @@ const removeUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { _id, name, email, password, role, avatar, addresses, isActive } =
+    const id = req.params.id;
+    const { name, email, password, role, avatar, addresses, isActive } =
       req.body;
 
-    const user = await userModel.findById(_id);
+    const user = await userModel.findById(id);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -320,12 +279,12 @@ const getUsers = async (req, res) => {
   }
 };
 
+/** Address - Start */
+
 // Add new address for user
-const addAddress = async (req, res) => {
+const createUserAddress = async (req, res) => {
   try {
-    const userId = req.user?.id; // Get from auth middleware for user routes
-    const paramUserId = req.params?.userId; // Get from params for admin routes
-    const targetUserId = userId || paramUserId;
+    const userId = req.params?.userId || req.user?.id;
 
     const { label, street, city, state, zipCode, country, phone, isDefault } =
       req.body;
@@ -339,7 +298,7 @@ const addAddress = async (req, res) => {
       });
     }
 
-    const user = await userModel.findById(targetUserId);
+    const user = await userModel.findById(userId);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -376,16 +335,14 @@ const addAddress = async (req, res) => {
 };
 
 // Update existing address
-const updateAddress = async (req, res) => {
+const updateUserAddress = async (req, res) => {
   try {
-    const userId = req.user?.id; // Get from auth middleware for user routes
-    const paramUserId = req.params?.userId; // Get from params for admin routes
-    const targetUserId = userId || paramUserId;
-    const { addressId } = req.params;
+    const id = req.params?.userId || req.user?.id;
+    const addressId = req.params.addressId;
     const { label, street, city, state, zipCode, country, phone, isDefault } =
       req.body;
 
-    const user = await userModel.findById(targetUserId);
+    const user = await userModel.findById(id);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -433,14 +390,12 @@ const updateAddress = async (req, res) => {
 };
 
 // Delete address
-const deleteAddress = async (req, res) => {
+const deleteUserAddress = async (req, res) => {
   try {
-    const userId = req.user?.id; // Get from auth middleware for user routes
-    const paramUserId = req.params?.userId; // Get from params for admin routes
-    const targetUserId = userId || paramUserId;
-    const { addressId } = req.params;
+    const id = req.params?.userId || req.user?.id;
+    const addressId = req.params.addressId;
 
-    const user = await userModel.findById(targetUserId);
+    const user = await userModel.findById(id);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -475,12 +430,10 @@ const deleteAddress = async (req, res) => {
 // Set default address
 const setDefaultAddress = async (req, res) => {
   try {
-    const userId = req.user?.id; // Get from auth middleware for user routes
-    const paramUserId = req.params?.userId; // Get from params for admin routes
-    const targetUserId = userId || paramUserId;
-    const { addressId } = req.params;
+    const id = req.params?.userId || req.user?.id;
+    const addressId = req.params.addressId;
 
-    const user = await userModel.findById(targetUserId);
+    const user = await userModel.findById(id);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -511,11 +464,9 @@ const setDefaultAddress = async (req, res) => {
 // Get user addresses
 const getUserAddresses = async (req, res) => {
   try {
-    const userId = req.user?.id; // Get from auth middleware for user routes
-    const paramUserId = req.params?.userId; // Get from params for admin routes
-    const targetUserId = userId || paramUserId;
+    const id = req.params?.userId || req.user?.id;
 
-    const user = await userModel.findById(targetUserId).select("addresses");
+    const user = await userModel.findById(id).select("addresses");
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -530,42 +481,9 @@ const getUserAddresses = async (req, res) => {
   }
 };
 
-// Avatar upload function
-const uploadUserAvatar = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.json({ success: false, message: "No file uploaded" });
-    }
+/** Address - End */
 
-    // Upload image to Cloudinary in the tythan/users folder
-    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
-      folder: "tythan/users",
-      resource_type: "image",
-      transformation: [
-        { width: 400, height: 400, crop: "fill", gravity: "face" },
-        { quality: "auto", fetch_format: "auto" },
-      ],
-    });
-
-    // Clean up temporary file
-    cleanupTempFile(req.file.path);
-
-    res.json({
-      success: true,
-      message: "Avatar uploaded successfully",
-      avatarUrl: uploadResult.secure_url,
-    });
-  } catch (error) {
-    console.log("Avatar upload error", error);
-
-    // Clean up temporary file even on error
-    if (req.file?.path) {
-      cleanupTempFile(req.file.path);
-    }
-
-    res.json({ success: false, message: error.message });
-  }
-};
+/** Profile - Start */
 
 // Get user profile
 const getUserProfile = async (req, res) => {
@@ -683,8 +601,12 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+/** Profile - End */
+
+/** Cart - Start */
+
 // Add item to cart
-const addToCart = async (req, res) => {
+const createUserCart = async (req, res) => {
   try {
     const { productId, quantity = 1, size } = req.body;
     const user = await userModel.findById(req.user.id);
@@ -715,7 +637,7 @@ const addToCart = async (req, res) => {
 };
 
 // Update cart item
-const updateCart = async (req, res) => {
+const updateUserCart = async (req, res) => {
   try {
     const { productId, quantity, size } = req.body;
     const user = await userModel.findById(req.user.id);
@@ -765,7 +687,7 @@ const getUserCart = async (req, res) => {
 };
 
 // Clear user cart
-const clearCart = async (req, res) => {
+const deleteUserCart = async (req, res) => {
   try {
     const user = await userModel.findById(req.user.id);
 
@@ -786,81 +708,23 @@ const clearCart = async (req, res) => {
   }
 };
 
-// Create admin user (only accessible by existing admins)
-const createAdmin = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-
-    // Check if requesting user is admin
-    if (req.user.role !== "admin") {
-      return res.json({ success: false, message: "Admin access required" });
-    }
-
-    const existingUser = await userModel.findOne({ email });
-    if (existingUser) {
-      return res.json({ success: false, message: "User already exists" });
-    }
-
-    if (!validator.isEmail(email)) {
-      return res.json({
-        success: false,
-        message: "Please enter a valid email address",
-      });
-    }
-
-    if (password.length < 8) {
-      return res.json({
-        success: false,
-        message: "Password length should be equal or greater than 8",
-      });
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    const newAdmin = new userModel({
-      name,
-      email,
-      password: hashedPassword,
-      role: "admin",
-    });
-
-    const admin = await newAdmin.save();
-
-    res.json({
-      success: true,
-      message: "Admin created successfully!",
-      admin: {
-        id: admin._id,
-        name: admin.name,
-        email: admin.email,
-        role: admin.role,
-      },
-    });
-  } catch (error) {
-    console.log("Create Admin Error", error);
-    res.json({ success: false, message: error.message });
-  }
-};
+/** Profile - End */
 
 export {
-  userLogin,
-  userRegister,
-  adminLogin,
+  createUser,
+  createAdmin,
   getUsers,
-  removeUser,
+  deleteUser,
   updateUser,
   getUserProfile,
   updateUserProfile,
-  addToCart,
-  updateCart,
+  createUserCart,
+  updateUserCart,
   getUserCart,
-  clearCart,
-  createAdmin,
-  addAddress,
-  updateAddress,
-  deleteAddress,
+  deleteUserCart,
+  createUserAddress,
+  updateUserAddress,
+  deleteUserAddress,
   setDefaultAddress,
   getUserAddresses,
-  uploadUserAvatar,
 };
