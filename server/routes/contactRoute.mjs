@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import {
   createContact,
   getContacts,
@@ -10,7 +10,7 @@ import {
 import userAuth from "../middleware/userAuth.js";
 import adminAuth from "../middleware/adminAuth.js";
 
-const router = express.Router();
+const router = Router();
 
 const routeValue = "/api/contacts";
 

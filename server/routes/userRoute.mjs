@@ -9,14 +9,13 @@ import {
   getUserCart,
   deleteUserCart,
   createAdmin,
-  addAddress,
-  updateAddress,
-  deleteAddress,
-  setDefaultAddress,
+  createUserAddress,
+  updateUserAddress,
+  deleteUserAddress,
+  setUserDefaultAddress,
   getUserAddresses,
   deleteUser,
   createUser,
-  createUserAddress,
 } from "../controllers/userController.mjs";
 import adminAuth from "../middleware/adminAuth.js";
 import userAuth from "../middleware/userAuth.js";
@@ -51,7 +50,7 @@ router.delete(`${routeValue}/addresses/:addressId`, userAuth, deleteUserAddress)
 router.put(
   `${routeValue}/addresses/:addressId/default`,
   userAuth,
-  setDefaultAddress
+  setUserDefaultAddress
 );
 
 /** User-protected routes - End */
@@ -65,21 +64,21 @@ router.post(`${routeValue}/admin`, adminAuth, createAdmin);
 
 // Address
 router.get(`${routeValue}/:id/addresses`, adminAuth, getUserAddresses);
-router.post(`${routeValue}/:id/addresses`, adminAuth, addAddress);
+router.post(`${routeValue}/:id/addresses`, adminAuth, createUserAddress);
 router.put(
   `${routeValue}/:id/addresses/:addressId`,
   adminAuth,
-  updateAddress
+  updateUserAddress
 );
 router.delete(
   `${routeValue}/:id/addresses/:addressId`,
   adminAuth,
-  deleteAddress
+  deleteUserAddress
 );
 router.put(
   `${routeValue}/:id/addresses/:addressId/default`,
   adminAuth,
-  setDefaultAddress
+  setUserDefaultAddress
 );
 
 /** Admin-protected routes - End */

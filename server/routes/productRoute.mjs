@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  addProduct,
+  createProduct,
   getProducts,
   deleteProduct,
   getProduct,
@@ -41,7 +41,7 @@ router.post(
     { name: "image4", maxCount: 1 },
   ]),
   adminAuth,
-  addProduct
+  createProduct
 );
 router.delete(`${routeValue}/:id`, adminAuth, deleteProduct);
 router.put(

@@ -8,3 +8,5 @@ const routeValue = "/api/auth";
 // Public routes
 router.post(`${routeValue}/login`, userLogin);
 router.post(`${routeValue}/login/admin`, adminLogin);
+
+export default router;

@@ -12,168 +12,102 @@
     }
   ],
   "paths": {
-    "/api/brand": {
+    "/api/auth/login": { "post": { "tags": ["Auth"], "summary": "User login" } },
+    "/api/auth/login/admin": { "post": { "tags": ["Auth"], "summary": "Admin login" } },
+    "/api/brands": {
       "get": { "tags": ["Brand"], "summary": "Get all brands" },
-      "post": { "tags": ["Brand"], "summary": "Create a brand", "security": [{"adminAuth": []}] }
+      "post": { "tags": ["Brand"], "summary": "Create brand", "security": [{"adminAuth": []}] }
     },
-    "/api/brand/{id}": {
+    "/api/brands/:id": {
       "get": { "tags": ["Brand"], "summary": "Get brand by ID" },
       "put": { "tags": ["Brand"], "summary": "Update brand", "security": [{"adminAuth": []}] },
       "delete": { "tags": ["Brand"], "summary": "Delete brand", "security": [{"adminAuth": []}] }
     },
-    "/api/category": {
+    "/api/categories": {
       "get": { "tags": ["Category"], "summary": "Get all categories" },
-      "post": { "tags": ["Category"], "summary": "Create a category", "security": [{"adminAuth": []}] }
+      "post": { "tags": ["Category"], "summary": "Create category", "security": [{"adminAuth": []}] }
     },
-    "/api/category/{id}": {
+    "/api/categories/:id": {
       "get": { "tags": ["Category"], "summary": "Get category by ID" },
       "put": { "tags": ["Category"], "summary": "Update category", "security": [{"adminAuth": []}] },
       "delete": { "tags": ["Category"], "summary": "Delete category", "security": [{"adminAuth": []}] }
     },
-    "/api/checkout": {
-      "post": { "tags": ["Checkout"], "summary": "Process checkout and update product stock" }
+    "/api/contacts": {
+      "post": { "tags": ["Contact"], "summary": "Create contact", "security": [{"userAuth": []}] },
+      "get": { "tags": ["Contact"], "summary": "Get all contacts (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/contact": {
-      "post": { "tags": ["Contact"], "summary": "Create contact", "security": [{"userAuth": []}] }
+    "/api/contacts/my-contacts": { "get": { "tags": ["Contact"], "summary": "Get user's contacts", "security": [{"userAuth": []}] } },
+    "/api/contacts/:id": {
+      "get": { "tags": ["Contact"], "summary": "Get contact by ID (admin)", "security": [{"adminAuth": []}] },
+      "put": { "tags": ["Contact"], "summary": "Update contact status (admin)", "security": [{"adminAuth": []}] },
+      "delete": { "tags": ["Contact"], "summary": "Delete contact (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/contact/my-contacts": {
-      "get": { "tags": ["Contact"], "summary": "Get user's contacts", "security": [{"userAuth": []}] }
+    "/api/dashboards/stats": { "get": { "tags": ["Dashboard"], "summary": "Get dashboard stats", "security": [{"adminAuth": []}] } },
+    "/api/dashboards/analytics": { "get": { "tags": ["Dashboard"], "summary": "Get analytics", "security": [{"adminAuth": []}] } },
+    "/api/dashboards/quick-stats": { "get": { "tags": ["Dashboard"], "summary": "Get quick stats", "security": [{"adminAuth": []}] } },
+    "/api/files/upload-avatar": { "post": { "tags": ["Files"], "summary": "Upload user avatar (admin only)", "security": [{"adminAuth": []}] } },
+    "/api/orders": {
+      "post": { "tags": ["Order"], "summary": "Create order", "security": [{"userAuth": []}] },
+      "get": { "tags": ["Order"], "summary": "Get all orders (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/contact/admin/all": {
-      "get": { "tags": ["Contact"], "summary": "Get all contacts", "security": [{"adminAuth": []}] }
-    },
-    "/api/contact/admin/{id}": {
-      "get": { "tags": ["Contact"], "summary": "Get contact by ID", "security": [{"adminAuth": []}] },
-      "put": { "tags": ["Contact"], "summary": "Update contact status", "security": [{"adminAuth": []}] },
-      "delete": { "tags": ["Contact"], "summary": "Delete contact", "security": [{"adminAuth": []}] }
-    },
-    "/api/dashboard/stats": {
-      "get": { "tags": ["Dashboard"], "summary": "Get dashboard stats", "security": [{"adminAuth": []}] }
-    },
-    "/api/dashboard/analytics": {
-      "get": { "tags": ["Dashboard"], "summary": "Get analytics", "security": [{"adminAuth": []}] }
-    },
-    "/api/dashboard/quick-stats": {
-      "get": { "tags": ["Dashboard"], "summary": "Get quick stats", "security": [{"adminAuth": []}] }
-    },
-    "/api/order/create": {
-      "post": { "tags": ["Order"], "summary": "Create order", "security": [{"userAuth": []}] }
-    },
-    "/api/order/my-orders": {
-      "get": { "tags": ["Order"], "summary": "Get user's orders", "security": [{"userAuth": []}] }
-    },
-    "/api/order/user/{orderId}": {
-      "get": { "tags": ["Order"], "summary": "Get user order by ID", "security": [{"userAuth": []}] }
-    },
-    "/api/order/admin/user/{userId}": {
-      "get": { "tags": ["Order"], "summary": "Get user orders (admin)", "security": [{"adminAuth": []}] }
-    },
-    "/api/order/list": {
-      "get": { "tags": ["Order"], "summary": "Get all orders", "security": [{"adminAuth": []}] }
-    },
-    "/api/order/stats": {
-      "get": { "tags": ["Order"], "summary": "Get order stats", "security": [{"adminAuth": []}] }
-    },
-    "/api/order/update-status": {
-      "post": { "tags": ["Order"], "summary": "Update order status", "security": [{"adminAuth": []}] }
-    },
-    "/api/order/delete": {
-      "post": { "tags": ["Order"], "summary": "Delete order", "security": [{"adminAuth": []}] }
-    },
-    "/api/payment/stripe/create-payment-intent": {
-      "post": { "tags": ["Payment"], "summary": "Create Stripe payment intent", "security": [{"userAuth": []}] }
-    },
-    "/api/payment/stripe/confirm-payment": {
-      "post": { "tags": ["Payment"], "summary": "Confirm Stripe payment", "security": [{"userAuth": []}] }
-    },
-    "/api/payment/stripe/webhook": {
-      "post": { "tags": ["Payment"], "summary": "Handle Stripe webhook" }
-    },
-    "/api/product/add": {
+    "/api/orders/my-orders": { "get": { "tags": ["Order"], "summary": "Get user's orders", "security": [{"userAuth": []}] } },
+    "/api/orders/my-orders/:orderId": { "get": { "tags": ["Order"], "summary": "Get user order by ID", "security": [{"userAuth": []}] } },
+    "/api/orders/user/:userId": { "get": { "tags": ["Order"], "summary": "Get user orders (admin)", "security": [{"adminAuth": []}] } },
+    "/api/orders/stats": { "get": { "tags": ["Order"], "summary": "Get order stats (admin)", "security": [{"adminAuth": []}] } },
+    "/api/orders/:id/update-status": { "put": { "tags": ["Order"], "summary": "Update order status (admin)", "security": [{"adminAuth": []}] } },
+    "/api/orders/:id": { "delete": { "tags": ["Order"], "summary": "Delete order (admin)", "security": [{"adminAuth": []}] } },
+    "/api/payments": { "post": { "tags": ["Payment"], "summary": "Create payment", "security": [{"userAuth": []}] } },
+    "/api/payments/confirm-payment": { "post": { "tags": ["Payment"], "summary": "Confirm payment", "security": [{"userAuth": []}] } },
+    "/api/payments/webhook": { "post": { "tags": ["Payment"], "summary": "Handle payment webhook" } },
+    "/api/products": {
+      "get": { "tags": ["Product"], "summary": "Get all products" },
       "post": { "tags": ["Product"], "summary": "Add product", "security": [{"adminAuth": []}] }
     },
-    "/api/product/remove": {
-      "post": { "tags": ["Product"], "summary": "Remove product", "security": [{"adminAuth": []}] }
+    "/api/products/:type": { "get": { "tags": ["Product"], "summary": "Get products by type" } },
+    "/api/products/:id": {
+      "get": { "tags": ["Product"], "summary": "Get product by ID" },
+      "put": { "tags": ["Product"], "summary": "Update product", "security": [{"adminAuth": []}] },
+      "delete": { "tags": ["Product"], "summary": "Delete product", "security": [{"adminAuth": []}] }
     },
-    "/api/product/update/{id}": {
-      "put": { "tags": ["Product"], "summary": "Update product", "security": [{"adminAuth": []}] }
+    "/api/products/:id/update-stock": { "put": { "tags": ["Product"], "summary": "Update product stock" } },
+    "/api/products/checkout": { "post": { "tags": ["Product"], "summary": "Process checkout and update product stock" } },
+    "/api/products/update/:id": { "put": { "tags": ["Product"], "summary": "Update product (admin)", "security": [{"adminAuth": []}] } },
+    "/api/users": {
+      "post": { "tags": ["User"], "summary": "Create user" },
+      "get": { "tags": ["User"], "summary": "Get all users (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/product/update-stock": {
-      "post": { "tags": ["Product"], "summary": "Update product stock" }
+    "/api/users/:id": {
+      "put": { "tags": ["User"], "summary": "Update user (admin)", "security": [{"adminAuth": []}] },
+      "delete": { "tags": ["User"], "summary": "Delete user (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/product/single": {
-      "get": { "tags": ["Product"], "summary": "Get single product" }
-    },
-    "/api/product/list": {
-      "get": { "tags": ["Product"], "summary": "List products" }
-    },
-    "/api/products": {
-      "get": { "tags": ["Product"], "summary": "List products (public)" }
-    },
-    "/api/products/{type}": {
-      "get": { "tags": ["Product"], "summary": "List products by type (public)" }
-    },
-    "/api/user/register": {
-      "post": { "tags": ["User"], "summary": "User registration" }
-    },
-    "/api/user/login": {
-      "post": { "tags": ["User"], "summary": "User login" }
-    },
-    "/api/user/admin": {
-      "post": { "tags": ["User"], "summary": "Admin login" }
-    },
-    "/api/user/profile": {
+    "/api/users/admin": { "post": { "tags": ["User"], "summary": "Create admin (admin)", "security": [{"adminAuth": []}] } },
+    "/api/users/profile": {
       "get": { "tags": ["User"], "summary": "Get user profile", "security": [{"userAuth": []}] },
       "put": { "tags": ["User"], "summary": "Update user profile", "security": [{"userAuth": []}] }
     },
-    "/api/user/cart/add": {
-      "post": { "tags": ["User"], "summary": "Add to cart", "security": [{"userAuth": []}] }
+    "/api/users/cart": {
+      "post": { "tags": ["User"], "summary": "Create user cart", "security": [{"userAuth": []}] },
+      "put": { "tags": ["User"], "summary": "Update user cart", "security": [{"userAuth": []}] },
+      "get": { "tags": ["User"], "summary": "Get user cart", "security": [{"userAuth": []}] },
+      "delete": { "tags": ["User"], "summary": "Delete user cart", "security": [{"userAuth": []}] }
     },
-    "/api/user/cart/update": {
-      "put": { "tags": ["User"], "summary": "Update cart", "security": [{"userAuth": []}] }
-    },
-    "/api/user/cart": {
-      "get": { "tags": ["User"], "summary": "Get user cart", "security": [{"userAuth": []}] }
-    },
-    "/api/user/cart/clear": {
-      "delete": { "tags": ["User"], "summary": "Clear user cart", "security": [{"userAuth": []}] }
-    },
-    "/api/user/addresses": {
+    "/api/users/addresses": {
       "get": { "tags": ["User"], "summary": "Get user addresses", "security": [{"userAuth": []}] },
-      "post": { "tags": ["User"], "summary": "Add address", "security": [{"userAuth": []}] }
+      "post": { "tags": ["User"], "summary": "Create user address", "security": [{"userAuth": []}] }
     },
-    "/api/user/addresses/{addressId}": {
-      "put": { "tags": ["User"], "summary": "Update address", "security": [{"userAuth": []}] },
-      "delete": { "tags": ["User"], "summary": "Delete address", "security": [{"userAuth": []}] }
+    "/api/users/addresses/:addressId": {
+      "put": { "tags": ["User"], "summary": "Update user address", "security": [{"userAuth": []}] },
+      "delete": { "tags": ["User"], "summary": "Delete user address", "security": [{"userAuth": []}] }
     },
-    "/api/user/addresses/{addressId}/default": {
-      "put": { "tags": ["User"], "summary": "Set default address", "security": [{"userAuth": []}] }
-    },
-    "/api/user/upload-avatar": {
-      "post": { "tags": ["User"], "summary": "Upload user avatar (admin only)", "security": [{"adminAuth": []}] }
-    },
-    "/api/user/:userId/addresses": {
+    "/api/users/addresses/:addressId/default": { "put": { "tags": ["User"], "summary": "Set default address", "security": [{"userAuth": []}] } },
+    "/api/users/:id/addresses": {
       "get": { "tags": ["User"], "summary": "Get user addresses (admin)", "security": [{"adminAuth": []}] },
       "post": { "tags": ["User"], "summary": "Add address (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/user/:userId/addresses/{addressId}": {
+    "/api/users/:id/addresses/:addressId": {
       "put": { "tags": ["User"], "summary": "Update address (admin)", "security": [{"adminAuth": []}] },
       "delete": { "tags": ["User"], "summary": "Delete address (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/user/:userId/addresses/{addressId}/default": {
-      "put": { "tags": ["User"], "summary": "Set default address (admin)", "security": [{"adminAuth": []}] }
-    },
-    "/api/user/users": {
-      "get": { "tags": ["User"], "summary": "Get all users (admin)", "security": [{"adminAuth": []}] }
-    },
-    "/api/user/remove": {
-      "post": { "tags": ["User"], "summary": "Remove user (admin)", "security": [{"adminAuth": []}] }
-    },
-    "/api/user/update/{id}": {
-      "put": { "tags": ["User"], "summary": "Update user (admin)", "security": [{"adminAuth": []}] }
-    },
-    "/api/user/create-admin": {
-      "post": { "tags": ["User"], "summary": "Create admin (admin)", "security": [{"adminAuth": []}] }
-    }
+    "/api/users/:id/addresses/:addressId/default": { "put": { "tags": ["User"], "summary": "Set default address (admin)", "security": [{"adminAuth": []}] } }
   }
 }

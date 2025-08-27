@@ -9,33 +9,33 @@ import {
 import upload from "../middleware/multer.mjs";
 import adminAuth from "../middleware/adminAuth.js";
 
-const brandRouter = express.Router();
+const router = express.Router();
 
 const routeValue = "/api/brands";
 
 /** Public routes - Start */
 
-brandRouter.get(`${routeValue}`, getBrands);
-brandRouter.get(`${routeValue}/:id`, getBrand);
+router.get(`${routeValue}`, getBrands);
+router.get(`${routeValue}/:id`, getBrand);
 
 /** Public routes - End */
 
 /** Admin-protected routes - Start */
 
-brandRouter.post(
+router.post(
   `${routeValue}`,
   adminAuth,
   upload.single("image"),
   createBrand
 );
-brandRouter.put(
+router.put(
   `${routeValue}/:id`,
   adminAuth,
   upload.single("image"),
   updateBrand
 );
-brandRouter.delete(`${routeValue}/:id`, adminAuth, deleteBrand);
+router.delete(`${routeValue}/:id`, adminAuth, deleteBrand);
 
 /** Admin-protected routes - End */
 
-export default brandRouter;
+export default router;

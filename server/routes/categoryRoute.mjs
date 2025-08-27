@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import {
   createCategory,
   getCategories,
@@ -9,33 +9,33 @@ import {
 import upload from "../middleware/multer.mjs";
 import adminAuth from "../middleware/adminAuth.js";
 
-const categoryRouter = express.Router();
+const router = Router();
 
 const routeValue = "/api/categories";
 
 /** Public routes - Start */
 
-categoryRouter.get(`${routeValue}`, getCategories);
-categoryRouter.get(`${routeValue}/:id`, getCategory);
+router.get(`${routeValue}`, getCategories);
+router.get(`${routeValue}/:id`, getCategory);
 
 /** Public routes - End */
 
 /** Admin-protected routes - Start */
 
-categoryRouter.post(
+router.post(
   `${routeValue}`,
   adminAuth,
   upload.single("image"),
   createCategory
 );
-categoryRouter.put(
+router.put(
   `${routeValue}/:id`,
   adminAuth,
   upload.single("image"),
   updateCategory
 );
-categoryRouter.delete(`${routeValue}/:id`, adminAuth, deleteCategory);
+router.delete(`${routeValue}/:id`, adminAuth, deleteCategory);
 
 /** Admin-protected routes - End */
 
-export default categoryRouter;
+export default router;

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { uploadUserAvatar } from "../controllers/fileController.mjs";
 import { avatarUpload } from "../middleware/avatarUpload.mjs";
-import adminAuth from "../middleware/adminAuth";
+import adminAuth from "../middleware/adminAuth.js";
 
 const router = Router();
 
@@ -17,3 +17,5 @@ router.post(
 );
 
 /** Admin-protected routes - End */
+
+export default router;

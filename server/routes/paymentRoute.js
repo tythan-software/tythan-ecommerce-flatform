@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import {
   createPayment,
   confirmPayment,
@@ -6,7 +6,7 @@ import {
 } from "../controllers/paymentController.js";
 import userAuth from "../middleware/userAuth.js";
 
-const router = express.Router();
+const router = Router();
 
 const routeValue = "/api/payments";
 

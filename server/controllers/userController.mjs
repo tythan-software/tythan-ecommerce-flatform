@@ -428,7 +428,7 @@ const deleteUserAddress = async (req, res) => {
 };
 
 // Set default address
-const setDefaultAddress = async (req, res) => {
+const setUserDefaultAddress = async (req, res) => {
   try {
     const id = req.params?.userId || req.user?.id;
     const addressId = req.params.addressId;
@@ -725,6 +725,6 @@ export {
   createUserAddress,
   updateUserAddress,
   deleteUserAddress,
-  setDefaultAddress,
+  setUserDefaultAddress,
   getUserAddresses,
 };
