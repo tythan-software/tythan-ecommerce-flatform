@@ -42,9 +42,9 @@
       "put": { "tags": ["Contact"], "summary": "Update contact status (admin)", "security": [{"adminAuth": []}] },
       "delete": { "tags": ["Contact"], "summary": "Delete contact (admin)", "security": [{"adminAuth": []}] }
     },
-    "/api/dashboards/stats": { "get": { "tags": ["Dashboard"], "summary": "Get dashboard stats", "security": [{"adminAuth": []}] } },
-    "/api/dashboards/analytics": { "get": { "tags": ["Dashboard"], "summary": "Get analytics", "security": [{"adminAuth": []}] } },
-    "/api/dashboards/quick-stats": { "get": { "tags": ["Dashboard"], "summary": "Get quick stats", "security": [{"adminAuth": []}] } },
+    "/api/reports/stats": { "get": { "tags": ["Report"], "summary": "Get dashboard stats", "security": [{"adminAuth": []}] } },
+    "/api/reports/analytics": { "get": { "tags": ["Report"], "summary": "Get analytics", "security": [{"adminAuth": []}] } },
+    "/api/reports/quick-stats": { "get": { "tags": ["Report"], "summary": "Get quick stats", "security": [{"adminAuth": []}] } },
     "/api/files/upload-avatar": { "post": { "tags": ["Files"], "summary": "Upload user avatar (admin only)", "security": [{"adminAuth": []}] } },
     "/api/orders": {
       "post": { "tags": ["Order"], "summary": "Create order", "security": [{"userAuth": []}] },

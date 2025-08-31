@@ -8,7 +8,7 @@ import adminAuth from "../middleware/adminAuth.js";
 
 const router = Router();
 
-const routeValue = "/api/dashboards";
+const routeValue = "/api/reports";
 
 /** Admin-protected routes - Start */
 
