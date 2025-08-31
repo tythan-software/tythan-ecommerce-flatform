@@ -3,7 +3,7 @@ import {
   getDashboardStats,
   getAnalytics,
   getQuickStats,
-} from "../controllers/dashboardController.mjs";
+} from "../controllers/reportController.mjs";
 import adminAuth from "../middleware/adminAuth.js";
 
 const router = Router();
