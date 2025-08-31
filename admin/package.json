@@ -1,7 +1,7 @@
 {
-  "name": "admin",
+  "name": "admin-panel",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite --mode development",
     "dev:prod": "vite --mode production",
