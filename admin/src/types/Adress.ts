@@ -1,4 +1,6 @@
-interface Address {
+import Base from "./Base";
+
+interface Address extends Base {
   firstName: string;
   lastName: string;
   email: string;

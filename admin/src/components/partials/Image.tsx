@@ -1,10 +1,9 @@
-interface ImageProps {
+interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
-  className?: string;
 }
 
-export const Image = (props: ImageProps) => {
-  return <img className={props.className} src={props.src} alt={props.src} />;
+export const Image: React.FC<ImageProps> = ({ src, ...props }) => {
+  return <img src={src} {...props} />;
 };
 
 export default Image;

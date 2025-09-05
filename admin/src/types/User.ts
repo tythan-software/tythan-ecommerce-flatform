@@ -1,5 +1,6 @@
-interface User {
-  _id: string;
+import Base from "./Base";
+
+interface User extends Base {
   name: string;
   email: string;
   role: string;

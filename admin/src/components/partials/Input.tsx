@@ -1,48 +1,74 @@
 import { ReactNode } from "react";
+import { cn } from "../cn";
 
-interface LabelProps {
-    htmlFor: string;
-    className?: string;
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
     children: ReactNode;
+    className?: string;
 }
 
-export const Label = (props: LabelProps) => {
+export const Label = ({ children, className, ...props }: LabelProps) => {
   return (
     <label
-      htmlFor={props.htmlFor}
-      className={`text-sm font-semibold tracking-wide ${props.className}`}
+      className={cn("text-sm font-semibold tracking-wide", className)}
+      {...props}
     >
-      {props.children}
+      {children}
     </label>
   );
 };
 
-interface InputProps {
-    id: string;
-    name: string;
-    type: string;
-    placeholder?: string;
-    className?: string;
-    value: string | number;
-    disabled: boolean;
-    required: boolean;
+interface UploadFileProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  accept: string;
+}
+
+export const UploadFile: React.FC<UploadFileProps> = ({ accept, ...props }) => {
+  return (
+    <input
+      type="file"
+      accept={accept}
+      {...props}
+    />
+  );
+};
+
+interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name: string;
+  value: string;
+  rows: number;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+export const TextArea: React.FC<TextAreaProps> = ({ name, value, rows, onChange, ...props }) => {
+  return (
+    <textarea
+      name={name}
+      value={value}
+      rows={rows}
+      onChange={onChange}
+      {...props}
+    />
+  );
+};
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  type: string;
+  value: string | number;
+  className?: string;
 
     // Event handlers
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = (props: InputProps) => {
+const Input: React.FC<InputProps> = ({ name, type, value, className, onChange, ...props }) => {
   return (
     <input
-      id={props.id}
-      type={props.type}
-      placeholder={props.placeholder}
-      name={props.name}
-      onChange={props.onChange}
-      className={`border px-4 py-1 border-gray-500 rounded-md max-w-lg ${props.className}`}
-      value={props.value}
-      disabled={props.disabled}
-      required={props.required}
+      type={type}
+      name={name}
+      onChange={onChange}
+      className={cn("border px-4 py-1 border-gray-500 rounded-md max-w-lg", className)}
+      value={value}
+      {...props}
     />
   );
 };

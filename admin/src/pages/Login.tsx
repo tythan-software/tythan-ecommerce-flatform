@@ -14,21 +14,23 @@ import Image from "@/components/partials/Image";
 import Button from "@/components/partials/Button";
 
 const LoginPage = () => {
-  // Store
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state: any) => state.auth);
 
-  /** Navigate */
   const navigate = useNavigate();
   
-  /** States */
+  /** States - Start */
+
   const [formData, setFormData] = React.useState({
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = React.useState(false);
 
-  /** Event Handlers */
+  /** States - End */
+
+  /** Event Handlers - Start */
+
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -73,6 +75,9 @@ const LoginPage = () => {
       dispatch(setLoading(false));
     }
   };
+
+  /** Event Handlers - End */
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">

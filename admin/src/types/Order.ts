@@ -1,8 +1,8 @@
 import Address from "./Adress";
+import Base from "./Base";
 import User from "./User";
 
-interface Order {
-  _id: string;
+interface Order extends Base {
   userId: User;
   name: string;
   address: Address;

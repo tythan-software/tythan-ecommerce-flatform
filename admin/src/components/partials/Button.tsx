@@ -1,24 +1,15 @@
-interface ButtonProps {
-  type?: "button" | "submit" | "reset";
-  className?: string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string | React.ReactNode;
-  disabled?: boolean;
-
-  // Event handlers
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Button = (props: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <button 
-      className={props.className} 
-      type={props.type} 
-      onClick={props.onClick}
-      disabled={props.disabled}
+      {...props}
     >
 
       {/** Button content */}
-      {props.children}
+      {children}
       
     </button>
   );

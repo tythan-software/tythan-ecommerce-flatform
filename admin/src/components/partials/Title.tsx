@@ -1,3 +1,5 @@
+import { cn } from "../cn";
+
 interface TitleProps {
     className?: string;
     children: string | React.ReactNode;
@@ -5,7 +7,7 @@ interface TitleProps {
 
 const Title = (props: TitleProps) => {
   return (
-    <h2 className={`text-2xl font-semibold tracking-wide ${props.className}`}>
+    <h2 className={cn("text-2xl font-semibold tracking-wide", props.className)}>
       {props.children}
     </h2>
   );

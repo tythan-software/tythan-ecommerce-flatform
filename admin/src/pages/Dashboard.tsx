@@ -3,17 +3,17 @@ import StatsCard from "@/components/layouts/StatsCard";
 import Button from "@/components/partials/Button";
 import Title from "@/components/partials/Title";
 import { formatCurrency, formatDate } from "@/helpers/format";
-import axios from "axios";
-import { serverUrl } from "../../config";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Stats from "@/types/Stats";
 import Order from "@/types/Order";
+import reportService from "@/services/reportService";
 
 const Dashboard = () => {
   const { token } = useSelector((state: any) => state.auth);
 
-  /** States */
+  /** States - Start */
+
   const [stats, setStats] = useState<Stats>(
     {
       totalProducts: 0,
@@ -27,17 +27,16 @@ const Dashboard = () => {
     }
   );
 
-  /** Event handlers */
+  /** States - End */
+
+  /** Event handlers - Start */
+
   const fetchStatistics = useCallback(async () => {
     try {
       setStats((prev: Stats) => ({ ...prev, loading: true, error: null }));
 
       // Fetch real data from server APIs
-      const response = await axios.get(`${serverUrl}/api/dashboard/stats`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await reportService.getDashboardStats();
 
       if (response.data.success) {
         const stats: Stats = response.data.stats;
@@ -64,12 +63,17 @@ const Dashboard = () => {
     }
   }, [token]);
 
+  /** Event handlers - End */
+
+  /** Trigger renders - Start */
+
   useEffect(() => {
     // If you use a function defined outside useEffect, always list it in the dependencies.
     fetchStatistics();
   }, [token, fetchStatistics]);
 
-  /** Render */
+  /** Trigger renders - End */
+
   if (stats.loading) {
     return <SkeletonLoader type="dashboard" />;
   }
