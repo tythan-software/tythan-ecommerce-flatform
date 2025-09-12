@@ -16,17 +16,11 @@ const authService = {
     return response.data;
   },
 
-  // User registration
-  userRegister: async (userData: any) => {
-    const response = await api.post("/api/user/register", userData);
+  // Token creation
+  createToken: async (data: any) => {
+    const response = await api.get(`${baseUrl}/token`, data);
     return response.data;
-  },
-
-  // Get user profile (if needed)
-  getUserProfile: async () => {
-    const response = await api.get("/api/user/profile");
-    return response.data;
-  },
+  }
 };
 
 export default authService;

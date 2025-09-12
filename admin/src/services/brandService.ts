@@ -1,7 +1,6 @@
-import { create } from "domain";
-import api from "../config/api";
 import { CreateOrUpdateBrand } from "@/types/Brand";
-import { get } from "http";
+import api from "../config/api";
+import { objectToFormData } from "@/utils/formData";
 
 const baseUrl = "/api/brands";
 
@@ -18,12 +17,16 @@ const brandService = {
   }, 
 
   createBrand: async (data: CreateOrUpdateBrand) => {
-    const response = await api.post(`${baseUrl}`, data);
+    data.isActive = data.isActive ?? true; // Default to true if not provided
+    const formData = objectToFormData(data);
+    const response = await api.post(`${baseUrl}`, formData);
     return response.data;
   },
 
   updateBrand: async (id: string, data: CreateOrUpdateBrand) => {
-    const response = await api.put(`${baseUrl}/:${id}`, data);
+    data.isActive = data.isActive ?? true; // Default to true if not provided
+    const formData = objectToFormData(data);
+    const response = await api.put(`${baseUrl}/:${id}`, formData);
     return response.data;
   },
 

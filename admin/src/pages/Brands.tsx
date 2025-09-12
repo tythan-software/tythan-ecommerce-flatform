@@ -46,12 +46,11 @@ const Brands = () => {
     try {
       setLoading(true);
       const response = await brandService.getBrands();
-      const data = await response.json();
 
-      if (data.success) {
-        setBrands(data.brands);
+      if (response.success) {
+        setBrands(response.brands);
       } else {
-        toast.error(data.message || "Failed to fetch brands");
+        toast.error(response.message || "Failed to fetch brands");
       }
     } catch (error) {
       console.error("Fetch brands error:", error);
@@ -72,7 +71,7 @@ const Brands = () => {
 
   // Handle image upload
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
+    const file = e.target.files?.[0] ?? null;
     if (file) {
       setFormData((prev) => ({
         ...prev,
@@ -99,19 +98,11 @@ const Brands = () => {
     setSubmitting(true);
 
     try {
-      const dataToSend: CreateOrUpdateBrand = {
-        name: formData.name.trim(),
-        description: formData.description.trim(),
-        website: formData.website.trim(),
-        image: formData.image,
-      };
-
       const response = editingBrand
-        ? await brandService.updateBrand(editingBrand._id, dataToSend)
-        : await brandService.createBrand(dataToSend);
-      const data = await response.json();
+        ? await brandService.updateBrand(editingBrand._id, formData)
+        : await brandService.createBrand(formData);
 
-      if (data.success) {
+      if (response.success) {
         toast.success(
           editingBrand
             ? "Brand updated successfully"
@@ -120,7 +111,7 @@ const Brands = () => {
         fetchBrands();
         closeModal();
       } else {
-        toast.error(data.message || "Failed to save brand");
+        toast.error(response.message || "Failed to save brand");
       }
     } catch (error) {
       console.error("Submit brand error:", error);
@@ -138,13 +129,12 @@ const Brands = () => {
 
     try {
       const response = await brandService.deleteBrand(brandId);
-      const data = await response.json();
 
-      if (data.success) {
+      if (response.success) {
         toast.success("Brand deleted successfully");
         fetchBrands();
       } else {
-        toast.error(data.message || "Failed to delete brand");
+        toast.error(response.message || "Failed to delete brand");
       }
     } catch (error) {
       console.error("Delete brand error:", error);

@@ -44,12 +44,11 @@ const Categories = () => {
     try {
       setLoading(true);
       const response = await categoryService.getCategories();
-      const data = await response.json();
 
-      if (data.success) {
-        setCategories(data.categories);
+      if (response.success) {
+        setCategories(response.categories);
       } else {
-        toast.error(data.message || "Failed to fetch categories");
+        toast.error(response.message || "Failed to fetch categories");
       }
     } catch (error) {
       console.error("Fetch categories error:", error);
@@ -70,7 +69,7 @@ const Categories = () => {
 
   // Handle image upload
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
+    const file = e.target.files?.[0] ?? null;
     if (file) {
       setFormData((prev) => ({
         ...prev,
@@ -97,19 +96,11 @@ const Categories = () => {
     setSubmitting(true);
 
     try {
-      const dataToSend: CreateOrUpdateCategory = {
-        name: formData.name.trim(),
-        description: formData.description.trim(),
-        image: formData.image,
-      };
-
       const response = editingCategory
-        ? await categoryService.updateCategory(editingCategory._id, dataToSend)
-        : await categoryService.createCategory(dataToSend);
+        ? await categoryService.updateCategory(editingCategory._id, formData)
+        : await categoryService.createCategory(formData);
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.success) {
         toast.success(
           editingCategory
             ? "Category updated successfully"
@@ -118,7 +109,7 @@ const Categories = () => {
         fetchCategories();
         closeModal();
       } else {
-        toast.error(data.message || "Failed to save category");
+        toast.error(response.message || "Failed to save category");
       }
     } catch (error) {
       console.error("Submit category error:", error);

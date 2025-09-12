@@ -2,7 +2,7 @@ import SkeletonLoader from "@/components/layouts/SkeletonLoader";
 import StatsCard from "@/components/layouts/StatsCard";
 import Button from "@/components/partials/Button";
 import Title from "@/components/partials/Title";
-import { formatCurrency, formatDate } from "@/helpers/format";
+import { formatCurrency, formatDate } from "@/utils/format";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Stats from "@/types/Stats";
@@ -38,8 +38,8 @@ const Dashboard = () => {
       // Fetch real data from server APIs
       const response = await reportService.getDashboardStats();
 
-      if (response.data.success) {
-        const stats: Stats = response.data.stats;
+      if (response.success) {
+        const stats: Stats = response.stats;
 
         setStats({
           totalProducts: stats.totalProducts || 0,
@@ -51,7 +51,7 @@ const Dashboard = () => {
           loading: false,
         });
       } else {
-        throw new Error(response.data.message || "Failed to fetch stats");
+        throw new Error(response.message || "Failed to fetch stats");
       }
     } catch (error: Error | any) {
       console.error("Error fetching statistics:", error);

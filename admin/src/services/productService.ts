@@ -1,5 +1,6 @@
 import { CreateOrUpdateProduct } from "@/types/Product";
 import api from "../config/api";
+import { objectToFormData } from "@/utils/formData";
 
 const baseUrl = "/api/products";
 
@@ -15,13 +16,15 @@ const productService = {
     return response.data;
   },
 
-  updateProduct: async (id: string, productData: CreateOrUpdateProduct) => {
-    const response = await api.put(`${baseUrl}/:${id}`, productData);
+  updateProduct: async (id: string, data: CreateOrUpdateProduct) => {
+    const formData = objectToFormData(data);
+    const response = await api.put(`${baseUrl}/:${id}`, formData);
     return response.data;
   },
 
-  createProduct: async (productData: CreateOrUpdateProduct) => {
-    const response = await api.post(`${baseUrl}`, productData);
+  createProduct: async (data: CreateOrUpdateProduct) => {
+    const formData = objectToFormData(data);
+    const response = await api.post(`${baseUrl}`, formData);
     return response.data;
   },
 

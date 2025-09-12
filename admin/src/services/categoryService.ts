@@ -1,6 +1,6 @@
-import Category, { CreateOrUpdateCategory } from "@/types/Category";
+import { CreateOrUpdateCategory } from "@/types/Category";
 import api from "../config/api";
-import { create } from "domain";
+import { objectToFormData } from "@/utils/formData";
 
 const baseUrl = "/api/categories";
 
@@ -17,12 +17,14 @@ const categoryService = {
   },
 
   updateCategory: async (id: string, categoryData: CreateOrUpdateCategory) => {
-    const response = await api.put(`${baseUrl}/:${id}`, categoryData);
+    const formData = objectToFormData(categoryData);
+    const response = await api.put(`${baseUrl}/:${id}`, formData);
     return response.data;
   },
 
   createCategory: async (data: CreateOrUpdateCategory) => {
-    const response = await api.post(`${baseUrl}`, data);
+    const formData = objectToFormData(data);
+    const response = await api.post(`${baseUrl}`, formData);
     return response.data;
   },
 

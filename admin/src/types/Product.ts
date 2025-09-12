@@ -20,7 +20,7 @@ interface Product extends Base {
 export interface CreateOrUpdateProduct {
   type: string;
   name: string;
-  images?: string[];
+  images?: object;
   price: string;
   discountedPercentage: number;
   stock: string;
@@ -31,7 +31,7 @@ export interface CreateOrUpdateProduct {
   isAvailable: boolean;
   offer: boolean;
   description: string;
-  tags: string;
+  tags: string[];
 }
 
 export default Product;

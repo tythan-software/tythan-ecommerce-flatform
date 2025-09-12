@@ -10,13 +10,11 @@ import {
   FaBox,
   FaChevronDown,
   FaChevronRight,
-  FaFileInvoice,
   FaSignOutAlt,
   FaTags,
-  FaBook,
   FaEnvelope,
 } from "react-icons/fa";
-import { MdDashboard, MdAnalytics, MdInventory } from "react-icons/md";
+import { MdDashboard, MdAnalytics } from "react-icons/md";
 import { BiPackage } from "react-icons/bi";
 import { HiOutlineClipboardList } from "react-icons/hi";
 
@@ -62,10 +60,10 @@ const Sidebar = () => {
       badge: null,
     },
     {
-      title: "Analytics",
+      title: "Agent Support",
       icon: <MdAnalytics />,
-      path: "/analytics",
-      description: "View analytics & insights",
+      path: "/support",
+      description: "AI-powered support",
       badge: "New",
     },
     {
@@ -77,20 +75,14 @@ const Sidebar = () => {
         {
           title: "Add Product",
           icon: <IoMdAdd />,
-          path: "/add",
+          path: "/add-product",
           description: "Add new products",
         },
         {
           title: "Product List",
           icon: <FaList />,
-          path: "/list",
+          path: "/products",
           description: "Manage all products",
-        },
-        {
-          title: "Inventory",
-          icon: <MdInventory />,
-          path: "/inventory",
-          description: "Stock management",
         },
         {
           title: "Categories",
@@ -125,20 +117,7 @@ const Sidebar = () => {
       path: "/contacts",
       description: "Customer messages & support",
       badge: null,
-    },
-    {
-      title: "API Docs",
-      icon: <FaBook />,
-      path: "/api-docs",
-      description: "API documentation",
-      badge: "📚",
-    },
-    {
-      title: "Invoice",
-      icon: <FaFileInvoice />,
-      path: "/invoice",
-      description: "Generate & manage invoices",
-    },
+    }
   ];
 
   const renderNavItem = (item: SidebarTreeNode, isChild = false) => {
@@ -227,7 +206,7 @@ const Sidebar = () => {
           </div>
           <div className="hidden sm:block">
             <h1 className="font-bold text-lg sm:text-xl text-gray-900">
-              Orebi Admin
+              Admin Panel
             </h1>
             <p className="text-xs text-gray-500 flex items-center gap-1">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
@@ -277,13 +256,8 @@ const Sidebar = () => {
           <div className="hidden sm:block">
             <div className="flex items-center justify-center gap-2 mb-1">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-              <span>System Healthy</span>
+              <span>Ecommerce System</span>
             </div>
-            <p className="text-gray-500">© 2025 Orebi Admin v1.0.0</p>
-          </div>
-          <div className="sm:hidden flex flex-col items-center gap-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-xs text-gray-500">v1.0.0</span>
           </div>
         </div>
       </div>

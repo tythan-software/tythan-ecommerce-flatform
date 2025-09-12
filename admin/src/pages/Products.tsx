@@ -22,21 +22,6 @@ import Brand from "@/types/Brand";
 import Input, { Label } from "@/components/partials/Input";
 import SmallLoader from "@/components/layouts/SmallLoader";
 
-interface formData {
-  type: string,
-  name: string,
-  description: string,
-  brand: string,
-  price: string,
-  discountedPercentage: number,
-  stock: string,
-  category: string,
-  offer: boolean,
-  isAvailable: boolean,
-  badge: boolean,
-  tags: string[],
-}
-
 const Products = () => {
   const [list, setList] = useState<Product[]>([]);
   const [isLoading, setLoading] = useState(false);
@@ -54,7 +39,7 @@ const Products = () => {
   const [brands, setBrands] = useState<Brand[]>([]);
 
   // Edit form data
-  const [formData, setFormData] = useState<formData>({
+  const [formData, setFormData] = useState<CreateOrUpdateProduct>({
     type: "",
     name: "",
     description: "",
@@ -79,12 +64,11 @@ const Products = () => {
     try {
       setLoading(true);
       const response = await productService.getProducts();
-      const data = response?.data;
 
-      if (data?.success) {
-        setList(data?.products);
+      if (response.success) {
+        setList(response.products);
       } else {
-        toast.error(data?.message);
+        toast.error(response.message);
       }
     } catch (error: Error | any) {
       console.log("Product List fetching error", error?.message);
@@ -102,14 +86,11 @@ const Products = () => {
         await brandService.getBrands(),
       ]);
 
-      const categoriesData = await categoriesRes.json();
-      const brandsData = await brandsRes.json();
-
-      if (categoriesData.success) {
-        setCategories(categoriesData.categories);
+      if (categoriesRes.success) {
+        setCategories(categoriesRes.categories);
       }
-      if (brandsData.success) {
-        setBrands(brandsData.brands);
+      if (brandsRes.success) {
+        setBrands(brandsRes.brands);
       }
     } catch (error) {
       console.error("Error fetching categories and brands:", error);
@@ -157,7 +138,7 @@ const Products = () => {
 
   // Handle individual image upload
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, imageKey: string) => {
-    const file = e.target.files ? e.target.files[0] : null;
+    const file = e.target.files?.[0] ?? null;
     if (file) {
       setImageFiles((prev) => ({
         ...prev,
@@ -259,19 +240,17 @@ const Products = () => {
       
       // Prepare data
       const data: CreateOrUpdateProduct = { ...formData, 
-        tags: JSON.stringify(formData.tags),
         images: Object.values(imageFiles).filter((file) => file !== null) as string[],
       };
 
       const response = await productService.updateProduct(editingProduct._id, data);
 
-      const responseData = response?.data;
-      if (responseData?.success) {
+      if (response.success) {
         toast.success("Product updated successfully");
         await fetchList();
         closeEditModal();
       } else {
-        toast.error(responseData?.message || "Failed to update product");
+        toast.error(response.message || "Failed to update product");
       }
     } catch (error: Error | any) {
       console.log("Product update error", error);
@@ -287,13 +266,12 @@ const Products = () => {
     try {
       setSubmitting(true);
       const response = await productService.deleteProduct(deletingProduct._id);
-      const data = response?.data;
-      if (data?.success) {
-        toast.success(data?.message);
+      if (response.success) {
+        toast.success(response.message);
         await fetchList();
         closeDeleteModal();
       } else {
-        toast.error(data?.message);
+        toast.error(response.message);
       }
     } catch (error: Error | any) {
       console.log("Product remove error", error);
@@ -333,7 +311,7 @@ const Products = () => {
               Refresh
             </button>
             <Link
-              to="/add"
+              to="/add-product"
               className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
             >
               <FaPlus />
@@ -452,7 +430,7 @@ const Products = () => {
             </p>
             {!searchTerm && (
               <Link
-                to="/add"
+                to="/add-product"
                 className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Add Product

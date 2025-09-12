@@ -1,6 +1,6 @@
 import Base from "./Base";
 
-interface Brand extends Base {
+export default interface Brand extends Base {
   name: string;
   image: string;
   description?: string;
@@ -10,9 +10,8 @@ interface Brand extends Base {
 
 export interface CreateOrUpdateBrand {
   name: string;
-  image: string | null | File;
+  image?: File | null;
   description: string;
   website: string;
+  isActive?: boolean;
 }
-
-export default Brand;

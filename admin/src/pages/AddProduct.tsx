@@ -15,21 +15,6 @@ import { CreateOrUpdateProduct } from "@/types/Product";
 import categoryService from "@/services/categoryService";
 import brandService from "@/services/brandService";
 
-interface formData {
-  type: string;
-  name: string;
-  description: string;
-  brand: string;
-  price: string;
-  discountedPercentage: number;
-  stock: string;
-  category: string;
-  offer: boolean;
-  isAvailable: boolean;
-  badge: boolean;
-  tags: string[];
-}
-
 const AddNewProduct = () => {
   const navigate = useNavigate();
 
@@ -39,7 +24,7 @@ const AddNewProduct = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
   const [loadingData, setLoadingData] = useState(true);
-  const [formData, setFormData] = useState<formData>(
+  const [formData, setFormData] = useState<CreateOrUpdateProduct>(
     {
       type: "",
       name: "",
@@ -75,14 +60,11 @@ const AddNewProduct = () => {
         await brandService.getBrands(),
       ]);
 
-      const categoriesData = await categoriesRes.json();
-      const brandsData = await brandsRes.json();
-
-      if (categoriesData.success) {
-        setCategories(categoriesData.categories);
+      if (categoriesRes.success) {
+        setCategories(categoriesRes.categories);
       }
-      if (brandsData.success) {
-        setBrands(brandsData.brands);
+      if (brandsRes.success) {
+        setBrands(brandsRes.brands);
       }
     } catch (error) {
       console.error("Error fetching categories and brands:", error);
@@ -127,7 +109,7 @@ const AddNewProduct = () => {
   
   // Handle image upload
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, imageKey: string) => {
-    const file = e.target.files ? e.target.files[0] : null;
+    const file = e.target.files?.[0] ?? null;
     if (file) {
       setImageFiles((prev) => ({
         ...prev,
@@ -167,25 +149,28 @@ const AddNewProduct = () => {
 
     try {
       setLoading(true);
-
-      // Prepare data
-      const data: CreateOrUpdateProduct = { ...formData, 
-        tags: JSON.stringify(formData.tags),
-        images: Object.values(imageFiles).filter((file) => file !== null) as string[],
+      console.log("Uploading product data:", imageFiles);
+      const data: CreateOrUpdateProduct = { 
+        ...formData, 
+        images: Object.entries(imageFiles).reduce((obj, [key, file]) => {
+          if (file !== null) {
+            obj[key] = file;
+          }
+          return obj;
+        }, {} as { [key: string]: File })
       };
 
       const response = await productService.createProduct(data);
 
-      const responseData = response?.data;
-      if (responseData?.success) {
-        toast.success(responseData?.message);
-        navigate("/list");
+      if (response.success) {
+        toast.success(response.message);
+        navigate("/products");
       } else {
-        toast.error(responseData?.message);
+        toast.error(response.message);
       }
     } catch (error: Error | any) {
       console.log("Product data uploading error", error);
-      toast.error(error?.response?.data?.message || "Error uploading product");
+      toast.error(error?.response?.message || "Error uploading product");
     } finally {
       setLoading(false);
     }
@@ -334,9 +319,9 @@ const AddNewProduct = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="_type">Product Type</Label>
+                  <Label htmlFor="type">Product Type</Label>
                   <select
-                    name="_type"
+                    name="type"
                     value={formData.type}
                     onChange={handleChange}
                     className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
