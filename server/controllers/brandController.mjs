@@ -5,6 +5,8 @@ import { cleanupTempFile } from "../helpers/file.js";
 // Create brand
 const createBrand = async (req, res) => {
   try {
+    console.log("Request body:", req.body);
+    console.log("Request file:", req.file);
     const { name, description, website } = req.body;
 
     // Check if brand already exists

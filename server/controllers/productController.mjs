@@ -5,6 +5,8 @@ import productModel from "../models/productModel.js";
 // Create product
 const createProduct = async (req, res) => {
   try {
+    console.log("Request body:", req.body);
+    console.log("Request files:", req.files);
     const {
       type,
       name,

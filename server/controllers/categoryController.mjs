@@ -1,6 +1,6 @@
 import categoryModel from "../models/categoryModel.js";
 import { cloudinary, deleteCloudinaryImage } from "../config/cloudinary.js";
-import fs from "fs";
+import { cleanupTempFile } from "../helpers/file.js";
 
 // Create category
 const createCategory = async (req, res) => {

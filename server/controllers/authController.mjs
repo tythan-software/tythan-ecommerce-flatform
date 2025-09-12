@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import userModel from "../models/userModel.js";
 
 // Create token for user login
 const createToken = (user) => {
