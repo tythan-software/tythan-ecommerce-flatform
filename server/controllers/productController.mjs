@@ -1,6 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import { deleteCloudinaryImage } from "../config/cloudinary.js";
 import productModel from "../models/productModel.js";
+import { cleanupTempFile } from "../helpers/file.js";
 
 // Create product
 const createProduct = async (req, res) => {
