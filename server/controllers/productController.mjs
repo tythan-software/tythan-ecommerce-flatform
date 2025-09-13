@@ -6,8 +6,6 @@ import { cleanupTempFile } from "../helpers/file.js";
 // Create product
 const createProduct = async (req, res) => {
   try {
-    console.log("Request body:", req.body);
-    console.log("Request files:", req.files);
     const {
       type,
       name,
