@@ -238,11 +238,15 @@ const Products = () => {
     try {
       setSubmitting(true);
       
-      // Prepare data
-      const data: CreateOrUpdateProduct = { ...formData, 
-        images: Object.values(imageFiles).filter((file) => file !== null) as string[],
+      const data: CreateOrUpdateProduct = { 
+        ...formData, 
+        images: Object.entries(imageFiles).reduce((obj, [key, file]) => {
+          if (file !== null) {
+            obj[key] = file;
+          }
+          return obj;
+        }, {} as { [key: string]: File })
       };
-
       const response = await productService.updateProduct(editingProduct._id, data);
 
       if (response.success) {

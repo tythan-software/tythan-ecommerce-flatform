@@ -149,7 +149,7 @@ const AddNewProduct = () => {
 
     try {
       setLoading(true);
-      console.log("Uploading product data:", imageFiles);
+      
       const data: CreateOrUpdateProduct = { 
         ...formData, 
         images: Object.entries(imageFiles).reduce((obj, [key, file]) => {
@@ -159,7 +159,6 @@ const AddNewProduct = () => {
           return obj;
         }, {} as { [key: string]: File })
       };
-
       const response = await productService.createProduct(data);
 
       if (response.success) {
@@ -280,7 +279,7 @@ const AddNewProduct = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="mt-1"
+                    className="mt-1 ml-1"
                     required
                   />
                 </div>
