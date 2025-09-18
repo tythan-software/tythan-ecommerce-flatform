@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { logo } from "../../assets/images";
-import { FaUser, FaCog, FaChevronDown, FaUserShield } from "react-icons/fa";
+import { FaCog, FaChevronDown, FaUserShield } from "react-icons/fa";
 import { MdNotifications } from "react-icons/md";
 
 const Navbar = () => {
@@ -49,7 +49,6 @@ const Navbar = () => {
   ];
 
   const userMenuItems = [
-    { icon: FaUser, label: "Profile", path: "/profile" },
     { icon: FaCog, label: "Settings", path: "/settings" },
   ];
 
