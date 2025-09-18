@@ -10,6 +10,7 @@ import Navbar from "./components/layouts/Navbar";
 import Sidebar from "./components/layouts/Sidebar";
 import ScrollToTop from "./components/layouts/ScrollToTop";
 import Users from "./pages/Users";
+import Orders from "./pages/Orders";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
                       <Route path="/brands" element={<Brands />} />
                       <Route path="/categories" element={<Categories />} />
                       <Route path="/users" element={<Users />} />
+                      <Route path="/orders" element={<Orders />} />
                     </Routes>
                   </div>
                 </div>
