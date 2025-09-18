@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { uploadUserAvatar } from "../controllers/fileController.mjs";
+import { uploadAvatar } from "../controllers/fileController.mjs";
 import { avatarUpload } from "../middleware/avatarUpload.mjs";
 import adminAuth from "../middleware/adminAuth.js";
 
@@ -13,7 +13,7 @@ router.post(
   `${routeValue}/upload-avatar`,
   adminAuth,
   avatarUpload.single("avatar"),
-  uploadUserAvatar
+  uploadAvatar
 );
 
 /** Admin-protected routes - End */

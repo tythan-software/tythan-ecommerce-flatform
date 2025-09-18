@@ -228,8 +228,7 @@ const updateBrand = async (req, res) => {
 // Delete brand (soft delete)
 const deleteBrand = async (req, res) => {
   try {
-    const { id } = req.params.id;
-
+    const id = req.params.id;
     const brand = await brandModel.findById(id);
     if (!brand) {
       return res.status(404).json({

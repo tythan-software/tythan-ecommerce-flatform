@@ -45,7 +45,7 @@ router.post(
 );
 router.delete(`${routeValue}/:id`, adminAuth, deleteProduct);
 router.put(
-  `${routeValue}/update/:id`,
+  `${routeValue}/:id`,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },

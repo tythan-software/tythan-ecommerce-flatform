@@ -2,6 +2,7 @@ import validator from "validator";
 import bcrypt from "bcrypt";
 import userModel from "../models/userModel.js";
 import { deleteCloudinaryImage } from "../config/cloudinary.js";
+import { cleanupTempFile } from "../helpers/file.js";
 
 // Route for user registration
 const createUser = async (req, res) => {

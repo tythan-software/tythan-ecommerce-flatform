@@ -1,5 +1,5 @@
 // Avatar upload function
-const uploadUserAvatar = async (req, res) => {
+const uploadAvatar = async (req, res) => {
   try {
     if (!req.file) {
       return res.json({ success: false, message: "No file uploaded" });
@@ -35,4 +35,4 @@ const uploadUserAvatar = async (req, res) => {
   }
 };
 
-export { uploadUserAvatar };
+export { uploadAvatar };

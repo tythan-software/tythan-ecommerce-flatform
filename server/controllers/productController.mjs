@@ -205,8 +205,6 @@ const getProducts = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
-
-    // First, find the product to get its images
     const product = await productModel.findById(id);
 
     if (!product) {
@@ -234,7 +232,7 @@ const deleteProduct = async (req, res) => {
     }
 
     // Delete the product from database
-    await productModel.findByIdAndDelete(req.body._id);
+    await productModel.findByIdAndDelete(id);
     res.json({ success: true, message: "Product removed successfully" });
   } catch (error) {
     console.log(error);
