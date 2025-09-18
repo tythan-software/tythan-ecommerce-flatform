@@ -1,11 +1,11 @@
 import { cn } from "../cn";
 
-interface ContainerProps {
+interface Props {
     children: React.ReactNode;
     className?: string;
 }
 
-const Container = (props: ContainerProps) => {
+const Container = (props: Props) => {
   return (
     <div className={cn("max-w-screen-xl mx-auto px-4 py-10", props.className)}>
       {props.children}

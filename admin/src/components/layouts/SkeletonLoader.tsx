@@ -1,9 +1,9 @@
-interface SkeletonLoaderProps {
+interface Props {
   type: "card" | "table" | "product" | "dashboard" | "user" | "contacts" | "orders";
   count?: number;
 }
 
-const SkeletonLoader = ({ type = "card", count = 1 }: SkeletonLoaderProps) => {
+const SkeletonLoader = ({ type = "card", count = 1 }: Props) => {
   const CardSkeleton = () => (
     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 animate-pulse">
       <div className="flex items-center justify-between">

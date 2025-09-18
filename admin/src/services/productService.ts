@@ -12,13 +12,13 @@ const productService = {
   },
 
   getProduct: async (id: string) => {
-    const response = await api.get(`${baseUrl}/:${id}`);
+    const response = await api.get(`${baseUrl}/${id}`);
     return response.data;
   },
 
   updateProduct: async (id: string, data: CreateOrUpdateProduct) => {
     const formData = objectToFormData(data);
-    const response = await api.put(`${baseUrl}/:${id}`, formData);
+    const response = await api.put(`${baseUrl}/${id}`, formData);
     return response.data;
   },
 
@@ -29,7 +29,7 @@ const productService = {
   },
 
   deleteProduct: async (id: string) => {
-    const response = await api.delete(`${baseUrl}/:${id}`);
+    const response = await api.delete(`${baseUrl}/${id}`);
     return response.data;
   }
 };

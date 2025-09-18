@@ -1,8 +1,8 @@
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string | React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+export const Button: React.FC<Props> = ({ children, ...props }) => {
   return (
     <button 
       {...props}

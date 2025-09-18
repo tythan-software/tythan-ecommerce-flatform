@@ -12,7 +12,7 @@ const brandService = {
   },
 
   getBrand: async (id: string) => {
-    const response = await api.get(`${baseUrl}/:${id}`);
+    const response = await api.get(`${baseUrl}/${id}`);
     return response.data;
   }, 
 
@@ -26,12 +26,12 @@ const brandService = {
   updateBrand: async (id: string, data: CreateOrUpdateBrand) => {
     data.isActive = data.isActive ?? true; // Default to true if not provided
     const formData = objectToFormData(data);
-    const response = await api.put(`${baseUrl}/:${id}`, formData);
+    const response = await api.put(`${baseUrl}/${id}`, formData);
     return response.data;
   },
 
   deleteBrand: async (id: string) => {
-    const response = await api.delete(`${baseUrl}/:${id}`);
+    const response = await api.delete(`${baseUrl}/${id}`);
     return response.data;
   }
 };

@@ -18,7 +18,7 @@ import { MdDashboard, MdAnalytics } from "react-icons/md";
 import { BiPackage } from "react-icons/bi";
 import { HiOutlineClipboardList } from "react-icons/hi";
 
-interface SidebarItem {
+interface Item {
   title: string;
   icon: React.ReactNode;
   path: string;
@@ -27,8 +27,8 @@ interface SidebarItem {
   isCategory?: boolean;
 }
 
-interface SidebarTreeNode extends SidebarItem {
-  children?: SidebarItem[];
+interface TreeNode extends Item {
+  children?: Item[];
 }
 
 const Sidebar = () => {
@@ -51,7 +51,7 @@ const Sidebar = () => {
     navigate("/login");
   };
 
-  const sidebarItems: SidebarTreeNode[] = [
+  const sidebarItems: TreeNode[] = [
     {
       title: "Overview",
       icon: <MdDashboard />,
@@ -120,7 +120,7 @@ const Sidebar = () => {
     }
   ];
 
-  const renderNavItem = (item: SidebarTreeNode, isChild = false) => {
+  const renderNavItem = (item: TreeNode, isChild = false) => {
     if (item.isCategory) {
       const isExpanded = Object.entries(expandedCategories).find(([key]) => key === item.title)?.[1] || false;
 

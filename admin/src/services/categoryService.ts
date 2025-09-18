@@ -12,13 +12,13 @@ const categoryService = {
   },
 
   getCategory: async (id: string) => {
-    const response = await api.get(`${baseUrl}/:${id}`);
+    const response = await api.get(`${baseUrl}/${id}`);
     return response.data;
   },
 
   updateCategory: async (id: string, categoryData: CreateOrUpdateCategory) => {
     const formData = objectToFormData(categoryData);
-    const response = await api.put(`${baseUrl}/:${id}`, formData);
+    const response = await api.put(`${baseUrl}/${id}`, formData);
     return response.data;
   },
 
@@ -29,7 +29,7 @@ const categoryService = {
   },
 
   deleteCategory: async (id: string) => {
-    const response = await api.delete(`${baseUrl}/:${id}`);
+    const response = await api.delete(`${baseUrl}/${id}`);
     return response.data;
   }
 };

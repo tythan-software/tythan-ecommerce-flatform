@@ -13,11 +13,6 @@ const api = axios.create({
 // Add token to requests if available
 api.interceptors.request.use(async (config) => {
   let token = localStorage.getItem("token");
-  
-  if (isTokenExpired(token)) {
-    console.log("Token expired, refreshing...");
-    token = await authService.createToken(jwtDecode(token));
-  }
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

@@ -50,9 +50,8 @@ export const TextArea: React.FC<TextAreaProps> = ({ name, value, rows, onChange,
   );
 };
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  type: string;
   value: string | number;
   className?: string;
 
@@ -60,10 +59,9 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ name, type, value, className, onChange, ...props }) => {
+const Input: React.FC<Props> = ({ name, value, className, onChange, ...props }) => {
   return (
     <input
-      type={type}
       name={name}
       onChange={onChange}
       className={cn("border px-4 py-1 border-gray-500 rounded-md max-w-lg", className)}

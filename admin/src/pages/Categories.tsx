@@ -127,13 +127,12 @@ const Categories = () => {
 
     try {
       const response = await categoryService.deleteCategory(categoryId);
-      const data = await response.json();
 
-      if (data.success) {
+      if (response.success) {
         toast.success("Category deleted successfully");
         fetchCategories();
       } else {
-        toast.error(data.message || "Failed to delete category");
+        toast.error(response.message || "Failed to delete category");
       }
     } catch (error) {
       console.error("Delete category error:", error);

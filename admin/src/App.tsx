@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/layouts/ProtectedRoute";
 import Navbar from "./components/layouts/Navbar";
 import Sidebar from "./components/layouts/Sidebar";
 import ScrollToTop from "./components/layouts/ScrollToTop";
+import Users from "./pages/Users";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
                       <Route path="/products" element={<Products />} />
                       <Route path="/brands" element={<Brands />} />
                       <Route path="/categories" element={<Categories />} />
+                      <Route path="/users" element={<Users />} />
                     </Routes>
                   </div>
                 </div>
