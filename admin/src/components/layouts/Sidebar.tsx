@@ -1,8 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import toast from "react-hot-toast";
-import { logout } from "../../redux/authSlice";
+import { NavLink } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import {
   FaList,
@@ -10,7 +7,6 @@ import {
   FaBox,
   FaChevronDown,
   FaChevronRight,
-  FaSignOutAlt,
   FaTags,
   FaEnvelope,
 } from "react-icons/fa";
@@ -32,8 +28,6 @@ interface TreeNode extends Item {
 }
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [expandedCategories, setExpandedCategories] = useState({
     Products: false,
   });
@@ -43,12 +37,6 @@ const Sidebar = () => {
       ...prev,
       [categoryName]: !Object.entries(prev).find(([key]) => key === categoryName)?.[1],
     }));
-  };
-
-  const handleLogout = () => {
-    dispatch(logout());
-    toast.success("Logged out successfully");
-    navigate("/login");
   };
 
   const sidebarItems: TreeNode[] = [
@@ -197,7 +185,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-full bg-white border-r border-gray-200 flex flex-col overflow-x-hidden">
+    <div className="w-full flex flex-col overflow-x-hidden">
       {/* Logo/Header */}
       <div className="p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white flex-shrink-0">
         <div className="flex items-center gap-2 sm:gap-3">
@@ -220,45 +208,6 @@ const Sidebar = () => {
       <div className="flex-1 py-2 sm:py-4 overflow-y-auto overflow-x-hidden">
         <div className="space-y-1 px-1 sm:px-0">
           {sidebarItems.map((item) => renderNavItem(item))}
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="p-3 sm:p-4 border-t border-gray-100 bg-gray-50 flex-shrink-0">
-        {/* User Info */}
-        {/* {user && (
-          <div className="hidden sm:flex items-center gap-3 mb-3 p-2 bg-white rounded-lg">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center font-semibold text-xs">
-              {user?.name ? user.name.charAt(0).toUpperCase() : "A"}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
-                {user.name || user.email}
-              </p>
-              <p className="text-xs text-gray-500">Administrator</p>
-            </div>
-          </div>
-        )} */}
-
-        {/* Logout Button */}
-        <div className="mb-3">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center justify-center sm:justify-start gap-2 sm:gap-3 px-2 sm:px-3 py-2 sm:py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-200 group"
-          >
-            <FaSignOutAlt className="text-sm sm:text-base group-hover:scale-110 transition-transform duration-200" />
-            <span className="hidden sm:inline font-medium">Logout</span>
-          </button>
-        </div>
-
-        {/* System Status */}
-        <div className="text-center text-xs text-gray-400">
-          <div className="hidden sm:block">
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-              <span>Ecommerce System</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -9,12 +9,6 @@ const Settings = () => {
       icon: <FaCog />,
       color: "blue",
       settings: [
-        { label: "Site Name", value: "Easy Buy", type: "text" },
-        {
-          label: "Site Description",
-          value: "Modern e-commerce platform",
-          type: "text",
-        },
         { label: "Default Currency", value: "USD", type: "select" },
         { label: "Timezone", value: "UTC-5", type: "select" },
       ],
@@ -38,7 +32,6 @@ const Settings = () => {
         { label: "Two-Factor Authentication", value: "false", type: "toggle" },
         { label: "Session Timeout (minutes)", value: "30", type: "number" },
         { label: "Failed Login Attempts", value: "5", type: "number" },
-        { label: "IP Whitelist Enabled", value: "false", type: "toggle" },
       ],
     },
     {
@@ -49,7 +42,6 @@ const Settings = () => {
         { label: "Email Notifications", value: "true", type: "toggle" },
         { label: "Order Notifications", value: "true", type: "toggle" },
         { label: "Low Stock Alerts", value: "true", type: "toggle" },
-        { label: "System Maintenance Alerts", value: "false", type: "toggle" },
       ],
     },
   ];

@@ -1,11 +1,16 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { logo } from "../../assets/images";
-import { FaCog, FaChevronDown, FaUserShield } from "react-icons/fa";
+import { FaCog, FaChevronDown, FaUserShield, FaSignOutAlt } from "react-icons/fa";
 import { MdNotifications } from "react-icons/md";
+import { logout } from "@/redux/authSlice";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { user } = useSelector((state: any) => state.auth);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -50,7 +55,23 @@ const Navbar = () => {
 
   const userMenuItems = [
     { icon: FaCog, label: "Settings", path: "/settings" },
+    { icon: FaSignOutAlt, label: "Log out", path: "/logout" },
   ];
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.success("Logged out successfully");
+    navigate("/login");
+  };
+
+  const handleClickMenuItem = (item: any) => {
+    setIsUserMenuOpen(false);
+    if (item.label === "Log out") {
+      handleLogout();
+    } else {
+      navigate(item.path);
+    }
+  };
 
   return (
     <header className="border-b border-gray-200 w-full sticky top-0 left-0 z-40 bg-white shadow-sm">
@@ -186,7 +207,7 @@ const Navbar = () => {
                       <Link
                         key={index}
                         to={item.path}
-                        onClick={() => setIsUserMenuOpen(false)}
+                        onClick={() => handleClickMenuItem(item)}
                         className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-150"
                       >
                         <item.icon className="text-gray-400" />
