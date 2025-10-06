@@ -81,7 +81,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="logo"
-            className="w-20 sm:w-24 transition-transform duration-200 group-hover:scale-105"
+            className="w-20 h-12 sm:w-24 object-cover transition-transform duration-200 group-hover:scale-105"
           />
           <div className="hidden sm:block">
             <p className="text-xs uppercase font-bold tracking-wide text-blue-600">

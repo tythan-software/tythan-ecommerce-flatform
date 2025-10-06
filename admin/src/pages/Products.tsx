@@ -719,7 +719,7 @@ const Products = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="mt-1"
+                      className="mt-1 ml-1"
                       required
                     />
                   </div>
