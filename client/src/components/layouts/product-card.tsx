@@ -9,6 +9,7 @@ import { cn } from "@/lib/cn";
 import { Badge } from "@/components/partials/badge";
 import { Button } from "@/components/partials/button";
 import { Card, CardContent, CardFooter } from "@/components/partials/card";
+import Product from "@/types/Product";
 
 type ProductCardProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -16,16 +17,7 @@ type ProductCardProps = Omit<
 > & {
   onAddToCart?: (productId: string) => void;
   onAddToWishlist?: (productId: string) => void;
-  product: {
-    category: string;
-    id: string;
-    image: string;
-    inStock?: boolean;
-    name: string;
-    originalPrice?: number;
-    price: number;
-    rating?: number;
-  };
+  product: Product;
   variant?: "compact" | "default";
 };
 
@@ -47,7 +39,7 @@ export function ProductCard({
       setIsAddingToCart(true);
       // Simulate API call
       setTimeout(() => {
-        onAddToCart(product.id);
+        onAddToCart(product._id);
         setIsAddingToCart(false);
       }, 600);
     }
@@ -57,18 +49,22 @@ export function ProductCard({
     e.preventDefault();
     if (onAddToWishlist) {
       setIsInWishlist(!isInWishlist);
-      onAddToWishlist(product.id);
+      onAddToWishlist(product._id);
     }
   };
 
-  const discount = product.originalPrice
-    ? Math.round(
-        ((product.originalPrice - product.price) / product.originalPrice) * 100
-      )
-    : 0;
+  const handleDiscountedPrice = (item: Product) => {
+    const discountedPrice = item.discountedPercentage
+      ? Math.round(
+          (item.price) * (item.discountedPercentage / 100)
+        )
+      : 0;
+
+    return discountedPrice.toFixed(2);
+  };
 
   const renderStars = () => {
-    const rating = product.rating ?? 0;
+    const rating = product.rating ?? 1;
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
 
@@ -84,7 +80,7 @@ export function ProductCard({
                 ? "fill-yellow-400/50 text-yellow-400"
                 : "stroke-muted/40 text-muted"
             )}
-            key={`star-${product.id}-position-${i + 1}`}
+            key={`star-${product._id}-position-${i + 1}`}
           />
         ))}
         {rating > 0 && (
@@ -98,7 +94,7 @@ export function ProductCard({
 
   return (
     <div className={cn("group", className)} {...props}>
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/products/${product._id}`}>
         <Card
           className={cn(
             `
@@ -112,7 +108,7 @@ export function ProductCard({
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="relative aspect-square overflow-hidden rounded-t-lg">
-            {product.image && (
+            {product.images?.[0] && (
               <Image
                 alt={product.name}
                 className={cn(
@@ -121,7 +117,7 @@ export function ProductCard({
                 )}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                src={product.image}
+                src={product.images?.[0]}
               />
             )}
 
@@ -136,14 +132,14 @@ export function ProductCard({
             </Badge>
 
             {/* Discount badge */}
-            {discount > 0 && (
+            {product.discountedPercentage > 0 && (
               <Badge
                 className={`
                 absolute top-2 right-2 bg-destructive
                 text-destructive-foreground
               `}
               >
-                {discount}% OFF
+                {product.discountedPercentage}% OFF
               </Badge>
             )}
 
@@ -189,11 +185,11 @@ export function ProductCard({
                 <div className="mt-1.5">{renderStars()}</div>
                 <div className="mt-2 flex items-center gap-1.5">
                   <span className="font-medium text-foreground">
-                    ${product.price.toFixed(2)}
+                    ${handleDiscountedPrice(product)}
                   </span>
-                  {product.originalPrice ? (
+                  {product.price ? (
                     <span className="text-sm text-muted-foreground line-through">
-                      ${product.originalPrice.toFixed(2)}
+                      ${product.price.toFixed(2)}
                     </span>
                   ) : null}
                 </div>
@@ -231,11 +227,11 @@ export function ProductCard({
               <div className="flex w-full items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   <span className="font-medium text-foreground">
-                    ${product.price.toFixed(2)}
+                    ${handleDiscountedPrice(product)}
                   </span>
-                  {product.originalPrice ? (
+                  {product.price ? (
                     <span className="text-sm text-muted-foreground line-through">
-                      ${product.originalPrice.toFixed(2)}
+                      ${product.price.toFixed(2)}
                     </span>
                   ) : null}
                 </div>
@@ -262,7 +258,7 @@ export function ProductCard({
             </CardFooter>
           )}
 
-          {!product.inStock && (
+          {!product.isAvailable && (
             <div
               className={`
                 absolute inset-0 flex items-center justify-center

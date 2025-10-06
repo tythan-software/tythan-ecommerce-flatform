@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 // Create and export the auth client
 export const authClient = createAuthClient({
-  baseURL: process.env.API_BACKEND_URL || "http://localhost:8000",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000",
   plugins: [
     twoFactorClient({
       onTwoFactorRedirect: () => {

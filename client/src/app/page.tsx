@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, Clock, ShoppingBag, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,36 +15,62 @@ import {
   CardTitle,
 } from "@/components/partials/card";
 
-import { categories, featuredProductsHomepage, testimonials } from "./mocks";
-
-const featuresWhyChooseUs = [
-  {
-    description:
-      "Free shipping on all orders over $50. Fast and reliable delivery to your doorstep.",
-    icon: <Truck className="h-6 w-6 text-primary" />,
-    title: "Free Shipping",
-  },
-  {
-    description:
-      "Your payment information is always safe and secure with us. We use industry-leading encryption.",
-    icon: <ShoppingBag className="h-6 w-6 text-primary" />,
-    title: "Secure Checkout",
-  },
-  {
-    description:
-      "Our customer support team is always available to help with any questions or concerns.",
-    icon: <Clock className="h-6 w-6 text-primary" />,
-    title: "24/7 Support",
-  },
-  {
-    description:
-      "We stand behind the quality of every product we sell. 30-day money-back guarantee.",
-    icon: <Star className="h-6 w-6 text-primary" />,
-    title: "Quality Guarantee",
-  },
-];
+import { featuresWhyChooseUs, testimonialSections } from "@/constants/data";
+import { useEffect, useState } from "react";
+import Category from "@/types/Category";
+import Product from "@/types/Product";
+import { notFound } from "next/navigation";
+import categoryService from "@/services/categoryService";
+import productService from "@/services/productService";
 
 export default function HomePage() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  async function fetchData() {
+    try {
+      const categoriesRes = await categoryService.getCategories();
+      const productsRes = await productService.getProducts();
+
+      if (categoriesRes.success) {
+        setCategories(categoriesRes.categories);
+      }
+
+      if (productsRes.success) {
+        setProducts(productsRes.products);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      notFound();
+    }
+  };
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const testimonials = testimonialSections;
+  const features = featuresWhyChooseUs.map((feature) => {
+    let icon;
+    switch (feature.icon) {
+      case "Truck":
+        icon = <Truck className="h-6 w-6 text-primary" />;
+        break;
+      case "ShoppingBag":
+        icon = <ShoppingBag className="h-6 w-6 text-primary" />;
+        break;
+      case "Clock":
+        icon = <Clock className="h-6 w-6 text-primary" />;
+        break;
+      case "Star":
+        icon = <Star className="h-6 w-6 text-primary" />;
+        break;
+      default:
+        icon = null;
+    }
+    return { ...feature, icon };
+  });
+
   return (
     <>
       <main
@@ -216,46 +244,49 @@ export default function HomePage() {
                 md:grid-cols-4 md:gap-6
               `}
             >
-              {categories.map((category) => (
-                <Link
-                  aria-label={`Browse ${category.name} products`}
-                  className={`
-                    group relative flex flex-col space-y-4 overflow-hidden
-                    rounded-2xl border bg-card shadow transition-all
-                    duration-300
-                    hover:shadow-lg
-                  `}
-                  href={`/products?category=${category.name.toLowerCase()}`}
-                  key={category.name}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <div
+              {categories && categories.length 
+                ? categories
+                  .map((category) => (
+                    <Link
+                      aria-label={`Browse ${category.name} products`}
                       className={`
-                        absolute inset-0 z-10 bg-gradient-to-t
-                        from-background/80 to-transparent
+                        group relative flex flex-col space-y-4 overflow-hidden
+                        rounded-2xl border bg-card shadow transition-all
+                        duration-300
+                        hover:shadow-lg
                       `}
-                    />
-                    <Image
-                      alt={category.name}
-                      className={`
-                        object-cover transition duration-300
-                        group-hover:scale-105
-                      `}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                      src={category.image}
-                    />
-                  </div>
-                  <div className="relative z-20 -mt-6 p-4">
-                    <div className="mb-1 text-lg font-medium">
-                      {category.name}
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {category.productCount} products
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                      href={`/products?category=${category.name.toLowerCase()}`}
+                      key={category.name}
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <div
+                          className={`
+                            absolute inset-0 z-10 bg-gradient-to-t
+                            from-background/80 to-transparent
+                          `}
+                        />
+                        <Image
+                          alt={category.name}
+                          className={`
+                            object-cover transition duration-300
+                            group-hover:scale-105
+                          `}
+                          fill
+                          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                          src={category.image}
+                        />
+                      </div>
+                      <div className="relative z-20 -mt-6 p-4">
+                        <div className="mb-1 text-lg font-medium">
+                          {category.name}
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {category.productCount ?? 0} products
+                        </p>
+                      </div>
+                    </Link>
+                  ))
+                : null}
             </div>
           </div>
         </section>
@@ -296,8 +327,8 @@ export default function HomePage() {
                 xl:grid-cols-4
               `}
             >
-              {featuredProductsHomepage.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {products.map((product) => (
+                <ProductCard key={product._id} product={product} />
               ))}
             </div>
             <div className="mt-10 flex justify-center">
@@ -357,7 +388,7 @@ export default function HomePage() {
                 lg:grid-cols-4
               `}
             >
-              {featuresWhyChooseUs.map((feature) => (
+              {features.map((feature) => (
                 <Card
                   className={`
                     rounded-2xl border-none bg-background shadow transition-all

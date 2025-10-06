@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       { hostname: "**.ufs.sh", protocol: "https" },
       { hostname: "**.unsplash.com", protocol: "https" },
       { hostname: "utfs.io", protocol: "https" },
+      { hostname: "res.cloudinary.com", protocol: "https" },
     ],
   },
 };
