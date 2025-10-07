@@ -13,6 +13,8 @@ import {
 import { MdDashboard, MdAnalytics } from "react-icons/md";
 import { BiPackage } from "react-icons/bi";
 import { HiOutlineClipboardList } from "react-icons/hi";
+import { FaGrip, FaFolderOpen } from 'react-icons/fa6';
+import { FaStickyNote } from 'react-icons/fa';
 
 interface Item {
   title: string;
@@ -105,7 +107,28 @@ const Sidebar = () => {
       path: "/contacts",
       description: "Customer messages & support",
       badge: null,
-    }
+    },
+    {
+      title: "Apps",
+      icon: <FaGrip />,
+      path: "#",
+      isCategory: true,
+      children: [
+        {
+          title: "Sticky Notes",
+          icon: <FaStickyNote />,
+          path: "/notes",
+          description: "Manage your sticky notes",
+        },
+      ],
+    },
+    {
+      title: "Media",
+      icon: <FaFolderOpen />,
+      path: "/media",
+      description: "Manage media files",
+      badge: null,
+    },
   ];
 
   const renderNavItem = (item: TreeNode, isChild = false) => {
