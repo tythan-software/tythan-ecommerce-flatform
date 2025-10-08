@@ -13,7 +13,7 @@ import {
 import { MdDashboard, MdAnalytics } from "react-icons/md";
 import { BiPackage } from "react-icons/bi";
 import { HiOutlineClipboardList } from "react-icons/hi";
-import { FaGrip, FaFolderOpen } from 'react-icons/fa6';
+import { FaGrip, FaFolderOpen, FaHandHoldingDollar } from 'react-icons/fa6';
 import { FaStickyNote } from 'react-icons/fa';
 
 interface Item {
@@ -120,6 +120,12 @@ const Sidebar = () => {
           path: "/notes",
           description: "Manage your sticky notes",
         },
+        {
+          title: "Expense Tracker",
+          icon: <FaHandHoldingDollar />,
+          path: "/expenses",
+          description: "Manage your expenses",
+        }
       ],
     },
     {
